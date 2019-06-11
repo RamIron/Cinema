@@ -1,7 +1,4 @@
 #include "./Usuario.hh"
-#include <iostream>
-
-using namespace std;
 
 Usuario::Usuario() {
   this->nickname = "";

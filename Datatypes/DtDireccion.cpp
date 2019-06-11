@@ -1,7 +1,4 @@
 #include "DtDireccion.hh"
-#include <iostream>
-
-using namespace std;
 
 DtDireccion::DtDireccion() {}
 
