@@ -15,9 +15,9 @@ public:
 
   DtDireccion(string, int);
 
-  string getCalle();
+  string getCalle() const;
 
-  int getNumero();
+  int getNumero() const;
 
   ~DtDireccion();
 };
