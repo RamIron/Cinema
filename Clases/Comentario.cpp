@@ -2,18 +2,19 @@
 
 int Comentario::currentId = 0;
 
-//Constructores
+// Constructores
 Comentario::Comentario() { this->id = currentId++; }
-Comentario::Comentario(string texto){
-	this->id = currentId++;
-	this->texto = comentario;
+
+Comentario::Comentario(string texto) {
+  this->id = currentId++;
+  this->texto = texto;
 }
 
-//Getters y Setters
-int Comentario::getId() {return this->id;}
-int Comentario::getComentario() {return this->texto;}
+// Getters y Setters
+int Comentario::getId() { return this->id; }
+string Comentario::getTexto() { return this->texto; }
 
-void Comentario::setComentario(string comentario) {this->texto = comentario;}
+void Comentario::setTexto(string texto) { this->texto = texto; }
 
-//Destructor
-Comentario::~Puntaje() {}
+// Destructor
+Comentario::~Comentario() {}
