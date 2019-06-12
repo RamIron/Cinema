@@ -2,18 +2,20 @@
 
 int Puntaje::currentId = 0;
 
-//Constructores
+// Constructores
 Puntaje::Puntaje() { this->id = currentId++; }
-Puntaje::Puntaje(int puntos){
-	this->id = currentId++;
-	this->puntos = puntos;
+
+Puntaje::Puntaje(int puntos) {
+  this->id = currentId++;
+  this->puntos = puntos;
 }
 
-//Getters y Setters
-int Puntaje::getId() {return this->id;}
-int Puntaje::getPuntos() {return this->puntos;}
+// Getters y Setters
+int Puntaje::getId() { return this->id; }
 
-void Puntaje::setPuntos(int puntos) {this->puntos = puntos;}
+int Puntaje::getPuntos() { return this->puntos; }
 
-//Destructor
+void Puntaje::setPuntos(int puntos) { this->puntos = puntos; }
+
+// Destructor
 Puntaje::~Puntaje() {}

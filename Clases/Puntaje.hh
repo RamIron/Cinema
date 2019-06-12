@@ -1,34 +1,35 @@
 #ifndef PALAB06_PUNTAJE_HH
 #define PALAB06_PUNTAJE_HH
 
+#include "Usuario.hh"
 #include <iostream>
 
 using namespace std;
 
 class Usuario;
 
-class Puntaje{
-	private:
-		int id;
-		static int currentId;
-		int puntos;
-		Usuario* u;
-	
-	public:
-		//Constructores
-		Puntaje();
-		Puntaje(int puntos);
-		
-		//Getters y Setters
-		int getId();
-		int getPuntos();
-		
-		void setPuntos(int puntos);
-		
-		//Destructor
-		~Puntaje();
-};
+class Puntaje {
+private:
+  int id;
+  static int currentId;
+  int puntos;
+  Usuario *u;
 
-#include "Usuario.hh"
+public:
+  // Constructores
+  Puntaje();
+
+  Puntaje(int puntos);
+
+  // Getters y Setters
+  int getId();
+
+  int getPuntos();
+
+  void setPuntos(int puntos);
+
+  // Destructor
+  ~Puntaje();
+};
 
 #endif
