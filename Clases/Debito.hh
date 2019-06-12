@@ -1,6 +1,7 @@
 #ifndef PALAB06_DEBITO_HH
 #define PALAB06_DEBITO_HH
 
+#include "Reserva.hh"
 #include <iostream>
 
 using namespace std;
