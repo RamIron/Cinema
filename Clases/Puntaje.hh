@@ -10,23 +10,19 @@ class Usuario;
 
 class Puntaje {
 private:
-  int id;
-  static int currentId;
   int puntos;
   Usuario *u;
 
 public:
   // Constructores
   Puntaje();
-
-  Puntaje(int puntos);
+  Puntaje(Usuario* u, int puntos);
 
   // Getters y Setters
-  int getId();
-
   int getPuntos();
-
   void setPuntos(int puntos);
+  Usuario* getUsuario();
+  void setUsuario(Usuario* u);
 
   // Destructor
   ~Puntaje();
