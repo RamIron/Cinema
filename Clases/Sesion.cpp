@@ -6,7 +6,7 @@ Sesion* Sesion::getInstance()
 {
     if (this->sesion == NULL)
     {
-        sesion = new Singleton();
+        sesion = new Sesion();
     }
     return sesion;
 }
