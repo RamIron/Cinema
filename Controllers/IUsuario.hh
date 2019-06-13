@@ -7,8 +7,8 @@ using namespace std;
 
 class IUsario{
     public:
-      void ingresaNick(string nickname) = 0;
-      bool ingresaPass(string contrasenia) = 0;
+      virtual void ingresaNick(string nickname) = 0;
+      virtual bool ingresaPass(string contrasenia) = 0;
 };
 
 #endif
