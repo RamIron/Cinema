@@ -1,14 +1,22 @@
 #include "CCine.hh"
 
-void ingresaDireccion(DtDireccion direccion){
+CCine* CCine::ccine = NULL;
 
-}
-void crearCine(){
+CCine::CCine(){}
 
+CCine* CCine::getInstance()
+{
+    if (this->ccine == NULL)
+    {
+        ccine = new CCine();
+    }
+    return ccine;
 }
-void cancelar(){
 
-}
-void ingresaSala(int capacidad){
-  
-}
+void CCine::ingresaDireccion(DtDireccion direccion);
+
+void CCine::crearCine();
+
+void CCine::cancelar();
+
+void CCine::ingresaSala(int capacidad);

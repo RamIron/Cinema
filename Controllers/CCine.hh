@@ -12,12 +12,15 @@
 
 class CCine:public ICine{
   public:
+    static CCine *ccine;
     DtDireccion direccion;
     vector<int> capacidadSalas;
     map<int, Cine *> mapOfCines;
     Sesion* sesion;
+    CCine();
   private:
     void ingresaDireccion(DtDireccion direccion);
+    static CCine* getInstance();
     void crearCine();
     void cancelar();
     void ingresaSala(int capacidad);
