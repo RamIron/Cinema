@@ -2,16 +2,15 @@
 
 UsuarioFactory* UsuarioFactory::instancia = NULL;
 
-CUsuarioFactory::CUsuarioFactory(){}
+UsuarioFactory::UsuarioFactory(){}
 
-UsuarioFactory* CUsuarioFactory::getInstancia(){
-    if (instancia == NULL)
-        instancia = new UsuarioFactory();
-    return instancia;
+UsuarioFactory* UsuarioFactory::getInstancia(){
+  if (instancia == NULL)
+    instancia = new UsuarioFactory();
+  return instancia;
 }
 
-IUsuario* CUsuarioFactory::getIPelicula(){
-    return new CUsuario();
+IUsuario* UsuarioFactory::getIPelicula(){
+  IUsuario* cont = CUsuario::getInstance();
+  return cont;
 }
-
-CUsuarioFactory::~CUsuarioFactory(){}

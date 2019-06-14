@@ -2,6 +2,7 @@
 #define PALAB06_CUSUARIOFACTORY_HH
 #include "IUsuario.hh"
 #include "CUsuario.hh"
+
 class UsuarioFactory{
     private:
         static UsuarioFactory* instancia;
@@ -9,6 +10,6 @@ class UsuarioFactory{
     public:
         static UsuarioFactory* getInstancia();
         IUsuario* getIUsuario();
-        ~UsuarioFactory();
 };
+
 #endif

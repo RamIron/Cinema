@@ -2,7 +2,7 @@
 
 PeliculaFactory* PeliculaFactory::instancia = NULL;
 
-CPeliculaFactory::CPeliculaFactory(){}
+PeliculaFactory::PeliculaFactory(){}
 
 PeliculaFactory* PeliculaFactory::getInstancia(){
     if (instancia == NULL)
@@ -10,8 +10,7 @@ PeliculaFactory* PeliculaFactory::getInstancia(){
     return instancia;
 }
 
-IPelicula* CPeliculaFactory::getIPelicula(){
-    return new CPelicula();
+IPelicula* PeliculaFactory::getIPelicula(){
+  IPelicula* cont = CPelicula::getInstance();
+  return cont;
 }
-
-CPeliculaFactory::~CPeliculaFactory(){}

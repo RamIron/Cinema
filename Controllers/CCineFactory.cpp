@@ -11,7 +11,6 @@ CineFactory* CineFactory::getInstancia(){
 }
 
 ICine* CineFactory::getICine(){
-    return new CCine();
+  ICine* cont = CCine::getInstance();
+  return cont;
 }
-
-CCineFactory::~CCineFactory(){}

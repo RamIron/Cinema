@@ -9,6 +9,5 @@ class CineFactory{
     public:
         static CineFactory* getInstancia();
         ICine* getICine();
-        ~CineFactory(); 
 };
 #endif
