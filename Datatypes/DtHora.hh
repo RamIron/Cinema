@@ -7,21 +7,18 @@ class DtHora {
 private:
   int hora;
   int minuto;
-  int segundo;
 
 public:
   /*Constructor sin parametros*/
   DtHora();
 
   /*Constructor con parametros*/
-  DtHora(int hora, int minuto, int segundo);
+  DtHora(int hora, int minuto);
 
   /*Getters*/
   int getHora();
 
   int getMinuto();
-
-  int getSegundo();
 
   /*Destructor*/
   ~DtHora();
