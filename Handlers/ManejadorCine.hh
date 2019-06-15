@@ -1,24 +1,32 @@
 #ifndef PALAB06_MANEJADORCINE_HH
 #define PALAB06_MANEJADORCINE_HH
-#include "./Clases/Cine.hh"
+
+#include "../Clases/Cine.hh"
 #include <map>
-#include <vector>
 
 using namespace std;
 
 class ManejadorCine {
 private:
-  static ManejadorCine *instancia;
-  map<int, Cine *> cines;
-  ManejadorCine();
+    static ManejadorCine *mcInstance;
+    map<int, Cine *> cines;
+
+    ManejadorCine();
 
 public:
-  static ManejadorCine *getInstancia();
-  vector<Cine *> obtenerCines();
-  Cine *obtenerCine(int id);
-  void agregarCine(Cine *);
-  bool existeCine(int id);
-  void eliminarCine(int id);
-  virtual ~ManejadorCine();
+    static ManejadorCine *getInstance();
+
+    map<int, Cine *> obtenerCines();
+
+    Cine *obtenerCine(int ind);
+
+    void agregarCine(Cine *);
+
+    bool existeCine(int id);
+
+    void eliminarCine(int id);
+
+    ~ManejadorCine();
 };
+
 #endif
