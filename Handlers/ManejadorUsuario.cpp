@@ -37,3 +37,5 @@ void ManejadorUsuario::eliminarUsuario(string nickname) {
 map<string, Usuario *> ManejadorUsuario::obtenerUsuarios() {
   return this->usuarios;
 }
+
+ManejadorUsuario::~ManejadorUsuario() {}

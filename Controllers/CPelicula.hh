@@ -10,6 +10,7 @@
 #include "../Datatypes/DtFuncion.hh"
 #include "../Datatypes/DtHorario.hh"
 #include "../Datatypes/DtPelicula.hh"
+#include "../Clases/Pelicula.hh"
 #include "IPelicula.hh"
 #include <iostream>
 #include <map>
@@ -28,7 +29,7 @@ private:
   // DtSala sala;
   int idComentario;
   Sesion *sesion;
-  // map<string, Pelicula *> mapOfPeliculas;
+  map<string, Pelicula *> mapOfPeliculas;
   map<int, Funcion *> mapOfFunciones;
   map<string, Financiera *> mapOfFinancieras;
 
