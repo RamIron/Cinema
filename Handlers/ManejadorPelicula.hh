@@ -26,7 +26,7 @@ public:
 
     void eliminarPelicula(string titulo);
 
-    virtual ~ManejadorPelicula();
+    ~ManejadorPelicula();
 };
 
 #endif

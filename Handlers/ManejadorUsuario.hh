@@ -26,7 +26,7 @@ public:
 
     void eliminarUsuario(string nickname);
 
-    virtual ~ManejadorUsuario();
+    ~ManejadorUsuario();
 };
 
 #endif
