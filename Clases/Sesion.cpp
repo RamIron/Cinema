@@ -11,6 +11,16 @@ Sesion *Sesion::getInstance() {
 
 Sesion::Sesion() {}
 
-void Sesion::login(string nickname, string contrasenia) {}
+void Sesion::login(string nickname, string contrasenia) {
+
+}
+
+Usuario* Sesion::getUsuario(){
+  return this->u;
+}
+
+void Sesion::setUsuario(Usuario *u) {
+  this->u = u;
+}
 
 Sesion::~Sesion() {}

@@ -17,6 +17,10 @@ public:
 
   void login(string, string);
 
+  Usuario * getUsuario();
+
+  void setUsuario(Usuario *u);
+
   ~Sesion();
 };
 
