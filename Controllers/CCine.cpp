@@ -1,22 +1,22 @@
 #include "CCine.hh"
 
-CCine* CCine::ccine = NULL;
+CCine *CCine::ccInstance = NULL;
 
-CCine::CCine(){}
+CCine::CCine() {}
 
-CCine* CCine::getInstance()
-{
-    if (this->ccine == NULL)
-    {
-        ccine = new CCine();
-    }
-    return ccine;
+CCine *CCine::getInstance() {
+  if (ccInstance == NULL) {
+    ccInstance = new CCine();
+  }
+  return ccInstance;
 }
 
-void CCine::ingresaDireccion(DtDireccion direccion);
+void CCine::ingresaDireccion(DtDireccion direccion) {}
 
-void CCine::crearCine();
+void CCine::crearCine() {}
 
-void CCine::cancelar();
+void CCine::cancelar() {}
 
-void CCine::ingresaSala(int capacidad);
+void CCine::ingresaSala(int capacidad) {}
+
+CCine::~CCine() {}

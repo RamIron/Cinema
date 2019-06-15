@@ -1,10 +1,6 @@
 #include "./Usuario.hh"
 
-Usuario::Usuario() {
-  this->nickname = "";
-  this->contrasenia = "";
-  this->foto = "";
-}
+Usuario::Usuario() {}
 
 Usuario::Usuario(string nickname, string contrasenia, string foto,
                  bool esAdmin) {

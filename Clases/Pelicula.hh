@@ -1,58 +1,75 @@
-#ifndef PALAB06_PUNTAJE_HH
-#define PALAB06_PUNTAJE_HH
+#ifndef PALAB06_PELICULA_HH
+#define PALAB06_PELICULA_HH
 
-#include <iostream>
-#include <vector>
-#include <map>
-#include <string>
-#include "Comentario.hh"
-#include "Puntaje.hh"
-#include "Cine.hh"
-#include "Funcion.hh"
 #include "../Datatypes/DtCine.hh"
 #include "../Datatypes/DtComentario.hh"
 #include "../Datatypes/DtFuncion.hh"
 #include "../Datatypes/DtInfoPeli.hh"
+#include "Cine.hh"
+#include "Comentario.hh"
+#include "Funcion.hh"
+#include "Puntaje.hh"
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
+
 using namespace std;
 
-class Pelicula{
-  private:
-    string titulo;
-    string sinopsis;
-    float puntajePromedio;
-    string poster;
-    map<int, Comentario *> comentarios;
-    vector<Puntaje *> puntajes;
-    map<int, Funcion*> funciones;
-    map<int, Cine*> cines;
-  public:
-    //Constructores
-    Pelicula();
-    Pelicula(string titulo, string sinopsis, float puntajePromedio, string poster);
+class Pelicula {
+private:
+  string titulo;
+  string sinopsis;
+  float puntajePromedio;
+  string poster;
+  map<int, Comentario *> comentarios;
+  vector<Puntaje *> puntajes;
+  map<int, Funcion *> funciones;
+  map<int, Cine *> cines;
 
-    //Getters & Setters
-    string getTitulo();
-    string getSinopsis();
-    float getPuntajePromedio();
-    string getPoster();
+public:
+  // Constructores
+  Pelicula();
 
-    void setTitulo(string titulo);
-    void setSinopsis(string sinopsis);
-    void setPuntajePromedio();
-    void setPoster(string poster);
+  Pelicula(string titulo, string sinopsis, float puntajePromedio,
+           string poster);
 
-    //Destructor
-    ~Pelicula();
+  // Getters & Setters
+  string getTitulo();
 
-    //Operaciones
-    float calcularPuntajePromedio();
-    vector<DtCine> obtenerCines();
-    DtCine obtenerCine();
-    vector<DtComentario> obtenerComentario();
-    vector<DtCine> verInfoAdicional();
-    int obtenerPuntuacion();
-    vector<DtInfoPeli> mostrarInfo();
-    vector<DtFuncion> obtenerFunciones();
+  string getSinopsis();
+
+  float getPuntajePromedio();
+
+  string getPoster();
+
+  void setTitulo(string titulo);
+
+  void setSinopsis(string sinopsis);
+
+  void setPuntajePromedio(float puntajePromedio);
+
+  void setPoster(string poster);
+
+  // Destructor
+  ~Pelicula();
+
+  // Operaciones
+  float calcularPuntajePromedio();
+
+  vector<DtCine> obtenerCines();
+
+  DtCine obtenerCine();
+
+  vector<DtComentario> obtenerComentario();
+
+  vector<DtCine> verInfoAdicional();
+
+  int obtenerPuntuacion();
+
+  vector<DtInfoPeli> mostrarInfo();
+
+  vector<DtFuncion> obtenerFunciones();
 };
 
 #endif

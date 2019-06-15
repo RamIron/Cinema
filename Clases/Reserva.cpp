@@ -15,4 +15,6 @@ void Reserva::setCantEntradas(int cantEntradas) {
   this->cantEntradas = cantEntradas;
 }
 
+void Reserva::setCosto(float costo) { this->costo = costo; }
+
 Reserva::~Reserva() {}

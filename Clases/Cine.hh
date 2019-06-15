@@ -1,7 +1,7 @@
 #ifndef PALAB06_CINE_HH
 #define PALAB06_CINE_HH
 
-#include "Datatypes/DtDireccion.hh"
+#include "../Datatypes/DtDireccion.hh"
 #include "Sala.hh"
 #include <iostream>
 #include <map>

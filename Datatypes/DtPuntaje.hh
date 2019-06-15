@@ -3,10 +3,13 @@
 
 #include <iostream>
 
+using namespace std;
+
 class DtPuntaje {
 private:
   int puntuacion;
   string nickname;
+
 public:
   /*Constructor sin parametros*/
   DtPuntaje();
@@ -15,9 +18,9 @@ public:
   DtPuntaje(int puntuacion, string nickname);
 
   /*Getters*/
-  int getPuntuacion();
+  int getPuntuacion() const;
 
-  string getnickname();
+  string getNickname() const;
 
   /*Destructor*/
   ~DtPuntaje();

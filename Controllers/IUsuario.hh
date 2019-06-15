@@ -5,10 +5,11 @@
 
 using namespace std;
 
-class IUsario{
-    public:
-      virtual void ingresaNick(string nickname) = 0;
-      virtual bool ingresaPass(string contrasenia) = 0;
+class IUsuario {
+public:
+  virtual void ingresaNick(string nickname) = 0;
+
+  virtual bool ingresaPass(string contrasenia) = 0;
 };
 
 #endif

@@ -2,24 +2,27 @@
 #define PALAB06_DTCOMENTARIO_HH
 
 #include <iostream>
+#include <map>
+
+using namespace std;
 
 class DtComentario {
 private:
   string nickname;
   string comentario;
-  map<string, DtComentario*>  comentarios;
+  map<string, DtComentario *> comentarios;
+
 public:
   /*Constructor sin parametros*/
   DtComentario();
 
   /*Constructor con parametros*/
-  DtComentario(string nickname, string comentario,
-  map<string, DtComentario*> comentarios);
+  DtComentario(string nickname, string comentario);
 
   /*Getters*/
-  string getNickname();
-  string getComentario();
-  map<string, DtComentario*> getComentarios();
+  string getNickname() const;
+
+  string getComentario() const;
 
   /*Destructor*/
   ~DtComentario();

@@ -6,8 +6,6 @@
 
 using namespace std;
 
-class Usuario;
-
 class Puntaje {
 private:
   int puntos;
@@ -16,13 +14,17 @@ private:
 public:
   // Constructores
   Puntaje();
-  Puntaje(Usuario* u, int puntos);
+
+  Puntaje(Usuario *u, int puntos);
 
   // Getters y Setters
   int getPuntos();
+
   void setPuntos(int puntos);
-  Usuario* getUsuario();
-  void setUsuario(Usuario* u);
+
+  Usuario *getUsuario();
+
+  void setUsuario(Usuario *u);
 
   // Destructor
   ~Puntaje();

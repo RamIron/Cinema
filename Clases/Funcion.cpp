@@ -6,20 +6,14 @@ int Funcion::currentId = 0;
 Funcion::Funcion() { this->id = currentId++; }
 
 Funcion::Funcion(DtFecha fecha, DtHorario horario, float precio) {
-  this->id = currentId;
+  this->id = currentId++;
   this->fecha = fecha;
   this->horario = horario;
   this->precio;
 }
 
-Funcion::Funcion(DtFecha fecha, DtHorario horario) {
-  this->id = currentId;
-  this->fecha = fecha;
-  this->horario = horario;
-}
-
 // Getters y Setters
-int Funcion::getID() { return this->id; }
+int Funcion::getId() { return this->id; }
 
 DtFecha Funcion::getFecha() { return this->fecha; }
 

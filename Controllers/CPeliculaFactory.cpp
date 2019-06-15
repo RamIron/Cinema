@@ -1,16 +1,18 @@
 #include "CPeliculaFactory.hh"
 
-PeliculaFactory* PeliculaFactory::instancia = NULL;
+CPeliculaFactory *CPeliculaFactory::pfInstance = NULL;
 
-PeliculaFactory::PeliculaFactory(){}
+CPeliculaFactory::CPeliculaFactory() {}
 
-PeliculaFactory* PeliculaFactory::getInstancia(){
-    if (instancia == NULL)
-        instancia = new PeliculaFactory();
-    return instancia;
+CPeliculaFactory *CPeliculaFactory::getInstance() {
+  if (pfInstance == NULL)
+    pfInstance = new CPeliculaFactory();
+  return pfInstance;
 }
 
-IPelicula* PeliculaFactory::getIPelicula(){
-  IPelicula* cont = CPelicula::getInstance();
-  return cont;
+IPelicula *CPeliculaFactory::getIPelicula() {
+  IPelicula *iPelicula = CPelicula::getInstance();
+  return iPelicula;
 }
+
+CPeliculaFactory::~CPeliculaFactory() {}

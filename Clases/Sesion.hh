@@ -6,17 +6,18 @@
 
 using namespace std;
 
-class Comentario {
+class Sesion {
 private:
   static Sesion *sesion;
   Usuario *u;
   Sesion();
 
 public:
-
-  static Sesion* getInstance();
+  static Sesion *getInstance();
 
   void login(string, string);
+
+  ~Sesion();
 };
 
 #endif

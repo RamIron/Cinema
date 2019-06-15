@@ -3,28 +3,31 @@
 
 #include <iostream>
 
+using namespace std;
+
 class DtPelicula {
 private:
   string titulo;
   string sinopsis;
   string poster;
   float puntajePromedio;
+
 public:
   /*Constructor sin parametros*/
   DtPelicula();
 
   /*Constructor con parametros*/
   DtPelicula(string titulo, string sinopsis, string poster,
-    float puntajePromedio);
+             float puntajePromedio);
 
   /*Getters*/
-  string getTitulo();
+  string getTitulo() const;
 
-  string getSinopsis();
+  string getSinopsis() const;
 
-  string getPoster();
+  string getPoster() const;
 
-  float getPuntajePromedio();
+  float getPuntajePromedio() const;
 
   /*Destructor*/
   ~DtPelicula();

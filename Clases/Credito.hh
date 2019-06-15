@@ -7,8 +7,6 @@
 
 using namespace std;
 
-class Financiera;
-
 class Credito : public Reserva {
 private:
   Financiera *financiera;

@@ -1,9 +1,9 @@
 #ifndef PALAB06_DTFUNCION_HH
 #define PALAB06_DTFUNCION_HH
 
-#include <iostream>
-#include "DtHorario.hh"
 #include "DtFecha.hh"
+#include "DtHorario.hh"
+#include <iostream>
 
 class DtFuncion {
 private:

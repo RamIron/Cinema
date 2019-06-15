@@ -1,18 +1,18 @@
 #include "CUsuario.hh"
 
-CUsuario* CUsuario::cusuario = NULL;
+CUsuario *CUsuario::cuInstance = NULL;
 
-CUsuario::Sesion(){}
+CUsuario::CUsuario() {}
 
-CUsuario* CUsuario::getInstance()
-{
-    if (this->cusuario == NULL)
-    {
-        cusuario = new CUsuario();
-    }
-    return cusuario;
+CUsuario *CUsuario::getInstance() {
+  if (cuInstance == NULL) {
+    cuInstance = new CUsuario();
+  }
+  return cuInstance;
 }
 
-void CUsuario::ingresaNick(string nickname);
+void CUsuario::ingresaNick(string nickname) {}
 
-bool CUsuario::ingresaPass(string contrasenia);
+bool CUsuario::ingresaPass(string contrasenia) {}
+
+CUsuario::~CUsuario() {}

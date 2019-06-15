@@ -16,9 +16,9 @@ public:
   DtHora(int hora, int minuto);
 
   /*Getters*/
-  int getHora();
+  int getHora() const;
 
-  int getMinuto();
+  int getMinuto() const;
 
   /*Destructor*/
   ~DtHora();

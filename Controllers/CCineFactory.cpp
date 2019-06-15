@@ -1,16 +1,18 @@
 #include "CCineFactory.hh"
 
-CineFactory* CineFactory::instancia = NULL;
+CCineFactory *CCineFactory::cfInstance = NULL;
 
-CineFactory::CineFactory(){}
+CCineFactory::CCineFactory() {}
 
-CineFactory* CineFactory::getInstancia(){
-    if (instancia == NULL)
-        instancia = new CineFactory();
-    return instancia;
+CCineFactory *CCineFactory::getInstancia() {
+  if (cfInstance == NULL)
+    cfInstance = new CCineFactory();
+  return cfInstance;
 }
 
-ICine* CineFactory::getICine(){
-  ICine* cont = CCine::getInstance();
-  return cont;
+ICine *CCineFactory::getICine() {
+  ICine *iCine = CCine::getInstance();
+  return iCine;
 }
+
+CCineFactory::~CCineFactory() {}

@@ -1,26 +1,21 @@
 #include "DtFuncion.hh"
 
-DtFuncion::DtFuncion() {
-  this->id = "";
-  this->precio = "";
-  this->fecha = "";
-  this->horario = "";
-}
+DtFuncion::DtFuncion() {}
 
-DtFuncion::DtFuncion(int id, float precio, DtFecha fecha, DtHorario horario){
+DtFuncion::DtFuncion(int id, float precio, DtFecha fecha, DtHorario horario) {
   this->id = id;
   this->precio = precio;
   this->fecha = fecha;
   this->horario = horario;
 }
 
-int DtFuncion::getid(){ return this->id }
+int DtFuncion::getid() { return this->id; }
 
-float DtFuncion::getPrecio()}{ return this->precio }
+float DtFuncion::getPrecio() { return this->precio; }
 
-DtFecha DtFuncion::getFecha(){ return this->fecha }
+DtFecha DtFuncion::getFecha() { return this->fecha; }
 
-DtHorario DtFuncion::getHorario(){ return this->horario }
+DtHorario DtFuncion::getHorario() { return this->horario; }
 
 /*Destructor*/
-DtFuncion::~DtFuncion(){}
+DtFuncion::~DtFuncion() {}

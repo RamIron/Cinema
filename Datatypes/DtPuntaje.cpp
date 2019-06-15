@@ -1,17 +1,14 @@
 #include "DtPuntaje.hh"
 
-DtPuntaje::DtPuntaje() {
-  this->id = "";
-  this->nickname = "";
-}
+DtPuntaje::DtPuntaje() {}
 
-DtPuntaje::DtPuntaje(int id, string nickname) {
-  this->id = id;
+DtPuntaje::DtPuntaje(int puntuacion, string nickname) {
+  this->puntuacion = puntuacion;
   this->nickname = nickname;
 }
 
-int DtPuntaje::getId() { return this->id; }
+string DtPuntaje::getNickname() const { return this->nickname; }
 
-string DtPuntaje::getNickname() { return this->nickname; }
+int DtPuntaje::getPuntuacion() const { return this->puntuacion; }
 
 DtPuntaje::~DtPuntaje() {}

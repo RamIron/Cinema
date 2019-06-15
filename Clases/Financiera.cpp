@@ -1,9 +1,6 @@
 #include "./Financiera.hh"
 
-Financiera::Financiera() {
-  this->nombre = "";
-  this->descuento = "";
-}
+Financiera::Financiera() {}
 
 Financiera::Financiera(string nombre, float descuento) {
   this->nombre = nombre;
@@ -16,6 +13,6 @@ float Financiera::getDescuento() { return this->descuento; }
 
 void Financiera::setNombre(string nombre) { this->nombre = nombre; }
 
-void Financiera::setDescuento(string descuento) { this->descuento = descuento; }
+void Financiera::setDescuento(float descuento) { this->descuento = descuento; }
 
 Financiera::~Financiera() {}

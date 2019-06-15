@@ -1,35 +1,51 @@
 #include "Pelicula.hh"
 
-//Constructores
-Pelicula::Pelicula(){}
+// Constructores
+Pelicula::Pelicula() {}
 
-Pelicula::Pelicula(string titulo, string sinopsis, float puntajePromedio, string poster){
+Pelicula::Pelicula(string titulo, string sinopsis, float puntajePromedio,
+                   string poster) {
   this->titulo = titulo;
   this->sinopsis = sinopsis;
   this->puntajePromedio = puntajePromedio;
   this->poster = poster;
 }
 
-//Getters & Setters
-string getTitulo() {return this->titulo;}
-string getSinopsis() {return this->sinopsis;}
-float getPuntajePromedio() {return this->puntajePromedio;}
-string getPoster(){} {return this->poster;}
+// Getters & Setters
+string Pelicula::getTitulo() { return this->titulo; }
 
-void setTitulo(string titulo) {this->titulo = titulo;}
-void setSinopsis(string sinopsis) {this->sinopsis = sinopsis;}
-void setPuntajePromedio(puntajePromedio) {this->puntajePromedio = puntajePromedio;}
-void setPoster(string poster) {this->poster = poster;}
+string Pelicula::getSinopsis() { return this->sinopsis; }
 
-//Destructor
-~Pelicula(){}
+float Pelicula::getPuntajePromedio() { return this->puntajePromedio; }
 
-//Operaciones
-float calcularPuntajePromedio(){}
-vector<DtCine> obtenerCines(){}
-DtCine obtenerCine(){}
-vector<DtComentario> obtenerComentario(){}
-vector<DtCine> verInfoAdicional(){}
-int obtenerPuntuacion(){}
-vector<DtInfoPeli> mostrarInfo(){}
-vector<DtFuncion> obtenerFunciones(){}
+string Pelicula::getPoster() { return this->poster; }
+
+void Pelicula::setTitulo(string titulo) { this->titulo = titulo; }
+
+void Pelicula::setSinopsis(string sinopsis) { this->sinopsis = sinopsis; }
+
+void Pelicula::setPuntajePromedio(float puntajePromedio) {
+  this->puntajePromedio = puntajePromedio;
+}
+
+void Pelicula::setPoster(string poster) { this->poster = poster; }
+
+// Destructor
+Pelicula::~Pelicula() {}
+
+// Operaciones
+float Pelicula::calcularPuntajePromedio() {}
+
+vector<DtCine> Pelicula::obtenerCines() {}
+
+DtCine Pelicula::obtenerCine() {}
+
+vector<DtComentario> Pelicula::obtenerComentario() {}
+
+vector<DtCine> Pelicula::verInfoAdicional() {}
+
+int Pelicula::obtenerPuntuacion() {}
+
+vector<DtInfoPeli> Pelicula::mostrarInfo() {}
+
+vector<DtFuncion> Pelicula::obtenerFunciones() {}

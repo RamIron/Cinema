@@ -1,17 +1,14 @@
 #include "DtCine.hh"
 
-DtCine::DtCine() {
-  this->numero = "";
-  this->capacidad = "";
-}
+DtCine::DtCine() {}
 
-DtCine::DtCine(int numero, int capacidad) {
+DtCine::DtCine(int numero, DtDireccion direccion) {
   this->numero = numero;
-  this->capacidad = capacidad;
+  this->direccion = direccion;
 }
 
-int DtCine::getNumero() { return this->numero; }
+int DtCine::getNumero() const { return this->numero; }
 
-int DtCine::getCapacidad() { return this->capacidad; }
+DtDireccion DtCine::getDireccion() const { return this->direccion; }
 
 DtCine::~DtCine() {}

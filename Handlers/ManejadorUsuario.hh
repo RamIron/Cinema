@@ -6,18 +6,19 @@
 
 using namespace std;
 
-class ManejadorUsuario{
-    private:
-        static ManejadorUsuario* instancia;
-        map<string,Usuario*> usuarios;
-        ManejadorUsuario();
-    public:
-        static ManejadorUsuario* getInstancia();
-        vector<Usuario*> obtenerUsuarios();
-        Usuario* obtenerUsuario(string nickname);
-        void agregarUsuario(Usuario*);
-        bool existeUsuario(string nickname);
-        void eliminarUsuario(string nickname);
-        virtual ~ManejadorUsuario();
+class ManejadorUsuario {
+private:
+  static ManejadorUsuario *instancia;
+  map<string, Usuario *> usuarios;
+  ManejadorUsuario();
+
+public:
+  static ManejadorUsuario *getInstancia();
+  vector<Usuario *> obtenerUsuarios();
+  Usuario *obtenerUsuario(string nickname);
+  void agregarUsuario(Usuario *);
+  bool existeUsuario(string nickname);
+  void eliminarUsuario(string nickname);
+  virtual ~ManejadorUsuario();
 };
 #endif

@@ -6,18 +6,19 @@
 
 using namespace std;
 
-class ManejadorCine{
-    private:
-        static ManejadorCine* instancia;
-        map<int,Cine*> cines;
-        ManejadorCine();
-    public:
-        static ManejadorCine* getInstancia();
-        vector<Cine*> obtenerCines();
-        Cine* obtenerCine(int id);
-        void agregarCine(Cine*);
-        bool existeCine(int id);
-        void eliminarCine(int id);
-        virtual ~ManejadorCine();
+class ManejadorCine {
+private:
+  static ManejadorCine *instancia;
+  map<int, Cine *> cines;
+  ManejadorCine();
+
+public:
+  static ManejadorCine *getInstancia();
+  vector<Cine *> obtenerCines();
+  Cine *obtenerCine(int id);
+  void agregarCine(Cine *);
+  bool existeCine(int id);
+  void eliminarCine(int id);
+  virtual ~ManejadorCine();
 };
 #endif

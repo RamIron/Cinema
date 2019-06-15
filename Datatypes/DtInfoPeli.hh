@@ -1,31 +1,30 @@
 #ifndef PALAB06_DTINFOPELI_HH
 #define PALAB06_DTINFOPELI_HH
 
-#include <iostream>
-#include <map>
 #include "DtComentario.hh"
 #include "DtPuntaje.hh"
+#include <iostream>
+#include <map>
+#include <vector>
 
 class DtInfoPeli {
 private:
   float puntajePromedio;
   int cantPuntajes;
-  map<string, DtComentario*> comentarios;
-  map<string, DtPuntaje*> puntajes;
+  map<int, DtComentario *> comentarios;
+  vector<DtPuntaje *> puntajes;
+
 public:
   /*Constructor sin parametros*/
-  DtInfoPeli(float puntajePromedio, int cantPuntajes,
-    map<string, DtComentario*> comentarios,
-  map<string, DtPuntaje*> puntajes);
-
-  /*Constructor con parametros*/
   DtInfoPeli();
 
+  /*Constructor con parametros*/
+  DtInfoPeli(float puntajePromedio, int cantPuntajes);
+
   /*Getters*/
-  float getPuntajePromedio();
-  int getCantPuntajes();
-  map<string, DtComentario*> getComentarios();
-  map<string, DtPuntaje*> getPuntajes();
+  float getPuntajePromedio() const;
+
+  int getCantPuntajes() const;
 
   /*Destructor*/
   ~DtInfoPeli();

@@ -3,7 +3,7 @@
 
 #include "Usuario.hh"
 #include <iostream>
-#include <vector>
+#include <map>
 
 using namespace std;
 
@@ -15,19 +15,21 @@ private:
   static int currentId;
   string texto;
   Usuario *u;
-  vector<Comentario *> comentarios;
+  map<int, Comentario *> mapOfComentarios;
 
 public:
   // Constructores
   Comentario();
 
-  Comentario(string);
+  Comentario(string, Usuario *);
 
   // Getters y Setters
   int getId();
   string getTexto();
+  Usuario *getUsuario();
 
   void setTexto(string);
+  void setUsuario(Usuario *);
 
   // Destructor
   ~Comentario();

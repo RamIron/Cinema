@@ -1,16 +1,16 @@
 #include "CUsuarioFactory.hh"
 
-UsuarioFactory* UsuarioFactory::instancia = NULL;
+CUsuarioFactory *CUsuarioFactory::ufInstance = NULL;
 
-UsuarioFactory::UsuarioFactory(){}
+CUsuarioFactory::CUsuarioFactory() {}
 
-UsuarioFactory* UsuarioFactory::getInstancia(){
-  if (instancia == NULL)
-    instancia = new UsuarioFactory();
-  return instancia;
+CUsuarioFactory *CUsuarioFactory::getInstance() {
+  if (ufInstance == NULL)
+    ufInstance = new CUsuarioFactory();
+  return ufInstance;
 }
 
-IUsuario* UsuarioFactory::getIPelicula(){
-  IUsuario* cont = CUsuario::getInstance();
+IUsuario *CUsuarioFactory::getIUsuario() {
+  IUsuario *cont = CUsuario::getInstance();
   return cont;
 }

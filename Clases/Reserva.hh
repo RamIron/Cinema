@@ -27,7 +27,7 @@ public:
   void setCantEntradas(int cantEntradas);
 
   // Destructor
-  virtual ~Reserva();
+  virtual ~Reserva() = 0;
 };
 
 #endif

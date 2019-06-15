@@ -1,7 +1,7 @@
 #include "./Debito.hh"
 #include "./Reserva.hh"
 
-Debito::Debito(){this->banco = ""}
+Debito::Debito() {}
 
 Debito::Debito(float costo, int cantEntradas, string banco)
     : Reserva(costo, cantEntradas) {

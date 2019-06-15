@@ -1,20 +1,18 @@
-#include "DtPelicula.hh"
+#include "DtComentario.hh"
 
 /*Constructor sin parametros*/
-DtComentario::DtComentario(){}
+DtComentario::DtComentario() {}
 
 /*Constructor con parametros*/
-DtComentario::DtComentario(string nickname, string comentario,
-map<string, DtComentario*> comentarios){
+DtComentario::DtComentario(string nickname, string comentario) {
   this->nickname = nickname;
   this->comentario = comentario;
-  this->comentarios = comentarios;
 }
 
 /*Getters*/
-string DtComentario::getNickname() {return this->nickname; }
-string DtComentario::getComentario() {return this->comentario; }
-map<string, DtComentario*> DtComentario::getComentarios() {return this->comentarios; }
+string DtComentario::getNickname() const { return this->nickname; }
+
+string DtComentario::getComentario() const { return this->comentario; }
 
 /*Destructor*/
-DtComentario::~DtComentario(){}
+DtComentario::~DtComentario() {}

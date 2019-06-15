@@ -13,8 +13,8 @@ DtHora::DtHora(int hora, int minuto) {
   this->minuto = minuto;
 }
 
-int DtHora::getHora() { return this->hora; }
+int DtHora::getHora() const { return this->hora; }
 
-int DtHora::getMinuto() { return this->minuto; }
+int DtHora::getMinuto() const { return this->minuto; }
 
 DtHora::~DtHora() {}
