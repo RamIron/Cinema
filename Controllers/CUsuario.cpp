@@ -11,8 +11,14 @@ CUsuario *CUsuario::getInstance() {
   return cuInstance;
 }
 
-void CUsuario::ingresaNick(string nickname) {}
+void CUsuario::ingresaNick(string nickname) { this->nickname = nickname; }
 
-bool CUsuario::ingresaPass(string contrasenia) {}
+bool CUsuario::ingresaPass(string contrasenia) {
+    ManejadorUsuario *mu = ManejadorUsuario::getInstance();
+    if(mu.existeUsuario(this->nickname)){
+        Usuario *u = mu.obtenerUsuario(this->nickname);
+        return strcmp(u.getConstrasenia(), contrasenia) == 0;
+    }
+}
 
 CUsuario::~CUsuario() {}
