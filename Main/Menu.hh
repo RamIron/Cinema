@@ -1,0 +1,12 @@
+#ifndef PALAB06_MENU_HH
+#define PALAB06_MENU_HH
+
+/// Muestra el menú
+/// /////////////////////////////////////////////////////////////////
+void showMenu();
+
+/// Retorna una opcion válida para el menú
+/// //////////////////////////////////////////
+int getOpc(int, int);
+
+#endif
