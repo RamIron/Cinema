@@ -2,6 +2,7 @@
 #define PALAB06_CINE_HH
 
 #include "../Datatypes/DtDireccion.hh"
+#include "../Datatypes/DtSala.hh"
 #include "Sala.hh"
 #include <iostream>
 #include <map>
@@ -33,7 +34,7 @@ public:
 
   // Operaciones
 
-  vector<Sala *> obtenerSalas();
+  vector<DtSala *> obtenerSalas();
 
   ~Cine();
 };
