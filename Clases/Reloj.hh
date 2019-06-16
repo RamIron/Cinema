@@ -1,29 +1,19 @@
 #ifndef PALAB06_RELOJ_HH
 #define PALAB06_RELOJ_HH
 
-#include "DtFecha.hh"
-#include "DtHora.hh"
+#include "DtFechaHora.hh"
 
-class Reloj {
+class Reloj{
 private:
-  static Reloj *reloj;
-  DtFecha fechaManual;
-  DtHora horaManual;
-  bool manual;
-  Reloj();
-
+    DtFechaHora fechaHoraManual;
+    bool Manual;
+    static Reloj* instance;
+    Reloj();
 public:
-  static Reloj *getInstance();
-
-  DtHora getHora();
-
-  DtFecha getFecha();
-
-  void activarManual(DtFecha f, DtHora h);
-
-  void desactivarManual();
-
-  bool getEstaManual();
+    static Reloj* getInstance();
+    DtFechaHora getFechaHora();
+    void activarManual(FechaHora f);
+    void desactivarManual();
 };
 
 #endif

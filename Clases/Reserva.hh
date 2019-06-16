@@ -9,6 +9,7 @@ class Reserva {
 private:
   float costo;
   int cantEntradas;
+  Usuario *u;
 
 public:
   // Constructor por defecto
@@ -21,6 +22,10 @@ public:
   float getCosto();
 
   int getCantEntradas();
+
+  void setUsuario();
+
+  void getUsuario();
 
   void setCosto(float costo);
 

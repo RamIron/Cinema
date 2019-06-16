@@ -17,4 +17,12 @@ void Reserva::setCantEntradas(int cantEntradas) {
 
 void Reserva::setCosto(float costo) { this->costo = costo; }
 
+void setUsuario(Usuario *u){
+  this->u = u;
+}
+
+void getUsuario)(){
+  return this->u;
+}
+
 Reserva::~Reserva() {}
