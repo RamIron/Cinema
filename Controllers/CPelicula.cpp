@@ -11,13 +11,13 @@ CPelicula *CPelicula::getInstance() {
   return cpInstance;
 }
 
-vector<string> obtenerTitulosPeliculas() {}
+vector<string> CPelicula::obtenerTitulosPeliculas() {}
 
-vector<DtPelicula> obtenerPeliculas() {}
+vector<DtPelicula> CPelicula::obtenerPeliculas() {}
 
-void eligePelicula(string titulo) {}
+void CPelicula::eligePelicula(string titulo) {}
 
-DtPelicula mostrarPelicula() // Retorna la pelicula de eligePelicula()
+DtPelicula CPelicula::mostrarPelicula() // Retorna la pelicula de eligePelicula()
 {}
 
 void CPelicula::ingresarPuntaje(int puntuacion) {}
