@@ -95,3 +95,23 @@ int main() {
   } while (opc != 0);
   return 0;
 }
+/*
+m = manejador
+ingresarnick
+        cin
+m.ingresarnick(nick)
+ingresapas
+        cin
+bool correcta = m.ingresarpass(contrasenia);
+while(!correcta){
+"desea cancelar o seguir intentando"
+if(desea seguir){
+ingresapass
+        cin
+correcta = m.ingresarpass(contrasenia);
+}else{
+llamo al menu
+}
+}
+s = sesions.login()
+/*

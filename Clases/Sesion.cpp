@@ -12,7 +12,9 @@ Sesion *Sesion::getInstance() {
 Sesion::Sesion() {}
 
 void Sesion::login(string nickname, string contrasenia) {
-
+    ManejadorUsuario *mu = ManejadorUsuario::getInstance();
+    Usuario *u = mu.obtenerUsuario(nickname);
+    setUsuario(u);
 }
 
 Usuario* Sesion::getUsuario(){
