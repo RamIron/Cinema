@@ -1,7 +1,8 @@
 #ifndef PALAB06_IPELICULA_HH
 #define PALAB06_IPELICULA_HH
 
-#include "../Datatypes/DtFecha.hh"
+#include "../Datatypes/DtCine.hh"
+#include "../Datatypes/DtFechaHora.hh"
 #include "../Datatypes/DtFuncion.hh"
 #include "../Datatypes/DtHorario.hh"
 #include "../Datatypes/DtPelicula.hh"
@@ -35,9 +36,9 @@ public:
 
   virtual void eliminarPelicula() = 0;
 
-  virtual void cancelarReserva() = 0;
+  virtual void crearReservaDebito(float costo) = 0;
 
-  virtual void crearReserva() = 0;
+  virtual void crearReservaCredito(float costo) = 0;
 
   virtual void ingresarBanco(string banco) = 0;
 
@@ -45,19 +46,24 @@ public:
 
   virtual void ingresaCantEntradas(int cantEntradas) = 0;
 
-  virtual void crearFuncion(DtFecha fecha, DtHorario horario) = 0;
+  virtual void crearFuncion(DtFechaHora fecha, DtHorario horario,
+                            float precio) = 0;
 
   virtual void seleccionaFuncion(int id) = 0;
 
-  virtual void eligeCine(int numero) = 0;
+  virtual vector<DtFuncion> eligeCine(int numero) = 0;
 
-  virtual float obtenerPrecio() = 0;
+  virtual float obtenerPrecioCredito(float descuento) = 0;
+
+  virtual float obtenerPrecioDebito() = 0;
 
   virtual void removerFuncionSala(int id) = 0;
 
   virtual vector<DtFuncion> obtenerFunciones() = 0;
 
   virtual DtFuncion obtenerFuncionSala() = 0;
+
+  virtual vector<DtCine> verInfoAdicional() = 0;
 };
 
 #endif

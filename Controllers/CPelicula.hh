@@ -3,14 +3,14 @@
 
 #include "../Clases/Financiera.hh"
 #include "../Clases/Funcion.hh"
+#include "../Clases/Pelicula.hh"
 #include "../Clases/Sesion.hh"
 #include "../Datatypes/DtCine.hh"
 #include "../Datatypes/DtDireccion.hh"
-#include "../Datatypes/DtFecha.hh"
+#include "../Datatypes/DtFechaHora.hh"
 #include "../Datatypes/DtFuncion.hh"
 #include "../Datatypes/DtHorario.hh"
 #include "../Datatypes/DtPelicula.hh"
-#include "../Clases/Pelicula.hh"
 #include "IPelicula.hh"
 #include <iostream>
 #include <map>
@@ -29,9 +29,7 @@ private:
   // DtSala sala;
   int idComentario;
   Sesion *sesion;
-  map<string, Pelicula *> mapOfPeliculas;
-  map<int, Funcion *> mapOfFunciones;
-  map<string, Financiera *> mapOfFinancieras;
+  Pelicula *pelicula;
 
   CPelicula();
 
@@ -60,9 +58,9 @@ public:
 
   void eliminarPelicula();
 
-  void cancelarReserva();
+  void crearReservaCredito(float costo);
 
-  void crearReserva();
+  void crearReservaDebito(float costo);
 
   void ingresarBanco(string banco);
 
@@ -70,19 +68,25 @@ public:
 
   void ingresaCantEntradas(int cantEntradas);
 
-  void crearFuncion(DtFecha fecha, DtHorario horario);
+  void crearFuncion(DtFechaHora fecha, DtHorario horario, float precio);
 
   void seleccionaFuncion(int id);
 
-  void eligeCine(int numero);
+  vector<DtFuncion> eligeCine(int numero);
 
-  float obtenerPrecio();
+  float obtenerPrecioDebito();
+
+  float obtenerPrecioCredito(float descuento);
 
   void removerFuncionSala(int id);
 
   vector<DtFuncion> obtenerFunciones();
 
   DtFuncion obtenerFuncionSala();
+
+  vector<DtCine> verInfoAdicional();
+
+  friend bool operator>(DtFechaHora funcion, DtFechaHora sistema);
 
   ~CPelicula();
 };
