@@ -15,7 +15,7 @@ public:
   Debito();
 
   // Constructor con parametros
-  Debito(float costo, int cantEntradas, string banco);
+  Debito(float costo, int cantEntradas, string banco, Usuario *u);
 
   // Getters and Setters
   string getBanco();

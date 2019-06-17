@@ -16,7 +16,7 @@ public:
   Credito();
 
   // Constructor con parametros
-  Credito(float, int, Financiera *);
+  Credito(float, int, Usuario *u, Financiera *);
 
   // Getters and Setters
   Financiera *getFinanciera();

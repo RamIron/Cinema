@@ -3,8 +3,8 @@
 
 Debito::Debito() {}
 
-Debito::Debito(float costo, int cantEntradas, string banco)
-    : Reserva(costo, cantEntradas) {
+Debito::Debito(float costo, int cantEntradas, string banco, Usuario *u)
+    : Reserva(costo, cantEntradas, u) {
   this->banco = banco;
 }
 

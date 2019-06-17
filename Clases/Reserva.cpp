@@ -2,9 +2,10 @@
 
 Reserva::Reserva() {}
 
-Reserva::Reserva(float costo, int cantEntradas) {
+Reserva::Reserva(float costo, int cantEntradas, Usuario *u) {
   this->costo = costo;
   this->cantEntradas = cantEntradas;
+  this->u = u;
 }
 
 float Reserva::getCosto() { return this->costo; }
@@ -17,12 +18,8 @@ void Reserva::setCantEntradas(int cantEntradas) {
 
 void Reserva::setCosto(float costo) { this->costo = costo; }
 
-void setUsuario(Usuario *u){
-  this->u = u;
-}
+void Reserva::setUsuario(Usuario *u) { this->u = u; }
 
-void getUsuario)(){
-  return this->u;
-}
+Usuario *Reserva::getUsuario() { return this->u; }
 
 Reserva::~Reserva() {}
