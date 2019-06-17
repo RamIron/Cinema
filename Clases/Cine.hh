@@ -34,7 +34,15 @@ public:
 
   // Operaciones
 
-  vector<DtSala *> obtenerSalas();
+  vector<DtSala> obtenerDtSalas();
+
+  map<int, Sala *> obtenerSalas();
+
+  void agregarSala(Sala *);
+
+  bool existeSala(int idSala);
+
+  Sala *obtenerSala(int idSala);
 
   ~Cine();
 };
