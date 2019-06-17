@@ -3,17 +3,24 @@
 
 #include "DtFechaHora.hh"
 
-class Reloj{
+class Reloj {
 private:
-    DtFechaHora fechaHoraManual;
-    bool Manual;
-    static Reloj* instance;
-    Reloj();
+  DtFechaHora fechaHoraManual;
+  bool Manual;
+  static Reloj *instance;
+
+  Reloj();
+
 public:
-    static Reloj* getInstance();
-    DtFechaHora getFechaHora();
-    void activarManual(FechaHora f);
-    void desactivarManual();
+  static Reloj *getInstance();
+
+  DtFechaHora getFechaHora();
+
+  void activarManual(DtFechaHora f);
+
+  void desactivarManual();
+
+  ~Reloj();
 };
 
 #endif
