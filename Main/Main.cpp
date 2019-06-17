@@ -1,10 +1,38 @@
 #include "Main.hh"
+#include "../Clases/Sesion.hh"
+#include "../Clases/Usuario.hh"
+#include "../Controllers/CCine.hh"
+#include "../Controllers/CUsuario.hh"
+#include "../Handlers/ManejadorUsuario.hh"
 
 #include <iostream>
 
 using namespace std;
 
 int main() {
+
+  // Hacer Login
+  /*CUsuario *cu = CUsuario::getInstance();
+  ManejadorUsuario *mu = ManejadorUsuario::getInstance();
+  Usuario *u = new Usuario("Mathias", "asd", "tuvieja", true);
+  mu->agregarUsuario(u);
+  Sesion *s = Sesion::getInstance();
+
+  cu->ingresaNick("Mathias");
+  cu->ingresaPass("asd");
+
+  s->login("Mathias", "asd");
+   */
+
+  // Alta Cine
+  /*auto cCine = CCine::getInstance();
+  auto dtDireccion = DtDireccion("josebo", 13);
+  cCine->ingresaDireccion(dtDireccion);
+  cCine->ingresaSala(10);
+  cCine->ingresaSala(12);
+  cCine->crearCine();
+   */
+
   int opc;
 
   do {
@@ -29,18 +57,20 @@ int main() {
 
     case 3: /// OPCION Alta Función
       /// ///////////////////////////////////////////////////////
-      cout << "Elija el titulo de la pelicula a la que desea agregar funciones:\n";
+      cout << "Elija el titulo de la pelicula a la que desea agregar "
+              "funciones:\n";
       cout << "Elija el id del cine que desee:\n";
       cout << "Elija la sala:\n";
-      cout << "Ingrese la fecha:\n"; 
+      cout << "Ingrese la fecha:\n";
       cout << "Ingrese el horario de comienzo:\n";
-      cout << "Ingrese el horario de fin:\n"; 
-      cout << "Desea agregar otra funcion?\n"; 
+      cout << "Ingrese el horario de fin:\n";
+      cout << "Desea agregar otra funcion?\n";
       break;
 
     case 4: /// OPCION Crear Reserva
       /// ///////////////////////////////////////////////////////
-      cout << "Elija el titulo de la pelicula o escriba 'cancelarReserva' para salir:\n";
+      cout << "Elija el titulo de la pelicula o escriba 'cancelarReserva' para "
+              "salir:\n";
       cout << "Desea ver información adicional de la pelicula? Si/No:\n";
       cout << "Elija el cine o escriba 'cancelarReserva' para salir:\n";
       cout << "Desea elegir otra pelicula?\n";
@@ -50,7 +80,7 @@ int main() {
       cout << "Desea confirmar su reserva? Si/No:\n";
       break;
 
-    case 5: /// OPCION Puntuar Película 
+    case 5: /// OPCION Puntuar Película
       /// /////////////////////////////////////////////////////////
       cout << "Elija el titulo de la pelicula:\n";
       cout << "Desea modificar su puntuación?\n";
@@ -72,7 +102,8 @@ int main() {
 
     case 8: /// OPCION Ver Información de Película
       /// //////////////////////////////////////////////////////
-      cout << "Elija el titulo de la pelicula o escriba 'cancelarVerInfo' para salir:\n";
+      cout << "Elija el titulo de la pelicula o escriba 'cancelarVerInfo' para "
+              "salir:\n";
       cout << "Desea ver información adicional de la pelicula? Si/No:\n";
       cout << "Elija el cine o escriba 'cancelarVerInfo' para salir:\n";
       cout << "Desea elegir otra pelicula?\n";
@@ -95,23 +126,3 @@ int main() {
   } while (opc != 0);
   return 0;
 }
-/*
-m = manejador
-ingresarnick
-        cin
-m.ingresarnick(nick)
-ingresapas
-        cin
-bool correcta = m.ingresarpass(contrasenia);
-while(!correcta){
-"desea cancelar o seguir intentando"
-if(desea seguir){
-ingresapass
-        cin
-correcta = m.ingresarpass(contrasenia);
-}else{
-llamo al menu
-}
-}
-s = sesions.login()
-/*

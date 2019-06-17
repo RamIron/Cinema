@@ -25,7 +25,6 @@ void showMenu() {
   cout << "Opción: ";
 }
 
-
 /// Retorna una opcion válida para el menú
 /// //////////////////////////////////////////
 int getOpc(int min, int max) {
