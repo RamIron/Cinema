@@ -26,6 +26,8 @@ public:
 
     void eliminarPelicula(string titulo);
 
+    void removerPelicula(string titulo);
+
     ~ManejadorPelicula();
 };
 

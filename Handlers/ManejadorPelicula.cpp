@@ -34,6 +34,12 @@ void ManejadorPelicula::eliminarPelicula(string titulo){
   this->peliculas.erase(titulo);
 }
 
+void ManejadorPelicula::removerPelicula(string titulo){
+  map<string, Pelicula *>::iterator it;
+  it = this->peliculas.find(titulo);
+  this->peliculas.erase(titulo);
+}
+
 map<string, Pelicula *> ManejadorPelicula::obtenerPeliculas() {
   return this->peliculas;
 }
