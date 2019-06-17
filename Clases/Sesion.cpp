@@ -1,4 +1,5 @@
 #include "Sesion.hh"
+#include "ManejadorUsuario.hh"
 
 Sesion *Sesion::sesion = NULL;
 
@@ -11,18 +12,8 @@ Sesion *Sesion::getInstance() {
 
 Sesion::Sesion() {}
 
-void Sesion::login(string nickname, string contrasenia) {
-    ManejadorUsuario *mu = ManejadorUsuario::getInstance();
-    Usuario *u = mu.obtenerUsuario(nickname);
-    setUsuario(u);
-}
+Usuario *Sesion::getUsuario() { return this->u; }
 
-Usuario* Sesion::getUsuario(){
-  return this->u;
-}
-
-void Sesion::setUsuario(Usuario *u) {
-  this->u = u;
-}
+void Sesion::setUsuario(Usuario *u) { this->u = u; }
 
 Sesion::~Sesion() {}

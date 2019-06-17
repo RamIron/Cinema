@@ -15,9 +15,9 @@ private:
 public:
   static Sesion *getInstance();
 
-  void login(string, string);
+  void login(Usuario *);
 
-  Usuario * getUsuario();
+  Usuario *getUsuario();
 
   void setUsuario(Usuario *u);
 
