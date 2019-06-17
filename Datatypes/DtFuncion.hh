@@ -1,7 +1,7 @@
 #ifndef PALAB06_DTFUNCION_HH
 #define PALAB06_DTFUNCION_HH
 
-#include "DtFecha.hh"
+#include "DtFechaHora.hh"
 #include "DtHorario.hh"
 #include <iostream>
 
@@ -9,7 +9,7 @@ class DtFuncion {
 private:
   int id;
   float precio;
-  DtFecha fecha;
+  DtFechaHora fecha;
   DtHorario horario;
 
 public:
@@ -17,14 +17,14 @@ public:
   DtFuncion();
 
   /*Constructor con parametros*/
-  DtFuncion(int id, float precio, DtFecha fecha, DtHorario horario);
+  DtFuncion(int id, float precio, DtFechaHora fecha, DtHorario horario);
 
   /*Getters*/
   int getid();
 
   float getPrecio();
 
-  DtFecha getFecha();
+  DtFechaHora getFecha();
 
   DtHorario getHorario();
 

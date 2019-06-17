@@ -2,12 +2,12 @@
 
 DtCine::DtCine() {}
 
-DtCine::DtCine(int numero, DtDireccion direccion) {
-  this->numero = numero;
+DtCine::DtCine(int id, DtDireccion direccion) {
+  this->id = id;
   this->direccion = direccion;
 }
 
-int DtCine::getNumero() const { return this->numero; }
+int DtCine::getId() const { return this->id; }
 
 DtDireccion DtCine::getDireccion() const { return this->direccion; }
 

@@ -1,41 +1,34 @@
 #ifndef PALAB06_DTFECHAHORA_HH
 #define PALAB06_DTFECHAHORA_HH
 
-class DtFechaHora{
+#include <iostream>
+
+using namespace std;
+
+class DtFechaHora {
 private:
-    int anio;
-    int mes;
-    int dia;
-    int hora;
-    int minuto;
-    int segundo;
+  int anio;
+  int mes;
+  int dia;
+  int hora;
+  int minuto;
+
 public:
-    DtFechaHora();
-    DtFechaHora(int a, int m, int d, int h, int mi, int s); // anio, mes, hora, minuto, segundo
-    int getAnio();
-    int getMes();
-    int getDia();
-    int getHora();
-    int getMinuto();
-    int getSegundo();
-    ~DtFechaHora();
+  DtFechaHora();
+
+  DtFechaHora(int, int, int, int, int);
+
+  int getAnio();
+
+  int getMes();
+
+  int getDia();
+
+  int getHora();
+
+  int getMinuto();
+
+  ~DtFechaHora();
 };
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#endif //PALAB06_DTFECHAHORA_HH

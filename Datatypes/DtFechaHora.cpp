@@ -1,53 +1,33 @@
 #include "DtFechaHora.hh"
+#include <ctime>
 
-using namespace std;
-
-DtFechaHora::DtFechaHora(){
+DtFechaHora::DtFechaHora() {
   time_t tim;
   time(&tim);
-  tm* now = localtime(&tim);
-  anio = now->tm_year+1900;
-  mes = now->tm_mon+1;
-  dia = now->tm_mday;
-  hora = now->tm_hour;
-  min = now->tm_min;
-  sec= now->tm_sec;
+  tm *now = localtime(&tim);
+  this->anio = now->tm_year + 1900;
+  this->mes = now->tm_mon + 1;
+  this->dia = now->tm_mday;
+  this->hora = now->tm_hour;
+  this->minuto = now->tm_min;
 }
 
-DtFechaHora::DtFechaHora(int a, int m, int d, int h, int mi, int s){
-  anio = a;
-  mes = m;
-  dia = d;
-  hora = h;
-  minuto = mi;
-  segundo = s;
+DtFechaHora::DtFechaHora(int anio, int mes, int dia, int hora, int minuto) {
+  this->anio = anio;
+  this->mes = mes;
+  this->dia = dia;
+  this->hora = hora;
+  this->minuto = minuto;
 }
 
-int DtFechaHora::getAnio(){
-  return anio;
-}
+int DtFechaHora::getAnio() { return this->anio; }
 
-int DtFechaHora::getMes(){
-  return mes;
-}
+int DtFechaHora::getMes() { return this->mes; }
 
-int DtFechaHora::getDia(){
-  return dia;
-}
+int DtFechaHora::getDia() { return this->dia; }
 
-int DtFechaHora::getHora(){
-  return hora;
-}
+int DtFechaHora::getHora() { return this->hora; }
 
-int DtFechaHora::getminuto(){
-  return minuto;
-}
+int DtFechaHora::getMinuto() { return this->minuto; }
 
-int DtFechaHora::getSegundo(){
-  return segundo;
-}
-
-~DtFechaHora(){}
-
-
-
+DtFechaHora::~DtFechaHora() {}

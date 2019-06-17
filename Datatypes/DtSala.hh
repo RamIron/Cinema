@@ -3,26 +3,23 @@
 
 class DtSala {
 private:
-    int id;
-    int capacidad;
+  int id;
+  int capacidad;
 
 public:
-    /*Constructor sin parametros*/
-    DtSala();
+  /*Constructor sin parametros*/
+  DtSala();
 
-    /*Constructor con parametros*/
-    DtSala(int id, int capacidad);
+  /*Constructor con parametros*/
+  DtSala(int id, int capacidad);
 
-    /*Getters*/
-    int getid();
+  /*Getters*/
+  int getid();
 
-    int getCapacidad();
+  int getCapacidad();
 
-    /*Destructor*/
-    ~DtSala();
+  /*Destructor*/
+  ~DtSala();
 };
 
 #endif
-
-
-

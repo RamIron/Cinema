@@ -6,7 +6,7 @@
 
 class DtCine {
 private:
-  int numero;
+  int id;
   DtDireccion direccion;
 
 public:
@@ -14,10 +14,10 @@ public:
   DtCine();
 
   /*Constructor con parametros*/
-  DtCine(int numero, DtDireccion direccion);
+  DtCine(int id, DtDireccion direccion);
 
   /*Getters*/
-  int getNumero() const;
+  int getId() const;
 
   DtDireccion getDireccion() const;
 
