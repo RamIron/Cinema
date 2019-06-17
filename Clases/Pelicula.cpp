@@ -36,9 +36,33 @@ Pelicula::~Pelicula() {}
 // Operaciones
 float Pelicula::calcularPuntajePromedio() {}
 
-vector<DtCine> Pelicula::obtenerCines() {}
+void Pelicula::agregarFuncion(Funcion *funcion) {
+  this->funciones.insert(make_pair(funcion->getId(), funcion));
+}
 
-DtCine Pelicula::obtenerCine() {}
+void Pelicula::agregarCine(Cine *cine) {
+  this->cines.insert(make_pair(cine->getId(), cine));
+}
+
+vector<DtCine> Pelicula::obtenerCines() {
+  vector<DtCine> dtCines;
+  for (auto posCine : cines) {
+    DtCine dtCine =
+        DtCine(posCine.second->getId(), posCine.second->getDireccion());
+    dtCines.push_back(dtCine);
+  }
+  return dtCines;
+}
+
+bool Pelicula::existeCine(int id) { return cines.find(id) != cines.end(); }
+
+DtCine Pelicula::obtenerDtCine(int id) {
+  auto cine = cines.find(id);
+  DtCine dtcine = DtCine(cine->second->getId(), cine->second->getDireccion());
+  return dtcine;
+}
+
+Cine *Pelicula::obtenerCine(int id) { return cines.find(id)->second; }
 
 vector<DtComentario> Pelicula::obtenerComentario() {}
 
@@ -48,4 +72,17 @@ int Pelicula::obtenerPuntuacion() {}
 
 vector<DtInfoPeli> Pelicula::mostrarInfo() {}
 
-vector<DtFuncion> Pelicula::obtenerFunciones() {}
+vector<DtFuncion> Pelicula::obtenerDtFunciones() {
+  vector<DtFuncion> dtFunciones;
+  for (auto posFuncion : funciones) {
+    DtFuncion dtFuncion = DtFuncion(
+        posFuncion.second->getId(), posFuncion.second->getPrecio(),
+        posFuncion.second->getFecha(), posFuncion.second->getHorario());
+    dtFunciones.push_back(dtFuncion);
+  }
+  return dtFunciones;
+}
+
+bool Pelicula::existeFuncion(int id) {
+  return funciones.find(id) != funciones.end();
+}
