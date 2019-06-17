@@ -2,7 +2,7 @@
 
 ManejadorPelicula *ManejadorPelicula::mpInstance = NULL;
 
-ManejadorPelicula::ManejadorPelicula(){}
+ManejadorPelicula::ManejadorPelicula() {}
 
 ManejadorPelicula *ManejadorPelicula::getInstance() {
   if (mpInstance == NULL) {
@@ -11,23 +11,23 @@ ManejadorPelicula *ManejadorPelicula::getInstance() {
   return mpInstance;
 }
 
-void ManejadorPelicula::agregarPelicula(Pelicula * pelicula){
+void ManejadorPelicula::agregarPelicula(Pelicula *pelicula) {
   this->peliculas.insert(make_pair(pelicula->getTitulo(), pelicula));
 }
 
-bool ManejadorPelicula::existePelicula(string titulo){
+bool ManejadorPelicula::existePelicula(string titulo) {
   map<string, Pelicula *>::iterator it;
   it = this->peliculas.find(titulo);
   return it == this->peliculas.end();
 }
 
-Pelicula *ManejadorPelicula::obtenerPelicula(string titulo){
+Pelicula *ManejadorPelicula::obtenerPelicula(string titulo) {
   map<string, Pelicula *>::iterator it;
   it = this->peliculas.find(titulo);
   return it->second;
 }
 
-void ManejadorPelicula::eliminarPelicula(string titulo){
+void ManejadorPelicula::eliminarPelicula(string titulo) {
   map<string, Pelicula *>::iterator it;
   it = this->peliculas.find(titulo);
   delete it->second;
@@ -38,4 +38,4 @@ map<string, Pelicula *> ManejadorPelicula::obtenerPeliculas() {
   return this->peliculas;
 }
 
-ManejadorPelicula::~ManejadorPelicula(){}
+ManejadorPelicula::~ManejadorPelicula() {}

@@ -8,25 +8,25 @@ using namespace std;
 
 class ManejadorUsuario {
 private:
-    static ManejadorUsuario *muInstance;
-    map<string, Usuario *> usuarios;
+  static ManejadorUsuario *muInstance;
+  map<string, Usuario *> usuarios;
 
-    ManejadorUsuario();
+  ManejadorUsuario();
 
 public:
-    static ManejadorUsuario *getInstance();
+  static ManejadorUsuario *getInstance();
 
-    map<string, Usuario *> obtenerUsuarios();
+  map<string, Usuario *> obtenerUsuarios();
 
-    Usuario *obtenerUsuario(string nickname);
+  Usuario *obtenerUsuario(string nickname);
 
-    void agregarUsuario(Usuario *);
+  void agregarUsuario(Usuario *);
 
-    bool existeUsuario(string nickname);
+  bool existeUsuario(string nickname);
 
-    void eliminarUsuario(string nickname);
+  void eliminarUsuario(string nickname);
 
-    ~ManejadorUsuario();
+  ~ManejadorUsuario();
 };
 
 #endif

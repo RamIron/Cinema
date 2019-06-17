@@ -8,25 +8,25 @@ using namespace std;
 
 class ManejadorPelicula {
 private:
-    static ManejadorPelicula *mpInstance;
-    map<string, Pelicula *> peliculas;
+  static ManejadorPelicula *mpInstance;
+  map<string, Pelicula *> peliculas;
 
-    ManejadorPelicula();
+  ManejadorPelicula();
 
 public:
-    static ManejadorPelicula *getInstance();
+  static ManejadorPelicula *getInstance();
 
-    map<string, Pelicula *> obtenerPeliculas();
+  map<string, Pelicula *> obtenerPeliculas();
 
-    Pelicula *obtenerPelicula(string titulo);
+  Pelicula *obtenerPelicula(string titulo);
 
-    void agregarPelicula(Pelicula *);
+  void agregarPelicula(Pelicula *);
 
-    bool existePelicula(string titulo);
+  bool existePelicula(string titulo);
 
-    void eliminarPelicula(string titulo);
+  void eliminarPelicula(string titulo);
 
-    ~ManejadorPelicula();
+  ~ManejadorPelicula();
 };
 
 #endif

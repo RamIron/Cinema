@@ -8,25 +8,25 @@ using namespace std;
 
 class ManejadorFinanciera {
 private:
-    static ManejadorFinanciera *mfInstance;
-    map<string, Financiera *> financieras;
+  static ManejadorFinanciera *mfInstance;
+  map<string, Financiera *> financieras;
 
-    ManejadorFinanciera();
+  ManejadorFinanciera();
 
 public:
-    static ManejadorFinanciera *getInstance();
+  static ManejadorFinanciera *getInstance();
 
-    map<string, Financiera *> obtenerFinancieras();
+  map<string, Financiera *> obtenerFinancieras();
 
-    Financiera *obtenerFinanciera(string financiera);
+  Financiera *obtenerFinanciera(string financiera);
 
-    void agregarFinanciera(Financiera *);
+  void agregarFinanciera(Financiera *);
 
-    bool existeFinanciera(string financiera);
+  bool existeFinanciera(string financiera);
 
-    void eliminarFinanciera(string fiananciera);
+  void eliminarFinanciera(string fiananciera);
 
-    ~ManejadorFinanciera();
+  ~ManejadorFinanciera();
 };
 
 #endif

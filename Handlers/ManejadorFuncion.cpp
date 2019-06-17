@@ -2,7 +2,7 @@
 
 ManejadorFuncion *ManejadorFuncion::mfInstance = NULL;
 
-ManejadorFuncion::ManejadorFuncion(){}
+ManejadorFuncion::ManejadorFuncion() {}
 
 ManejadorFuncion *ManejadorFuncion::getInstance() {
   if (mfInstance == NULL) {
@@ -11,31 +11,31 @@ ManejadorFuncion *ManejadorFuncion::getInstance() {
   return mfInstance;
 }
 
-void ManejadorFuncion::agregarFuncion(Funcion * funcion){
+void ManejadorFuncion::agregarFuncion(Funcion *funcion) {
   this->funciones.insert(make_pair(funcion->getId(), funcion));
 }
 
-bool ManejadorFuncion::existeFuncion(int id){
+bool ManejadorFuncion::existeFuncion(int id) {
   map<int, Funcion *>::iterator it;
   it = this->funciones.find(id);
   return it == this->funciones.end();
 }
 
-Funcion *ManejadorFuncion::obtenerFuncion(int id){
+Funcion *ManejadorFuncion::obtenerFuncion(int id) {
   map<int, Funcion *>::iterator it;
   it = this->funciones.find(id);
   return it->second;
 }
 
-void ManejadorFuncion::eliminarFuncion(int id){
+void ManejadorFuncion::eliminarFuncion(int id) {
   map<int, Funcion *>::iterator it;
   it = this->funciones.find(id);
   delete it->second;
   this->funciones.erase(id);
 }
 
-map<int, Funcion *> ManejadorFuncion::obtenerFunciones(){
+map<int, Funcion *> ManejadorFuncion::obtenerFunciones() {
   return this->funciones;
 }
 
-ManejadorFuncion::~ManejadorFuncion(){}
+ManejadorFuncion::~ManejadorFuncion() {}

@@ -8,25 +8,25 @@ using namespace std;
 
 class ManejadorFuncion {
 private:
-    static ManejadorFuncion *mfInstance;
-    map<int, Funcion *> funciones;
+  static ManejadorFuncion *mfInstance;
+  map<int, Funcion *> funciones;
 
-    ManejadorFuncion();
+  ManejadorFuncion();
 
 public:
-    static ManejadorFuncion *getInstance();
+  static ManejadorFuncion *getInstance();
 
-    map<int, Funcion *> obtenerFunciones();
+  map<int, Funcion *> obtenerFunciones();
 
-    Funcion *obtenerFuncion(int id);
+  Funcion *obtenerFuncion(int id);
 
-    void agregarFuncion(Funcion *);
+  void agregarFuncion(Funcion *);
 
-    bool existeFuncion(int id);
+  bool existeFuncion(int id);
 
-    void eliminarFuncion(int id);
+  void eliminarFuncion(int id);
 
-    ~ManejadorFuncion();
+  ~ManejadorFuncion();
 };
 
 #endif

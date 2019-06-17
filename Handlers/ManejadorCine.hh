@@ -8,25 +8,25 @@ using namespace std;
 
 class ManejadorCine {
 private:
-    static ManejadorCine *mcInstance;
-    map<int, Cine *> cines;
+  static ManejadorCine *mcInstance;
+  map<int, Cine *> cines;
 
-    ManejadorCine();
+  ManejadorCine();
 
 public:
-    static ManejadorCine *getInstance();
+  static ManejadorCine *getInstance();
 
-    map<int, Cine *> obtenerCines();
+  map<int, Cine *> obtenerCines();
 
-    Cine *obtenerCine(int ind);
+  Cine *obtenerCine(int ind);
 
-    void agregarCine(Cine *);
+  void agregarCine(Cine *);
 
-    bool existeCine(int id);
+  bool existeCine(int id);
 
-    void eliminarCine(int id);
+  void eliminarCine(int id);
 
-    ~ManejadorCine();
+  ~ManejadorCine();
 };
 
 #endif

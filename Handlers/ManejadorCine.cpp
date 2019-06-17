@@ -2,7 +2,7 @@
 
 ManejadorCine *ManejadorCine::mcInstance = NULL;
 
-ManejadorCine::ManejadorCine(){}
+ManejadorCine::ManejadorCine() {}
 
 ManejadorCine *ManejadorCine::getInstance() {
   if (mcInstance == NULL) {
@@ -11,31 +11,29 @@ ManejadorCine *ManejadorCine::getInstance() {
   return mcInstance;
 }
 
-void ManejadorCine::agregarCine(Cine * cine){
+void ManejadorCine::agregarCine(Cine *cine) {
   this->cines.insert(make_pair(cine->getId(), cine));
 }
 
-bool ManejadorCine::existeCine(int id){
+bool ManejadorCine::existeCine(int id) {
   map<int, Cine *>::iterator it;
   it = this->cines.find(id);
   return it == this->cines.end();
 }
 
-Cine *ManejadorCine::obtenerCine(int id){
+Cine *ManejadorCine::obtenerCine(int id) {
   map<int, Cine *>::iterator it;
   it = this->cines.find(id);
   return it->second;
 }
 
-void ManejadorCine::eliminarCine(int id){
+void ManejadorCine::eliminarCine(int id) {
   map<int, Cine *>::iterator it;
   it = this->cines.find(id);
   delete it->second;
   this->cines.erase(id);
 }
 
-map<int, Cine *> ManejadorCine::obtenerCines(){
-  return this->cines;
-}
+map<int, Cine *> ManejadorCine::obtenerCines() { return this->cines; }
 
-ManejadorCine::~ManejadorCine(){}
+ManejadorCine::~ManejadorCine() {}
