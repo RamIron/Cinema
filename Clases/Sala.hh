@@ -2,6 +2,7 @@
 #define PALAB06_SALA_HH
 
 #include "Funcion.hh"
+#include <DtFuncion.hh>
 #include <iostream>
 #include <map>
 
@@ -20,9 +21,15 @@ public:
 
   Sala(int);
 
-  int getcapacidad();
+  int getCapacidad();
+
+  int getId();
 
   void setCapacidad(int);
+
+  void agregarFuncion(Funcion *); // agregar operacion en la clase Sala
+
+  vector<Funcion *> obtenerFunciones();
 
   ~Sala();
 };

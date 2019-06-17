@@ -9,8 +9,22 @@ Sala::Sala(int capacidad) {
   this->capacidad = capacidad;
 }
 
-int Sala::getcapacidad() { return this->capacidad; }
+int Sala::getCapacidad() { return this->capacidad; }
+
+int Sala::getId() { return this->id; }
 
 void Sala::setCapacidad(int capacidad) { this->capacidad = capacidad; }
+
+void Sala::agregarFuncion(Funcion *funcion) {
+  this->mapOfFunciones.insert(make_pair(funcion->getId(), funcion));
+}
+
+vector<Funcion *> Sala::obtenerFunciones() {
+  vector<Funcion *> funciones;
+  for (auto posFuncion : mapOfFunciones) {
+    funciones.push_back(posFuncion.second);
+  }
+  return funciones;
+}
 
 Sala::~Sala() {}
