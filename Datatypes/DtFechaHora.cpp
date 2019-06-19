@@ -1,5 +1,6 @@
 #include "DtFechaHora.hh"
 #include <ctime>
+#include <vector>
 
 DtFechaHora::DtFechaHora() {
   time_t tim;
@@ -18,6 +19,19 @@ DtFechaHora::DtFechaHora(int anio, int mes, int dia, int hora, int minuto) {
   this->dia = dia;
   this->hora = hora;
   this->minuto = minuto;
+}
+
+DtFechaHora::DtFechaHora(DtFecha fecha, DtHorario horario){
+  string delimiter = ":";
+  string fechaInicio = horario.getHoraInicio();
+  auto posHoraInicio = fechaInicio.find(delimiter);
+  string horaInicio = fechaInicio.substr(0, posHoraInicio);
+  string minInicio = fechaInicio.substr(posHoraInicio + 1, sizeof(fechaInicio));
+  this->anio = fecha.getAnio();
+  this->mes = fecha.getMes();
+  this->dia = fecha.getDia();
+  this->hora = stoi(horaInicio);
+  this->minuto = stoi(minInicio);
 }
 
 int DtFechaHora::getAnio() { return this->anio; }

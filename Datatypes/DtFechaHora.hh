@@ -2,6 +2,8 @@
 #define PALAB06_DTFECHAHORA_HH
 
 #include <iostream>
+#include "DtFecha.hh"
+#include "DtHorario.hh"
 
 using namespace std;
 
@@ -17,6 +19,8 @@ public:
   DtFechaHora();
 
   DtFechaHora(int, int, int, int, int);
+
+  DtFechaHora(DtFecha fecha, DtHorario);
 
   int getAnio();
 
