@@ -18,7 +18,7 @@ void ManejadorUsuario::agregarUsuario(Usuario *usuario) {
 bool ManejadorUsuario::existeUsuario(string nickname) {
   map<string, Usuario *>::iterator it;
   it = this->usuarios.find(nickname);
-  return it == this->usuarios.end();
+  return it != this->usuarios.end();
 }
 
 Usuario *ManejadorUsuario::obtenerUsuario(string nickname) {

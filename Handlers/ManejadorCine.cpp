@@ -18,7 +18,7 @@ void ManejadorCine::agregarCine(Cine *cine) {
 bool ManejadorCine::existeCine(int id) {
   map<int, Cine *>::iterator it;
   it = this->cines.find(id);
-  return it == this->cines.end();
+  return it != this->cines.end();
 }
 
 Cine *ManejadorCine::obtenerCine(int id) {

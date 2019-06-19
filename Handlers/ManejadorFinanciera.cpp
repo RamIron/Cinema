@@ -18,7 +18,7 @@ void ManejadorFinanciera::agregarFinanciera(Financiera *financiera) {
 bool ManejadorFinanciera::existeFinanciera(string financiera) {
   map<string, Financiera *>::iterator it;
   it = this->financieras.find(financiera);
-  return it == this->financieras.end();
+  return it != this->financieras.end();
 }
 
 Financiera *ManejadorFinanciera::obtenerFinanciera(string financiera) {

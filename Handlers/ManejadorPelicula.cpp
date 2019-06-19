@@ -18,7 +18,7 @@ void ManejadorPelicula::agregarPelicula(Pelicula *pelicula) {
 bool ManejadorPelicula::existePelicula(string titulo) {
   map<string, Pelicula *>::iterator it;
   it = this->peliculas.find(titulo);
-  return it == this->peliculas.end();
+  return it != this->peliculas.end();
 }
 
 Pelicula *ManejadorPelicula::obtenerPelicula(string titulo) {
