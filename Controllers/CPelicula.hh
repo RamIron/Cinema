@@ -10,6 +10,7 @@
 #include "../Datatypes/DtFechaHora.hh"
 #include "../Datatypes/DtFuncion.hh"
 #include "../Datatypes/DtHorario.hh"
+#include "../Datatypes/DtFecha.hh"
 #include "../Datatypes/DtPelicula.hh"
 #include "IPelicula.hh"
 #include <iostream>
@@ -28,7 +29,7 @@ private:
   DtCine cine;
   // DtSala sala;
   int idComentario;
-  Sesion *sesion;
+  Sesion *sesion = Sesion::getInstance();
   Pelicula *pelicula;
 
   CPelicula();
@@ -68,7 +69,7 @@ public:
 
   void ingresaCantEntradas(int cantEntradas);
 
-  void crearFuncion(DtFechaHora fecha, DtHorario horario, float precio);
+  void crearFuncion(DtFecha fecha, DtHorario horario, float precio);
 
   void seleccionaFuncion(int id);
 

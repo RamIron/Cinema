@@ -50,7 +50,7 @@ void CPelicula::eligePelicula(string titulo) {
   if (manejadorPelicula->existePelicula(titulo)) {
     this->pelicula = manejadorPelicula->obtenerPelicula(titulo);
   } else {
-    throw invalid_argument("Opcion incorrecta");
+    throw invalid_argument("No existe una pelicula con ese titulo");
   }
 }
 
@@ -112,10 +112,12 @@ void CPelicula::ingresaCantEntradas(int cantEntradas) {
   this->cantEntradas = cantEntradas;
 }
 
-void CPelicula::crearFuncion(DtFechaHora fecha, DtHorario horario,
+
+void CPelicula::crearFuncion(DtFecha fecha, DtHorario horario,
                              float precio) {
   auto manejadorFuncion = ManejadorFuncion::getInstance();
-  auto funcion = new Funcion(fecha, horario, precio);
+  auto dtFechaHora = DtFechaHora(fecha, horario);
+  auto funcion = new Funcion(fecha, horario, precio, dtFechaHora);
   auto cCine = CCine::getInstance();
   cCine->getSala()->agregarFuncion(funcion);
   this->pelicula->agregarFuncion(funcion);
@@ -157,20 +159,22 @@ vector<DtFuncion> CPelicula::eligeCine(int id) {
     auto salas = cine->obtenerSalas();
     for (auto sala : salas) {
       auto funSalas = sala.second->obtenerFunciones();
-      for (auto posFuncion : funSalas) {
-        if (this->pelicula->existeFuncion(posFuncion->getId())) {
-          if (posFuncion->getFecha() > reloj->getFechaHora()) {
-            auto dtFuncion =
-                DtFuncion(posFuncion->getId(), posFuncion->getPrecio(),
-                          posFuncion->getFecha(), posFuncion->getHorario());
-            dtFunciones.push_back(dtFuncion);
+      if (!funSalas.empty()) {
+        for (auto posFuncion : funSalas) {
+          if (this->pelicula->existeFuncion(posFuncion->getId())) {
+            if (posFuncion->getFechaHora() > reloj->getFechaHora()) {
+              auto dtFuncion =
+                      DtFuncion(posFuncion->getId(), posFuncion->getPrecio(),
+                                posFuncion->getFecha(), posFuncion->getHorario(), posFuncion->getFechaHora());
+              dtFunciones.push_back(dtFuncion);
+            }
           }
         }
       }
     }
     return dtFunciones;
   } else {
-    throw invalid_argument("Opcion incorrecta");
+    throw invalid_argument("Ese cine no pasa esa pelicula");
   }
 }
 
