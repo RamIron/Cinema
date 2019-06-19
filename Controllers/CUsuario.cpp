@@ -16,14 +16,14 @@ CUsuario *CUsuario::getInstance() {
 void CUsuario::ingresaNick(string nickname) { this->nickname = nickname; }
 
 bool CUsuario::ingresaPass(string contrasenia) {
-  ManejadorUsuario *mu = ManejadorUsuario::getInstance();
-  if (mu->existeUsuario(this->nickname)) {
-    Usuario *u = mu->obtenerUsuario(this->nickname);
-    if (u->getConstrasenia().compare(contrasenia) == 0) {
+  auto manejadorUsuario = ManejadorUsuario::getInstance();
+  if (manejadorUsuario->existeUsuario(nickname)) {
+    auto usuario = manejadorUsuario->obtenerUsuario(this->nickname);
+    if (usuario->getConstrasenia().compare(contrasenia) == 0) {
       auto sesion = Sesion::getInstance();
-      sesion->setUsuario(u);
+      sesion->setUsuario(usuario);
     }
-    return u->getConstrasenia().compare(contrasenia) == 0;
+    return usuario->getConstrasenia().compare(contrasenia) == 0;
   }
 }
 

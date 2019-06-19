@@ -11,7 +11,6 @@ using namespace std;
 class CUsuario : public IUsuario {
 private:
   static CUsuario *cuInstance;
-  map<string, Usuario *> mapOfUsuarios;
   string nickname;
 
   CUsuario();

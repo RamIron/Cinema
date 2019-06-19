@@ -25,6 +25,7 @@ void CCine::crearCine() {
   }
   auto manejadorCine = ManejadorCine::getInstance();
   manejadorCine->agregarCine(cine);
+  this->capacidadSalas.clear();
 }
 
 void CCine::cancelar() { this->capacidadSalas.clear(); }
@@ -48,7 +49,6 @@ vector<DtCine> CCine::obtenerCines() {
 void CCine::eligeCine(int id) {
   auto manejadorCine = ManejadorCine::getInstance();
   if (manejadorCine->existeCine(id)) {
-    // hay que declararlo como atributo en el controlador
     this->cine = manejadorCine->obtenerCine(id);
   } else {
     throw invalid_argument("Opción incorrecta");

@@ -15,24 +15,9 @@ private:
   static CCine *ccInstance;
   DtDireccion direccion;
   Cine *cine;
-
-public:
-  Cine *getCine() const;
-
-  void setCine(Cine *cine);
-
-private:
   Sala *sala;
   vector<int> capacidadSalas;
-  map<int, Cine *> mapOfCines;
-  Sesion *sesion;
-
-public:
-  Sala *getSala() const;
-
-  void setSala(Sala *sala);
-
-private:
+  Sesion *sesion = Sesion::getInstance();
   CCine();
 
 public:
@@ -53,6 +38,14 @@ public:
   void eligeCine(int id);
 
   void eligeSala(int idSala);
+
+  Sala *getSala() const;
+
+  void setSala(Sala *sala);
+
+  Cine *getCine() const;
+
+  void setCine(Cine *cine);
 
   ~CCine();
 };

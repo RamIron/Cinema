@@ -77,7 +77,7 @@ vector<DtFuncion> Pelicula::obtenerDtFunciones() {
   for (auto posFuncion : funciones) {
     DtFuncion dtFuncion = DtFuncion(
         posFuncion.second->getId(), posFuncion.second->getPrecio(),
-        posFuncion.second->getFecha(), posFuncion.second->getHorario());
+        posFuncion.second->getFecha(), posFuncion.second->getHorario(), posFuncion.second->getFechaHora());
     dtFunciones.push_back(dtFuncion);
   }
   return dtFunciones;
