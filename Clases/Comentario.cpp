@@ -18,9 +18,17 @@ string Comentario::getTexto() { return this->texto; }
 
 Usuario *Comentario::getUsuario() { return this->u; }
 
+map<int, Comentario*> Comentario::getRespuestas(){
+  return this->respuestas;
+}
+
 void Comentario::setTexto(string texto) { this->texto = texto; }
 
 void Comentario::setUsuario(Usuario *usuario) { this->u = usuario; }
+
+void Comentario::agregarRespuesta(Comentario * respuesta){
+  this->respuestas.insert(make_pair(respuesta->getId(), respuesta));
+}
 
 // Destructor
 Comentario::~Comentario() {}

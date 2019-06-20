@@ -15,7 +15,7 @@ private:
   static int currentId;
   string texto;
   Usuario *u;
-  map<int, Comentario *> mapOfComentarios;
+  map<int, Comentario *> respuestas;
 
 public:
   // Constructores
@@ -28,8 +28,12 @@ public:
   string getTexto();
   Usuario *getUsuario();
 
+  map<int, Comentario*> getRespuestas();
+
   void setTexto(string);
   void setUsuario(Usuario *);
+
+  void agregarRespuesta(Comentario *);
 
   // Destructor
   ~Comentario();

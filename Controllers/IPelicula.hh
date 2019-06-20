@@ -24,7 +24,7 @@ public:
 
   virtual void ingresarPuntaje(int puntuacion) = 0;
 
-  virtual void modificarPuntaje(int puntuacion) = 0;
+  virtual void modificarPuntajePelicula(int puntuacion) = 0;
 
   virtual void creaComentario(string comentario) = 0;
 

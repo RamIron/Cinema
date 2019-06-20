@@ -6,6 +6,7 @@
 #include "../Handlers/ManejadorFinanciera.hh"
 #include "../Handlers/ManejadorFuncion.hh"
 #include "../Handlers/ManejadorPelicula.hh"
+#include "../Handlers/ManejadorComentario.hh"
 #include "CCine.hh"
 
 CPelicula *CPelicula::cpInstance = NULL;
@@ -63,13 +64,16 @@ vector<DtCine> CPelicula::verInfoAdicional() {
   return this->pelicula->obtenerCines();
 }
 
-void CPelicula::ingresarPuntaje(int puntuacion) {}
-
-void CPelicula::modificarPuntaje(int puntuacion) {}
+void CPelicula::ingresarPuntaje(int puntuacion) {
+  auto puntaje = new Puntaje(sesion->getUsuario(), puntuacion);
+  pelicula->agregarPuntaje(puntaje);
+}
 
 void CPelicula::creaComentario(string comentario) {}
 
-void CPelicula::eligeComentario(int id) {}
+void CPelicula::eligeComentario(int id) {
+  this->idComentario = id;
+}
 
 void CPelicula::respondeComentario(string comentario) {}
 
@@ -195,5 +199,34 @@ void CPelicula::removerFuncionSala(int id) {}
 vector<DtFuncion> CPelicula::obtenerFunciones() {}
 
 DtFuncion CPelicula::obtenerFuncionSala() {}
+
+bool CPelicula::existePuntaje(){
+  return pelicula->existePuntajeUsuario(sesion->getUsuario()->getNickname());
+}
+
+int CPelicula::mostrarPuntaje(){
+  auto puntaje = pelicula->obtenerPuntaje(sesion->getUsuario()->getNickname());
+  return puntaje->getPuntos();
+}
+
+void CPelicula::modificarPuntajePelicula(int puntajeNuevo){
+  pelicula->modificarPuntaje(puntajeNuevo, sesion->getUsuario()->getNickname());
+}
+
+void CPelicula::agregarComentarioPelicula(string comentario) {
+  pelicula->agregarComentario(comentario, sesion->getUsuario());
+}
+
+map<int, Comentario*> CPelicula::obtenerComentariosPelicula(){
+  return pelicula->obtenerComentarios();
+}
+
+void CPelicula::obtenerDtComentariosPelicula(map<int, Comentario*> comentarios, vector<DtPrintComentario> &dtComentarios, int profundidad ){
+  pelicula->obtenerDtComentarios(comentarios, dtComentarios, profundidad);
+}
+
+void CPelicula::respondeComentarioPelicula(string respuesta){
+  pelicula->respondeComentario(idComentario, respuesta, sesion->getUsuario());
+}
 
 CPelicula::~CPelicula() {}

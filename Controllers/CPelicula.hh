@@ -24,10 +24,8 @@ private:
   int cantEntradas;
   string banco;
   string financiera;
-  string titulo;
   int funcion;
   DtCine cine;
-  // DtSala sala;
   int idComentario;
   Sesion *sesion = Sesion::getInstance();
   Pelicula *pelicula;
@@ -46,8 +44,6 @@ public:
   DtPelicula mostrarPelicula(); // Retorna la pelicula de eligePelicula()
 
   void ingresarPuntaje(int puntuacion);
-
-  void modificarPuntaje(int puntuacion);
 
   void creaComentario(string comentario);
 
@@ -88,6 +84,20 @@ public:
   vector<DtCine> verInfoAdicional();
 
   friend bool operator>(DtFechaHora funcion, DtFechaHora sistema);
+
+  bool existePuntaje();
+
+  int mostrarPuntaje();
+
+  void modificarPuntajePelicula(int puntajeNuevo);
+
+  void agregarComentarioPelicula(string comentario);
+
+  map<int, Comentario*> obtenerComentariosPelicula();
+
+  void obtenerDtComentariosPelicula(map<int, Comentario*> comentarios, vector<DtPrintComentario> &dtComentarios, int profundidad);
+
+  void respondeComentarioPelicula(string comentario);
 
   ~CPelicula();
 };

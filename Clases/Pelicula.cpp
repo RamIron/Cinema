@@ -1,4 +1,5 @@
 #include "Pelicula.hh"
+#include "../Handlers/ManejadorComentario.hh"
 
 // Constructores
 Pelicula::Pelicula() {}
@@ -85,4 +86,62 @@ vector<DtFuncion> Pelicula::obtenerDtFunciones() {
 
 bool Pelicula::existeFuncion(int id) {
   return funciones.find(id) != funciones.end();
+}
+
+void Pelicula::agregarComentario(string comentario, Usuario *usuario){
+  auto c = new Comentario(comentario, usuario);
+  this->comentarios.insert(make_pair(c->getId(), c));
+  auto manejadorComentario = ManejadorComentario::getInstance();
+  manejadorComentario->agregarComentario(c);
+}
+
+void Pelicula::obtenerDtComentarios (map<int, Comentario*> comentarios, vector<DtPrintComentario> &dtComentarios, int profundidad){
+  for(auto posComentario : comentarios){
+    auto usuario = posComentario.second->getUsuario();
+    auto dtPrintComentario = DtPrintComentario(usuario->getNickname(), profundidad, posComentario.second->getTexto());
+    dtComentarios.push_back(dtPrintComentario);
+    if(posComentario.second->getRespuestas().size() != 0){
+      obtenerDtComentarios(posComentario.second->getRespuestas(), dtComentarios, profundidad + 1);
+    }
+  }
+  /*
+  map<int, Comentario*>::iterator it;
+  for (it = comentarios.begin(); it != comentarios.end(); ++it){
+    Usuario *u = it->second->getUsuario();
+    auto dtPrintComentario = DtPrintComentario(u->getNickname(), prof,  it->second->getTexto());
+    dtComentarios.push_back(dtPrintComentario);
+    if(it->second->getRespuestas().size() != 0){
+      obtenerDtComentarios(it->second->getRespuestas(), dtComentarios, prof + 1);
+    }
+  }
+   */
+}
+
+map<int, Comentario*> Pelicula::obtenerComentarios(){
+  return this->comentarios;
+}
+
+bool Pelicula::existePuntajeUsuario(string nickname) {
+  return puntajes.find(nickname) != puntajes.end();
+}
+
+Puntaje *Pelicula::obtenerPuntaje(string nickname){
+  return puntajes.find(nickname)->second;
+}
+
+void Pelicula::modificarPuntaje(int puntajeNuevo, string nickname){
+  auto puntaje = obtenerPuntaje(nickname);
+  puntaje->setPuntos(puntajeNuevo);
+}
+
+void Pelicula::agregarPuntaje(Puntaje *puntaje){
+  puntajes.insert(make_pair(puntaje->getUsuario()->getNickname(), puntaje));
+}
+
+void Pelicula::respondeComentario(int idComentario, string respuesta, Usuario *usuario){
+  auto manejadorComentario = ManejadorComentario::getInstance();
+  auto cRespuesta = new Comentario(respuesta, usuario);
+  auto comentario = manejadorComentario->obtenerComentario(idComentario);
+  comentario->agregarRespuesta(cRespuesta);
+  manejadorComentario->agregarComentario(cRespuesta);
 }
