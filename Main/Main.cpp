@@ -19,7 +19,6 @@ using namespace std;
 int main() {
 
   // Iniciar Sesion
-  /*
   CUsuario *cu = CUsuario::getInstance();
   ManejadorUsuario *mu = ManejadorUsuario::getInstance();
   Usuario *u = new Usuario("Mathias", "asd", "tuvieja", true);
@@ -28,7 +27,6 @@ int main() {
   cu->ingresaNick("Mathias");
   cu->ingresaPass("asd");
   Sesion *s = Sesion::getInstance();
-   */
 
 
   // Alta Cine
@@ -45,8 +43,7 @@ int main() {
   cCine->ingresaSala(17);
   cCine->crearCine();
   auto manejadorCine = ManejadorCine::getInstance();
-   */
-
+*/
   // Alta Funcion
   /*
   auto pelicula = new Pelicula("Rey Leon", "eta buenardaaa", 9.6, "tu vieja en tanga");
@@ -80,8 +77,7 @@ int main() {
   auto dtHorario = DtHorario("02:50", "00:00");
   float precio = 100;
   cPelicula->crearFuncion(dtFecha, dtHorario, precio);
-   */
-
+*/
   // Ver Info Pelicula
   /*
   auto titulosPeliculas = cPelicula->obtenerTitulosPeliculas();
@@ -108,6 +104,71 @@ int main() {
     cout << e.what() << endl;
   }
    */
+
+  // Puntuar Pelicula
+  /*
+  auto pelicula = new Pelicula("Rey Leon", "eta buenardaaa", 9.6, "tu vieja en tanga");
+  auto pelicula1 = new Pelicula("Cars", "es de putitos", 5.6, "tu vieja en tanga");
+  auto pelicula2 = new Pelicula("Scream", "wasaaaa", 10, "tu vieja en tanga");
+  auto manejadorPelicula = ManejadorPelicula::getInstance();
+  manejadorPelicula->agregarPelicula(pelicula);
+  manejadorPelicula->agregarPelicula(pelicula1);
+  manejadorPelicula->agregarPelicula(pelicula2);
+  auto cPelicula = CPelicula::getInstance();
+  auto dtPeliculas = cPelicula->obtenerPeliculas();
+  cPelicula->eligePelicula("Scream");
+  cPelicula->ingresarPuntaje(10);
+  if(cPelicula->existePuntaje()){
+    auto puntaje = cPelicula->mostrarPuntaje();
+    cPelicula->modificarPuntajePelicula(5);
+  } else {
+    cPelicula->ingresarPuntaje(10);
+  }
+   */
+
+  // Comentar Pelicula
+  /*
+  auto pelicula = new Pelicula("Rey Leon", "eta buenardaaa", 9.6, "tu vieja en tanga");
+  auto pelicula1 = new Pelicula("Cars", "es de putitos", 5.6, "tu vieja en tanga");
+  auto pelicula2 = new Pelicula("Scream", "wasaaaa", 10, "tu vieja en tanga");
+  auto manejadorPelicula = ManejadorPelicula::getInstance();
+  manejadorPelicula->agregarPelicula(pelicula);
+  manejadorPelicula->agregarPelicula(pelicula1);
+  manejadorPelicula->agregarPelicula(pelicula2);
+  auto cPelicula = CPelicula::getInstance();
+  auto dtPeliculas = cPelicula->obtenerPeliculas();
+  cPelicula->eligePelicula("Scream");
+  cPelicula->agregarComentarioPelicula("Hola");
+  cPelicula->agregarComentarioPelicula("Hola");
+  cPelicula->eligeComentario(0);
+  cPelicula->respondeComentarioPelicula("soy Mathias");
+  cPelicula->eligeComentario(1);
+  cPelicula->respondeComentarioPelicula("soy");
+  cPelicula->eligeComentario(3);
+  cPelicula->respondeComentarioPelicula("Ramiro");
+  auto comentarios = cPelicula->obtenerComentariosPelicula();
+  vector<DtPrintComentario> dtComentarios;
+  cPelicula->obtenerDtComentariosPelicula(comentarios, dtComentarios, 0);
+   */
+
+  /*
+  auto pelicula = new Pelicula("Rey Leon", "eta buenardaaa", 9.6, "tu vieja en tanga");
+  auto c1 = new Comentario("Hola", s->getUsuario());
+  auto c2 = new Comentario("soy Mathias", s->getUsuario());
+  auto c3 = new Comentario("Hola", s->getUsuario());
+  auto c4 = new Comentario("soy", s->getUsuario());
+  auto c5 = new Comentario("Ramiro", s->getUsuario());
+  pelicula->agregarComentario(c1);
+  pelicula->agregarComentario(c3);
+  c1->responderComentario(c2);
+  c3->responderComentario(c4);
+  c4->responderComentario(c5);
+  vector<DtPrintComentario> dtComentarios;
+  pelicula->obtenerComentarios(pelicula->obtenerComentarios(), dtComentarios, 0);
+   */
+
+  // Eliminar Pelicula
+
 
 
   int opc;
