@@ -22,6 +22,8 @@ public:
   /*Constructor con parametros*/
   DtFuncion(int id, float precio, DtFecha fecha, DtHorario horario, DtFechaHora fechaHora);
 
+  DtFuncion(int id, DtFecha fecha, DtHorario horario);
+
   /*Getters*/
   int getid();
 

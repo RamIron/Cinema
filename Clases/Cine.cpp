@@ -22,9 +22,15 @@ void Cine::setDireccion(DtDireccion direccion) { this->direccion = direccion; }
 // Operaciones
 vector<DtSala> Cine::obtenerDtSalas() {
   vector<DtSala> dtSalas;
-  for (auto posicionMap : mapOfSalas) {
+
+  for (auto posicionSala : mapOfSalas) {
+    vector<DtFuncion> dtFunciones;
+    for (auto posicionFuncion : posicionSala.second->funciones){
+      auto dtFuncion = DtFuncion(posicionFuncion.second->getId(), posicionFuncion.second->getFecha(), posicionFuncion.second->getHorario());
+      dtFunciones.push_back(dtFuncion);
+    }
     auto dtSala =
-        DtSala(posicionMap.second->getId(), posicionMap.second->getCapacidad());
+        DtSala(posicionSala.second->getId(), posicionSala.second->getCapacidad(), dtFunciones);
     dtSalas.push_back(dtSala);
   }
   return dtSalas;

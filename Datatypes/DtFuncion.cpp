@@ -11,6 +11,12 @@ DtFuncion::DtFuncion(int id, float precio, DtFecha fecha,
   this->fechaHora = fechaHora;
 }
 
+DtFuncion::DtFuncion(int id, DtFecha fecha, DtHorario horario){
+  this->id = id;
+  this->fecha = fecha;
+  this->horario = horario;
+}
+
 int DtFuncion::getid() { return this->id; }
 
 float DtFuncion::getPrecio() { return this->precio; }

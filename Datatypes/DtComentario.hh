@@ -10,7 +10,7 @@ class DtComentario {
 private:
   string nickname;
   string comentario;
-  map<string, DtComentario *> comentarios;
+  int profundidad;
 
 public:
   /*Constructor sin parametros*/
@@ -24,8 +24,14 @@ public:
 
   string getComentario() const;
 
+  int getProfundidad() const;
+
   /*Destructor*/
   ~DtComentario();
+
+  /*Operador*/
+ friend std::ostream &operator<<(std::ostream &, DtComentario &);
+
 };
 
 #endif
