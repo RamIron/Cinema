@@ -6,7 +6,7 @@
 class Reloj {
 private:
   DtFechaHora fechaHoraManual;
-  bool Manual;
+  bool manual;
   static Reloj *instance;
 
   Reloj();

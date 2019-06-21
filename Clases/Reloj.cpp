@@ -5,7 +5,7 @@ using namespace std;
 
 Reloj *Reloj::instance = NULL;
 
-Reloj::Reloj() {}
+Reloj::Reloj() { manual = false; }
 
 Reloj *Reloj::getInstance() {
   if (instance == NULL) {
@@ -16,13 +16,13 @@ Reloj *Reloj::getInstance() {
 
 void Reloj::activarManual(DtFechaHora f) {
   fechaHoraManual = f;
-  Manual = true;
+  manual = true;
 }
 
-void Reloj::desactivarManual() { Manual = false; }
+void Reloj::desactivarManual() { manual = false; }
 
 DtFechaHora Reloj::getFechaHora() {
-  if (!Manual) {
+  if (!manual) {
     time_t tim;
     time(&tim);
     tm *now = localtime(&tim);
