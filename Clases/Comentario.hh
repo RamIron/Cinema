@@ -28,7 +28,7 @@ public:
   string getTexto();
   Usuario *getUsuario();
 
-  map<int, Comentario*> getRespuestas();
+  map<int, Comentario *> getRespuestas();
 
   void setTexto(string);
   void setUsuario(Usuario *);
