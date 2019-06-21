@@ -1,6 +1,9 @@
 #ifndef PALAB06_DTSALA_HH
 #define PALAB06_DTSALA_HH
 
+#include "DtFuncion.hh"
+#include <vector>
+
 class DtSala {
 private:
   int id;
@@ -29,6 +32,5 @@ public:
   /*Destructor*/
   ~DtSala();
 };
-
 
 #endif
