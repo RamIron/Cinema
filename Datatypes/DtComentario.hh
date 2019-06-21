@@ -8,6 +8,7 @@ using namespace std;
 
 class DtComentario {
 private:
+  int id;
   string nickname;
   string comentario;
   int profundidad;
@@ -17,7 +18,7 @@ public:
   DtComentario();
 
   /*Constructor con parametros*/
-  DtComentario(string nickname, string comentario);
+  DtComentario(int id, string nickname, string comentario, int profundidad);
 
   /*Getters*/
   string getNickname() const;
@@ -26,12 +27,13 @@ public:
 
   int getProfundidad() const;
 
+  int getId() const;
+
   /*Destructor*/
   ~DtComentario();
 
   /*Operador*/
- friend std::ostream &operator<<(std::ostream &, DtComentario &);
-
+  friend std::ostream &operator<<(std::ostream &, DtComentario &);
 };
 
 #endif
