@@ -27,12 +27,7 @@ Funcion *ManejadorFuncion::obtenerFuncion(int id) {
   return it->second;
 }
 
-void ManejadorFuncion::eliminarFuncion(int id) {
-  map<int, Funcion *>::iterator it;
-  it = this->funciones.find(id);
-  delete it->second;
-  this->funciones.erase(id);
-}
+void ManejadorFuncion::eliminarFuncion(int id) { this->funciones.erase(id); }
 
 map<int, Funcion *> ManejadorFuncion::obtenerFunciones() {
   return this->funciones;
