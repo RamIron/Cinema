@@ -27,4 +27,8 @@ vector<Funcion *> Sala::obtenerFunciones() {
   return funciones;
 }
 
+void Sala::eliminarFuncionSala(int idFuncion) {
+  this->mapOfFunciones.erase(idFuncion);
+}
+
 Sala::~Sala() {}

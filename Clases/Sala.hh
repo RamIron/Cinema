@@ -31,6 +31,8 @@ public:
 
   vector<Funcion *> obtenerFunciones();
 
+  void eliminarFuncionSala(int idFuncion);
+
   ~Sala();
 };
 
