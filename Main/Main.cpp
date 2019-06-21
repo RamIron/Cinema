@@ -66,7 +66,6 @@ int main() {
     cout << e.what() << endl;
   }
   auto dtSalas = cCine->obtenerDtSalas();
-  cout << &dtSalas << endl;
   try {
     cCine->eligeSala(0);
   } catch (invalid_argument &e) {
