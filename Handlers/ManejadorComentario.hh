@@ -8,25 +8,25 @@ using namespace std;
 
 class ManejadorComentario {
 private:
-    static ManejadorComentario *mcInstance;
-    map<int, Comentario *> comentarios;
+  static ManejadorComentario *mcInstance;
+  map<int, Comentario *> comentarios;
 
-    ManejadorComentario();
+  ManejadorComentario();
 
 public:
-    static ManejadorComentario *getInstance();
+  static ManejadorComentario *getInstance();
 
-    map<int, Comentario *> obtenerComentarios();
+  map<int, Comentario *> obtenerComentarios();
 
-    Comentario *obtenerComentario(int id);
+  Comentario *obtenerComentario(int id);
 
-    void agregarComentario(Comentario *);
+  void agregarComentario(Comentario *);
 
-    bool existeComentario(int id);
+  bool existeComentario(int id);
 
-    void eliminarComentario(int id);
+  void eliminarComentario(int id);
 
-    ~ManejadorComentario();
+  ~ManejadorComentario();
 };
 
 #endif
