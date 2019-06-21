@@ -1,9 +1,9 @@
 #ifndef PALAB06_FUNCION_HH
 #define PALAB06_FUNCION_HH
 
-#include "../Datatypes/DtHorario.hh"
 #include "../Datatypes/DtFecha.hh"
 #include "../Datatypes/DtFechaHora.hh"
+#include "../Datatypes/DtHorario.hh"
 #include "Reserva.hh"
 #include <iostream>
 #include <vector>
@@ -24,7 +24,8 @@ public:
   // Constructores
   Funcion();
 
-  Funcion(DtFecha fecha, DtHorario horario, float precio, DtFechaHora fechaHora);
+  Funcion(DtFecha fecha, DtHorario horario, float precio,
+          DtFechaHora fechaHora);
 
   // Getters y Setters
   int getId();

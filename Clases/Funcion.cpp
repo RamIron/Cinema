@@ -5,7 +5,8 @@ int Funcion::currentId = 0;
 // Constructores
 Funcion::Funcion() { this->id = currentId++; }
 
-Funcion::Funcion(DtFecha fecha, DtHorario horario, float precio, DtFechaHora fechaHora) {
+Funcion::Funcion(DtFecha fecha, DtHorario horario, float precio,
+                 DtFechaHora fechaHora) {
   this->id = currentId++;
   this->fecha = fecha;
   this->horario = horario;
@@ -28,13 +29,20 @@ void Funcion::setHorario(DtHorario horario) { this->horario = horario; }
 
 void Funcion::setPrecio(float precio) { this->precio = precio; }
 
-DtFechaHora Funcion::getFechaHora(){ return this->fechaHora; }
+DtFechaHora Funcion::getFechaHora() { return this->fechaHora; }
 
-void Funcion::setFechaHora(DtFechaHora fechaHora){ this->fechaHora = fechaHora; }
+void Funcion::setFechaHora(DtFechaHora fechaHora) {
+  this->fechaHora = fechaHora;
+}
 
 void Funcion::agregarReserva(Reserva *reserva) {
   this->reservas.push_back(reserva);
 }
 
 // Destructor
-Funcion::~Funcion() {}
+Funcion::~Funcion() {
+  for (auto reserva : reservas) {
+    delete reserva;
+  }
+  reservas.clear();
+}
