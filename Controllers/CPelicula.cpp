@@ -3,10 +3,10 @@
 #include "../Clases/Debito.hh"
 #include "../Clases/Reloj.hh"
 #include "../Clases/Reserva.hh"
+#include "../Handlers/ManejadorComentario.hh"
 #include "../Handlers/ManejadorFinanciera.hh"
 #include "../Handlers/ManejadorFuncion.hh"
 #include "../Handlers/ManejadorPelicula.hh"
-#include "../Handlers/ManejadorComentario.hh"
 #include "CCine.hh"
 
 CPelicula *CPelicula::cpInstance = NULL;
@@ -71,15 +71,13 @@ void CPelicula::ingresarPuntaje(int puntuacion) {
 
 void CPelicula::creaComentario(string comentario) {}
 
-void CPelicula::eligeComentario(int id) {
-  this->idComentario = id;
-}
+void CPelicula::eligeComentario(int id) { this->idComentario = id; }
 
 void CPelicula::respondeComentario(string comentario) {}
 
 void CPelicula::finalizar() {}
 
-void CPelicula::eliminarPelicula() {}
+void CPelicula::eliminarPelicula() { delete this->pelicula; }
 
 void CPelicula::crearReservaDebito(float costo) {
   auto manejadorFuncion = ManejadorFuncion::getInstance();
@@ -116,9 +114,7 @@ void CPelicula::ingresaCantEntradas(int cantEntradas) {
   this->cantEntradas = cantEntradas;
 }
 
-
-void CPelicula::crearFuncion(DtFecha fecha, DtHorario horario,
-                             float precio) {
+void CPelicula::crearFuncion(DtFecha fecha, DtHorario horario, float precio) {
   auto manejadorFuncion = ManejadorFuncion::getInstance();
   auto dtFechaHora = DtFechaHora(fecha, horario);
   auto funcion = new Funcion(fecha, horario, precio, dtFechaHora);
@@ -168,8 +164,9 @@ vector<DtFuncion> CPelicula::eligeCine(int id) {
           if (this->pelicula->existeFuncion(posFuncion->getId())) {
             if (posFuncion->getFechaHora() > reloj->getFechaHora()) {
               auto dtFuncion =
-                      DtFuncion(posFuncion->getId(), posFuncion->getPrecio(),
-                                posFuncion->getFecha(), posFuncion->getHorario(), posFuncion->getFechaHora());
+                  DtFuncion(posFuncion->getId(), posFuncion->getPrecio(),
+                            posFuncion->getFecha(), posFuncion->getHorario(),
+                            posFuncion->getFechaHora());
               dtFunciones.push_back(dtFuncion);
             }
           }
@@ -200,16 +197,16 @@ vector<DtFuncion> CPelicula::obtenerFunciones() {}
 
 DtFuncion CPelicula::obtenerFuncionSala() {}
 
-bool CPelicula::existePuntaje(){
+bool CPelicula::existePuntaje() {
   return pelicula->existePuntajeUsuario(sesion->getUsuario()->getNickname());
 }
 
-int CPelicula::mostrarPuntaje(){
+int CPelicula::mostrarPuntaje() {
   auto puntaje = pelicula->obtenerPuntaje(sesion->getUsuario()->getNickname());
   return puntaje->getPuntos();
 }
 
-void CPelicula::modificarPuntajePelicula(int puntajeNuevo){
+void CPelicula::modificarPuntajePelicula(int puntajeNuevo) {
   pelicula->modificarPuntaje(puntajeNuevo, sesion->getUsuario()->getNickname());
 }
 
@@ -217,16 +214,30 @@ void CPelicula::agregarComentarioPelicula(string comentario) {
   pelicula->agregarComentario(comentario, sesion->getUsuario());
 }
 
-map<int, Comentario*> CPelicula::obtenerComentariosPelicula(){
+map<int, Comentario *> CPelicula::obtenerComentariosPelicula() {
   return pelicula->obtenerComentarios();
 }
 
-void CPelicula::obtenerDtComentariosPelicula(map<int, Comentario*> comentarios, vector<DtPrintComentario> &dtComentarios, int profundidad ){
+void CPelicula::obtenerDtComentariosPelicula(
+    map<int, Comentario *> comentarios, vector<DtComentario> &dtComentarios,
+    int profundidad) {
+  dtComentarios.clear();
   pelicula->obtenerDtComentarios(comentarios, dtComentarios, profundidad);
 }
 
-void CPelicula::respondeComentarioPelicula(string respuesta){
+void CPelicula::respondeComentarioPelicula(string respuesta) {
   pelicula->respondeComentario(idComentario, respuesta, sesion->getUsuario());
+}
+
+DtInfoPeli CPelicula::crearDtInfoPeli() {
+  vector<DtComentario> dtComentarios;
+  pelicula->obtenerDtComentarios(this->pelicula->obtenerComentarios(),
+                                 dtComentarios, 0);
+  auto dtPuntajes = this->pelicula->obtenerDtPuntajes();
+  auto dtInfoPelicula = DtInfoPeli(
+      this->pelicula->getTitulo(), this->pelicula->getPuntajePromedio(),
+      (int)dtPuntajes.size(), dtComentarios, dtPuntajes);
+  return dtInfoPelicula;
 }
 
 CPelicula::~CPelicula() {}

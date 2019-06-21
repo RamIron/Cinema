@@ -7,10 +7,10 @@
 #include "../Clases/Sesion.hh"
 #include "../Datatypes/DtCine.hh"
 #include "../Datatypes/DtDireccion.hh"
+#include "../Datatypes/DtFecha.hh"
 #include "../Datatypes/DtFechaHora.hh"
 #include "../Datatypes/DtFuncion.hh"
 #include "../Datatypes/DtHorario.hh"
-#include "../Datatypes/DtFecha.hh"
 #include "../Datatypes/DtPelicula.hh"
 #include "IPelicula.hh"
 #include <iostream>
@@ -93,11 +93,15 @@ public:
 
   void agregarComentarioPelicula(string comentario);
 
-  map<int, Comentario*> obtenerComentariosPelicula();
+  map<int, Comentario *> obtenerComentariosPelicula();
 
-  void obtenerDtComentariosPelicula(map<int, Comentario*> comentarios, vector<DtPrintComentario> &dtComentarios, int profundidad);
+  void obtenerDtComentariosPelicula(map<int, Comentario *> comentarios,
+                                    vector<DtComentario> &dtComentarios,
+                                    int profundidad);
 
   void respondeComentarioPelicula(string comentario);
+
+  DtInfoPeli crearDtInfoPeli();
 
   ~CPelicula();
 };

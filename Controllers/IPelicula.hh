@@ -46,8 +46,7 @@ public:
 
   virtual void ingresaCantEntradas(int cantEntradas) = 0;
 
-  virtual void crearFuncion(DtFecha fecha, DtHorario horario,
-                            float precio) = 0;
+  virtual void crearFuncion(DtFecha fecha, DtHorario horario, float precio) = 0;
 
   virtual void seleccionaFuncion(int id) = 0;
 
