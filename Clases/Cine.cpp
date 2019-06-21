@@ -25,12 +25,14 @@ vector<DtSala> Cine::obtenerDtSalas() {
 
   for (auto posicionSala : mapOfSalas) {
     vector<DtFuncion> dtFunciones;
-    for (auto posicionFuncion : posicionSala.second->funciones){
-      auto dtFuncion = DtFuncion(posicionFuncion.second->getId(), posicionFuncion.second->getFecha(), posicionFuncion.second->getHorario());
+    for (auto posicionFuncion : posicionSala.second->obtenerFunciones()) {
+      auto dtFuncion =
+          DtFuncion(posicionFuncion->getId(), posicionFuncion->getFecha(),
+                    posicionFuncion->getHorario());
       dtFunciones.push_back(dtFuncion);
     }
-    auto dtSala =
-        DtSala(posicionSala.second->getId(), posicionSala.second->getCapacidad(), dtFunciones);
+    auto dtSala = DtSala(posicionSala.second->getId(),
+                         posicionSala.second->getCapacidad(), dtFunciones);
     dtSalas.push_back(dtSala);
   }
   return dtSalas;
@@ -47,5 +49,11 @@ bool Cine::existeSala(int idSala) {
 }
 
 Sala *Cine::obtenerSala(int idSala) { return mapOfSalas.find(idSala)->second; }
+
+void Cine::eliminarFuncionCine(int idFuncion) {
+  for (auto posSalas : this->mapOfSalas) {
+    posSalas.second->eliminarFuncionSala(idFuncion);
+  }
+}
 
 Cine::~Cine() {}

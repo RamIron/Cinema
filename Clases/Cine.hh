@@ -44,6 +44,8 @@ public:
 
   Sala *obtenerSala(int idSala);
 
+  void eliminarFuncionCine(int idFuncion);
+
   ~Cine();
 };
 
