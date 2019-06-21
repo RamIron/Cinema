@@ -21,7 +21,7 @@ DtFechaHora::DtFechaHora(int anio, int mes, int dia, int hora, int minuto) {
   this->minuto = minuto;
 }
 
-DtFechaHora::DtFechaHora(DtFecha fecha, DtHorario horario){
+DtFechaHora::DtFechaHora(DtFecha fecha, DtHorario horario) {
   string delimiter = ":";
   string fechaInicio = horario.getHoraInicio();
   auto posHoraInicio = fechaInicio.find(delimiter);

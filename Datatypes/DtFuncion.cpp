@@ -2,8 +2,8 @@
 
 DtFuncion::DtFuncion() {}
 
-DtFuncion::DtFuncion(int id, float precio, DtFecha fecha,
-                     DtHorario horario, DtFechaHora fechaHora) {
+DtFuncion::DtFuncion(int id, float precio, DtFecha fecha, DtHorario horario,
+                     DtFechaHora fechaHora) {
   this->id = id;
   this->precio = precio;
   this->fecha = fecha;
@@ -11,7 +11,7 @@ DtFuncion::DtFuncion(int id, float precio, DtFecha fecha,
   this->fechaHora = fechaHora;
 }
 
-DtFuncion::DtFuncion(int id, DtFecha fecha, DtHorario horario){
+DtFuncion::DtFuncion(int id, DtFecha fecha, DtHorario horario) {
   this->id = id;
   this->fecha = fecha;
   this->horario = horario;
@@ -25,7 +25,7 @@ DtFecha DtFuncion::getFecha() { return this->fecha; }
 
 DtHorario DtFuncion::getHorario() { return this->horario; }
 
-DtFechaHora DtFuncion::getFechaHora(){ return this->fechaHora; }
+DtFechaHora DtFuncion::getFechaHora() { return this->fechaHora; }
 
 /*Destructor*/
 DtFuncion::~DtFuncion() {}

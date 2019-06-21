@@ -2,8 +2,8 @@
 #define PALAB06_DTFUNCION_HH
 
 #include "DtFecha.hh"
-#include "DtHorario.hh"
 #include "DtFechaHora.hh"
+#include "DtHorario.hh"
 
 #include <iostream>
 
@@ -20,7 +20,8 @@ public:
   DtFuncion();
 
   /*Constructor con parametros*/
-  DtFuncion(int id, float precio, DtFecha fecha, DtHorario horario, DtFechaHora fechaHora);
+  DtFuncion(int id, float precio, DtFecha fecha, DtHorario horario,
+            DtFechaHora fechaHora);
 
   DtFuncion(int id, DtFecha fecha, DtHorario horario);
 
