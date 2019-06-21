@@ -81,9 +81,10 @@ public:
 
   void agregarComentario(string comentario, Usuario *usuario);
 
-  map<int, Comentario*> obtenerComentarios();
+  map<int, Comentario *> obtenerComentarios();
 
-  void obtenerDtComentarios (map<int, Comentario*> comentarios, vector<DtPrintComentario> &dtComentarios, int prof);
+  void obtenerDtComentarios(map<int, Comentario *> comentarios,
+                            vector<DtComentario> &dtComentarios, int prof);
 
   bool existePuntajeUsuario(string nickname);
 
@@ -95,9 +96,10 @@ public:
 
   void respondeComentario(int idComentario, string respuesta, Usuario *usuario);
 
+  vector<DtPuntaje> obtenerDtPuntajes();
+
   // Destructor
   ~Pelicula();
 };
 
 #endif
-
