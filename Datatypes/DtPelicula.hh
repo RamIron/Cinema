@@ -21,6 +21,7 @@ public:
              float puntajePromedio);
 
   DtPelicula(string sinopsis, string poster);
+
   /*Getters*/
   string getTitulo() const;
 
