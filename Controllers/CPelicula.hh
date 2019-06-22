@@ -12,6 +12,8 @@
 #include "../Datatypes/DtFuncion.hh"
 #include "../Datatypes/DtHorario.hh"
 #include "../Datatypes/DtPelicula.hh"
+#include "../Handlers/ManejadorFinanciera.hh"
+#include "../Handlers/ManejadorPelicula.hh"
 #include "IPelicula.hh"
 #include <iostream>
 #include <map>
@@ -29,6 +31,8 @@ private:
   int idComentario;
   Sesion *sesion = Sesion::getInstance();
   Pelicula *pelicula;
+  ManejadorFinanciera *mf = ManejadorFinanciera::getInstance();
+  ManejadorPelicula *mp = ManejadorPelicula::getInstance();
 
   CPelicula();
 
@@ -88,6 +92,10 @@ public:
   void respondeComentarioPelicula(string comentario);
 
   DtInfoPeli crearDtInfoPeli();
+
+  ManejadorFinanciera *obtenerManejadorFinanciera();
+
+  ManejadorPelicula *obtenerManejadorPelicula();
 
   ~CPelicula();
 };

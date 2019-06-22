@@ -9,6 +9,8 @@
 #include "../Datatypes/DtHorario.hh"
 #include "../Datatypes/DtInfoPeli.hh"
 #include "../Datatypes/DtPelicula.hh"
+#include "../Handlers/ManejadorFinanciera.hh"
+#include "../Handlers/ManejadorPelicula.hh"
 #include <iostream>
 #include <map>
 #include <vector>
@@ -70,6 +72,10 @@ public:
   virtual void respondeComentarioPelicula(string comentario) = 0;
 
   virtual DtInfoPeli crearDtInfoPeli() = 0;
+
+  virtual ManejadorFinanciera *obtenerManejadorFinanciera() = 0;
+
+  virtual ManejadorPelicula *obtenerManejadorPelicula() = 0;
 };
 
 #endif

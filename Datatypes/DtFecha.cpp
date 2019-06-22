@@ -21,8 +21,9 @@ int DtFecha::getMes() const { return this->mes; }
 
 int DtFecha::getAnio() const { return this->anio; }
 
-std::ostream &operator<<(std::ostream &output, DtFecha &dtFecha){
-  output << dtFecha.getDia() << "/" << dtFecha.getMes() << "/" << dtFecha.getAnio();
+std::ostream &operator<<(std::ostream &output, DtFecha &dtFecha) {
+  output << dtFecha.getDia() << "/" << dtFecha.getMes() << "/"
+         << dtFecha.getAnio();
 }
 
 DtFecha::~DtFecha() {}

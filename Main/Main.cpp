@@ -26,9 +26,6 @@ using namespace std;
 int main() {
 
   // Iniciar Sesion
-  ManejadorUsuario *mu = ManejadorUsuario::getInstance();
-  Usuario *u = new Usuario("Mathias", "asd", "tuvieja", true);
-  mu->agregarUsuario(u);
 
   /*
   cu->ingresaNick("Mathias");
@@ -184,8 +181,7 @@ int main() {
   int opc;
   do {
     showMenu();
-    opc = getOpc(0, 9);
-    string nickname, contrasenia;
+    opc = getOpc(0, 11);
     int opcion;
     auto uFactory = CUsuarioFactory::getInstance();
     auto cFactory = CCineFactory::getInstancia();
@@ -194,7 +190,8 @@ int main() {
     auto cInterface = cFactory->getICine();
     auto pInterface = pFactory->getIPelicula();
     switch (opc) {
-    case 1: /// OPCION Iniciar Sesión
+    case 1: { /// OPCION Iniciar Sesión
+      string nickname, contrasenia;
       cout << "Ingrese su nickname:\n";
       cin >> nickname;
       uInterface->ingresaNick(nickname);
@@ -222,8 +219,8 @@ int main() {
         cout << e.what() << endl;
       }
       break;
-
-    case 2: /// OPCION Alta Cine
+    }
+    case 2: { /// OPCION Alta Cine
       if (uInterface->estaLogeado()) {
         if (uInterface->esAdmin()) {
           string calle;
@@ -274,8 +271,9 @@ int main() {
         cout << "Se necesita iniciar sesion para dar de alta un cine" << endl;
       }
       break;
+    }
 
-    case 3: /// OPCION Alta Función
+    case 3: { /// OPCION Alta Función
       if (uInterface->estaLogeado()) {
         if (uInterface->esAdmin()) {
           bool desee = true;
@@ -340,14 +338,18 @@ int main() {
         }
       }
       break;
-
-    case 4: /// OPCION Crear Reserva
+    }
+    case 4: { /// OPCION Crear Reserva
       if (uInterface->estaLogeado()) {
         bool desee = true;
-        while(desee) {
+        while (desee) {
           auto titulos = pInterface->obtenerTitulosPeliculas();
+          for (auto titulo : titulos) {
+            cout << titulo << endl;
+          }
           string titulo;
-          cout << "Elija el titulo de la pelicula o ingrese 1 para salir" << endl;
+          cout << "Elija el titulo de la pelicula o ingrese 1 para salir"
+               << endl;
           cin >> titulo;
           if (titulo.compare("1") != 0) {
             try {
@@ -370,7 +372,7 @@ int main() {
                   cout << "Desea elegir otra pelicula?\n1-Si\n2-No\n";
                   int opcion;
                   opcion = getOpc(1, 2);
-                  if(opcion == 2){
+                  if (opcion == 2) {
                     int funcion;
                     cout << "Elija la funcion que desee:\n";
                     cin >> funcion;
@@ -381,32 +383,36 @@ int main() {
                     cout << "Ingrese el modo de pago:\n1-Debito\n2-Debito\n";
                     int opcion;
                     float precioTotal;
-                    opcion = getOpc(1,2);
-                    if(opcion == 1){
+                    opcion = getOpc(1, 2);
+                    if (opcion == 1) {
                       string banco;
                       cout << "Ingrese el nombre del banco:\n";
                       cin >> banco;
                       pInterface->ingresarBanco(banco);
                       precioTotal = pInterface->obtenerPrecioDebito();
-                      cout << "El precio total de la reserva es: " << precioTotal << endl;
+                      cout << "El precio total de la reserva es: "
+                           << precioTotal << endl;
                     } else {
                       string financiera;
                       cout << "Ingrese el nombre de la financiera:\n";
                       cin >> financiera;
-                      float descuento = pInterface->ingresarFinanciera(financiera);
-                      if(descuento > 0){
-                        cout << "Su descuento para esa financiera es: " << descuento << endl;
+                      float descuento =
+                          pInterface->ingresarFinanciera(financiera);
+                      if (descuento > 0) {
+                        cout << "Su descuento para esa financiera es: "
+                             << descuento << endl;
                       } else {
                         cout << "Esa financiera no tiene descuento:\n";
                       }
-                        precioTotal = pInterface->obtenerPrecioCredito(descuento);
-                      cout << "El precio total de la reserva es: " << precioTotal << endl;
+                      precioTotal = pInterface->obtenerPrecioCredito(descuento);
+                      cout << "El precio total de la reserva es: "
+                           << precioTotal << endl;
                     }
                     cout << "Desea confirmar su reserva?\n1-Si\n2-No\n";
                     int confirmar;
-                    confirmar = getOpc(1,2);
-                    if(confirmar == 1){
-                      if(opcion == 1){
+                    confirmar = getOpc(1, 2);
+                    if (confirmar == 1) {
+                      if (opcion == 1) {
                         pInterface->crearReservaDebito(precioTotal);
                         desee = false;
                       } else {
@@ -432,49 +438,227 @@ int main() {
         }
       }
       break;
-
-    case 5: /// OPCION Puntuar Película
-      /// /////////////////////////////////////////////////////////
-      cout << "Elija el titulo de la pelicula:\n";
-      cout << "Desea modificar su puntuación?\n";
-      cout << "Ingrese el puntaje:\n";
+    }
+    case 5: { /// OPCION Puntuar Película
+      if (uInterface->estaLogeado()) {
+        auto dtPeliculas = pInterface->obtenerPeliculas();
+        cout << dtPeliculas;
+        cout << "Elija el titulo de la pelicula:\n";
+        string titulo;
+        cin >> titulo;
+        try {
+          pInterface->eligePelicula(titulo);
+          if (pInterface->existePuntaje()) {
+            int puntaje = pInterface->mostrarPuntaje();
+            cout << puntaje << endl;
+            cout << "Desea modificar su puntaje?\n1-Si\n2-No\n";
+            int opcion;
+            opcion = getOpc(1, 2);
+            if (opcion == 1) {
+              int puntaje;
+              cout << "Ingrese el puntaje:\n";
+              cin >> puntaje;
+              pInterface->modificarPuntajePelicula(puntaje);
+            }
+          } else {
+            int puntaje;
+            cout << "Ingrese el puntaje:\n";
+            cin >> puntaje;
+            pInterface->ingresarPuntaje(puntaje);
+          }
+        } catch (invalid_argument &e) {
+          cout << e.what() << endl;
+        }
+      }
       break;
-
-    case 6: /// OPCION Comentar Película
-      /// //////////////////////////////////////////////////////
-      cout << "Elija el titulo de la pelicula:\n";
-      cout << "Desea realizar un nuevo comentari o contestar uno existente?\n";
-      cout << "Ingrese su comentario:\n";
+    }
+    case 6: { /// OPCION Comentar Película
+      if (uInterface->estaLogeado()) {
+        auto dtPeliculas = pInterface->obtenerPeliculas();
+        cout << dtPeliculas;
+        cout << "Elija el titulo de la pelicula:\n";
+        string titulo;
+        cin >> titulo;
+        try {
+          pInterface->eligePelicula(titulo);
+          auto comentarios = pInterface->obtenerComentariosPelicula();
+          vector<DtComentario> dtComentarios;
+          pInterface->obtenerDtComentariosPelicula(comentarios, dtComentarios,
+                                                   0);
+          for (auto dtComentario : dtComentarios) {
+            cout << dtComentario;
+          }
+          bool desee = true;
+          while (desee) {
+            cout << "1- Realizar nuevo comentario" << endl;
+            cout << "2- Responder comentario" << endl;
+            int opcion;
+            opcion = getOpc(1, 2);
+            if (opcion == 1) {
+              string comentario;
+              cout << "Ingrese su comentario:\n";
+              cin >> comentario;
+              pInterface->agregarComentarioPelicula(comentario);
+            } else {
+              int idComentario;
+              cout << "Seleccione el comentario al cual quiere responder:\n";
+              cin >> idComentario;
+              pInterface->eligeComentario(idComentario);
+              string comentario;
+              cout << "Ingrese su comentario:\n";
+              cin >> comentario;
+              pInterface->agregarComentarioPelicula(comentario);
+            }
+            cout << "Desea agregar otro comentario?\n1-Si\n2-No\n";
+            int confirmar;
+            confirmar = getOpc(1, 2);
+            if (confirmar == 2) {
+              desee = false;
+            }
+          }
+        } catch (invalid_argument &e) {
+          cout << e.what() << endl;
+        }
+      }
       break;
-
-    case 7: /// OPCION Eliminar Película
-      /// //////////////////////////////////////////////////////
-      cout << "Elija el titulo de la pelicula:\n";
-      cout << "Desea eliminar la pelicula?\n";
+    }
+    case 7: { /// OPCION Eliminar Película
+      if (uInterface->estaLogeado()) {
+        if (uInterface->esAdmin()) {
+          auto titulos = pInterface->obtenerTitulosPeliculas();
+          for (auto titulo : titulos) {
+            cout << titulo << endl;
+          }
+          string titulo;
+          cout << "Elija el titulo de la pelicula:\n";
+          cin >> titulo;
+          pInterface->eligePelicula(titulo);
+          cout << "Desea eliminar la pelicula?\n1-Si\n2-No";
+          int opcion;
+          opcion = getOpc(1, 2);
+          if (opcion == 1) {
+            pInterface->eliminarPelicula();
+          }
+        }
+      }
       break;
-
-    case 8: /// OPCION Ver Información de Película
-      /// //////////////////////////////////////////////////////
-      cout << "Elija el titulo de la pelicula o escriba 'cancelarVerInfo' para "
-              "salir:\n";
-      cout << "Desea ver información adicional de la pelicula? Si/No:\n";
-      cout << "Elija el cine o escriba 'cancelarVerInfo' para salir:\n";
-      cout << "Desea elegir otra pelicula?\n";
+    }
+    case 8: { /// OPCION Ver Información de Película
+      if (uInterface->estaLogeado()) {
+        bool desee = true;
+        while (desee) {
+          auto titulos = pInterface->obtenerTitulosPeliculas();
+          for (auto titulo : titulos) {
+            cout << titulo << endl;
+          }
+          string titulo;
+          cout << "Elija el titulo de la pelicula o ingrese 1 para salir"
+               << endl;
+          cin >> titulo;
+          if (titulo.compare("1") != 0) {
+            try {
+              pInterface->eligePelicula(titulo);
+              auto dtPelicula = pInterface->mostrarPelicula();
+              cout << dtPelicula;
+              cout << "Desea ver información adicional de la "
+                      "pelicula?\n1-Si\n2-No\n";
+              int opcion;
+              opcion = getOpc(1, 2);
+              if (opcion == 1) {
+                auto dtCines = pInterface->verInfoAdicional();
+                cout << dtCines;
+                cout << "Elija el cine o ingrese -1 para salir:\n";
+                int cine;
+                cin >> cine;
+                if (cine != -1) {
+                  auto dtFunciones = pInterface->eligeCine(cine);
+                  cout << dtFunciones;
+                  cout << "Desea elegir otra pelicula?\n1-Si\n2-No\n";
+                } else {
+                  desee = false;
+                }
+              } else {
+                desee = false;
+              }
+            } catch (invalid_argument &e) {
+              cout << e.what() << endl;
+            }
+          } else {
+            desee = false;
+          }
+        }
+      }
       break;
-
-    case 9: /// OPCION Ver Comentarios y Puntajes de Película
-      /// //////////////////////////////////////////////////////
-      cout << "Elija el titulo de la pelicula:\n";
+    }
+    case 9: { /// OPCION Ver Comentarios y Puntajes de Película
+      if (uInterface->estaLogeado()) {
+        auto dtPeliculas = pInterface->obtenerPeliculas();
+        for (auto dtPelicula : dtPeliculas) {
+          cout << "Titulo: " << dtPelicula.getTitulo() << endl;
+          cout << "Poster: " << dtPelicula.getPoster() << endl;
+        }
+        string titulo;
+        cout << "Elija el titulo de la pelicula:\n";
+        cin >> titulo;
+        try {
+          pInterface->eligePelicula(titulo);
+          auto dtInfoPeli = pInterface->crearDtInfoPeli();
+          cout << dtInfoPeli;
+        } catch (invalid_argument &e) {
+          cout << e.what() << endl;
+        }
+      }
       break;
+    }
 
-    case 0: /// OPCION SALIR
-      /// /////////////////////////////////////////////////////////////////
+    case 10: { /// OPCION SET HORA RELOJ
+      int anio, mes, dia, hora, minuto;
+      cout << "Ingrese la Fecha y Hora para el sistema" << endl;
+      cout << "Año: " << endl;
+      cin >> anio;
+      cout << "Mes: " << endl;
+      cin >> mes;
+      cout << "Dia: " << endl;
+      cin >> dia;
+      cout << "Hora: " << endl;
+      cin >> hora;
+      cout << "Minuto: " << endl;
+      cin >> minuto;
+      auto dtFechaHora = DtFechaHora(anio, mes, dia, hora, minuto);
+      uInterface->setHoraReloj(dtFechaHora);
+      cout << "La hora se cambio correctamente" << endl;
+      break;
+    }
+    case 11: { /// OPCION SALIR
+      auto mu = uInterface->obtenerManejadorUsuario();
+      Usuario *usuario1 = new Usuario("admin", "admin", "Administrador", true);
+      mu->agregarUsuario(usuario1);
+      Usuario *usuario2 = new Usuario("Mathias", "123", "Usuario", false);
+      mu->agregarUsuario(usuario2);
+      auto mf = pInterface->obtenerManejadorFinanciera();
+      Financiera *financiera1 = new Financiera("VISA", 20);
+      mf->agregarFinanciera(financiera1);
+      Financiera *financiera2 = new Financiera("OCA", 0);
+      mf->agregarFinanciera(financiera2);
+      Financiera *financiera3 = new Financiera("PRONTO", 50);
+      mf->agregarFinanciera(financiera3);
+      auto mp = pInterface->obtenerManejadorPelicula();
+      Pelicula *pelicula1 = new Pelicula("Rey Leon", "Es de un leon re cool", 20 , "foto.jpg");
+      mp->agregarPelicula(pelicula1);
+      Pelicula *pelicula2 = new Pelicula("Scream ", "wasaaaaaa", 40 , "foto.jpg");
+      mp->agregarPelicula(pelicula2);
+      Pelicula *pelicula3 = new Pelicula("Cars", "ma o meno", 10 , "foto.jpg");
+      mp->agregarPelicula(pelicula3);
+      cout << "Se cargaron los datos correctamente" << endl;
+      break;
+    }
+    case 0: { /// OPCION SALIR
       cout << "Hasta la proxima\n";
       break;
-
-    default: /// DEFAULT
-      /// ////////////////////////////////////////////////////////////////////
+    }
+    default: { /// DEFAULT
       cout << "Opción incorrecta\n\n";
+    }
     }
   } while (opc != 0);
   return 0;

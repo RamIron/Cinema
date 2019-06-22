@@ -1,6 +1,8 @@
 #ifndef PALAB06_IUSUARIO_HH
 #define PALAB06_IUSUARIO_HH
 
+#include "../Datatypes/DtFechaHora.hh"
+#include "../Handlers/ManejadorUsuario.hh"
 #include <iostream>
 
 using namespace std;
@@ -14,6 +16,10 @@ public:
   virtual bool estaLogeado() = 0;
 
   virtual bool esAdmin() = 0;
+
+  virtual bool setHoraReloj(DtFechaHora fechaHora) = 0;
+
+  virtual ManejadorUsuario *obtenerManejadorUsuario() = 0;
 };
 
 #endif

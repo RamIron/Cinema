@@ -210,4 +210,12 @@ DtInfoPeli CPelicula::crearDtInfoPeli() {
   return dtInfoPelicula;
 }
 
+ManejadorFinanciera *CPelicula::obtenerManejadorFinanciera(){
+  return this->mf;
+}
+
+ManejadorPelicula *CPelicula::obtenerManejadorPelicula(){
+  return this->mp;
+}
+
 CPelicula::~CPelicula() {}

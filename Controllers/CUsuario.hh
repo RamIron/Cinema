@@ -1,7 +1,10 @@
 #ifndef PALAB06_CUSUARIO_HH
 #define PALAB06_CUSUARIO_HH
 
+#include "../Clases/Reloj.hh"
 #include "../Clases/Sesion.hh"
+#include "../Datatypes/DtFechaHora.hh"
+#include "../Handlers/ManejadorUsuario.hh"
 #include "IUsuario.hh"
 #include "Usuario.hh"
 #include <iostream>
@@ -13,6 +16,8 @@ private:
   static CUsuario *cuInstance;
   string nickname;
   Sesion *sesion = Sesion::getInstance();
+  Reloj *reloj = Reloj::getInstance();
+  ManejadorUsuario *mu = ManejadorUsuario::getInstance();
 
   CUsuario();
 
@@ -24,6 +29,10 @@ public:
   bool estaLogeado();
 
   bool esAdmin();
+
+  bool setHoraReloj(DtFechaHora fechaHora);
+
+  ManejadorUsuario *obtenerManejadorUsuario();
 
   static CUsuario *getInstance();
 

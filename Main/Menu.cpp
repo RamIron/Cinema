@@ -19,6 +19,8 @@ void showMenu() {
   cout << "┃  7) Eliminar Película                     ┃\n";
   cout << "┃  8) Ver Información de Película           ┃\n";
   cout << "┃  9) Ver Comentarios y Puntajes de Película┃\n";
+  cout << "┃  10) Setear Hora al Reloj                 ┃\n";
+  cout << "┃  11) Cargar Datos                         ┃\n";
   cout << "┃  0) Salir                                 ┃\n";
   cout << "┃                                           ┃\n";
   cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n";
