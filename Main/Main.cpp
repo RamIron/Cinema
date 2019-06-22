@@ -3,13 +3,20 @@
 #include "../Clases/Sesion.hh"
 #include "../Clases/Usuario.hh"
 #include "../Controllers/CCine.hh"
+#include "../Controllers/CCineFactory.hh"
 #include "../Controllers/CPelicula.hh"
+#include "../Controllers/CPeliculaFactory.hh"
 #include "../Controllers/CUsuario.hh"
+#include "../Controllers/CUsuarioFactory.hh"
+#include "../Controllers/ICine.hh"
+#include "../Controllers/IPelicula.hh"
+#include "../Controllers/IUsuario.hh"
 #include "../Datatypes/DtFecha.hh"
 #include "../Handlers/ManejadorCine.hh"
 #include "../Handlers/ManejadorFinanciera.hh"
 #include "../Handlers/ManejadorPelicula.hh"
 #include "../Handlers/ManejadorUsuario.hh"
+
 #include <stdexcept>
 
 #include <iostream>
@@ -19,16 +26,18 @@ using namespace std;
 int main() {
 
   // Iniciar Sesion
-  CUsuario *cu = CUsuario::getInstance();
   ManejadorUsuario *mu = ManejadorUsuario::getInstance();
   Usuario *u = new Usuario("Mathias", "asd", "tuvieja", true);
   mu->agregarUsuario(u);
 
+  /*
   cu->ingresaNick("Mathias");
   cu->ingresaPass("asd");
   Sesion *s = Sesion::getInstance();
+   */
 
   // Alta Cine
+  /*
   auto cCine = CCine::getInstance();
   auto dtDireccion = DtDireccion("josebo", 13);
   cCine->ingresaDireccion(dtDireccion);
@@ -41,8 +50,9 @@ int main() {
   cCine->ingresaSala(17);
   cCine->crearCine();
   auto manejadorCine = ManejadorCine::getInstance();
-
+  */
   // Alta Funcion
+  /*
   auto pelicula =
       new Pelicula("Rey Leon", "eta buenardaaa", 9.6, "tu vieja en tanga");
   auto pelicula1 =
@@ -75,13 +85,13 @@ int main() {
   auto dtHorario = DtHorario("02:50", "00:00");
   float precio = 100;
   cPelicula->crearFuncion(dtFecha, dtHorario, precio);
-  /*
   auto dtSalas2 = cCine->obtenerDtSalas();
-  for(auto sala : dtSalas2){
+  for (auto sala : dtSalas2) {
     cout << sala;
   }
    */
   // Ver Info Pelicula
+  /*
   auto titulosPeliculas = cPelicula->obtenerTitulosPeliculas();
   try {
     cPelicula->eligePelicula("Scream");
@@ -105,8 +115,10 @@ int main() {
   } catch (invalid_argument &e) {
     cout << e.what() << endl;
   }
+   */
 
   // Puntuar Pelicula
+  /*
   manejadorPelicula->agregarPelicula(pelicula);
   manejadorPelicula->agregarPelicula(pelicula1);
   manejadorPelicula->agregarPelicula(pelicula2);
@@ -118,8 +130,10 @@ int main() {
   } else {
     cPelicula->ingresarPuntaje(10);
   }
+   */
 
   // Comentar Pelicula
+  /*
   manejadorPelicula->agregarPelicula(pelicula);
   manejadorPelicula->agregarPelicula(pelicula1);
   manejadorPelicula->agregarPelicula(pelicula2);
@@ -136,21 +150,25 @@ int main() {
   auto comentarios = cPelicula->obtenerComentariosPelicula();
   vector<DtComentario> dtComentarios;
   cPelicula->obtenerDtComentariosPelicula(comentarios, dtComentarios, 0);
+   */
   /*for(auto comentario : dtComentarios){
     cout << comentario;
   }
    */
+  /*
   cPelicula->eligePelicula("Scream");
   cPelicula->agregarComentarioPelicula("Mariano");
   cPelicula->eligeComentario(5);
   cPelicula->respondeComentarioPelicula("puto");
   comentarios = cPelicula->obtenerComentariosPelicula();
   cPelicula->obtenerDtComentariosPelicula(comentarios, dtComentarios, 0);
+   */
   /*for(auto comentario : dtComentarios){
     cout << comentario;
   }
    */
 
+  /*
   // Mostrar Comentarios y Puntajes de Pelicula
   cPelicula->obtenerPeliculas();
   cPelicula->eligePelicula("Scream");
@@ -161,26 +179,98 @@ int main() {
   auto titulos = cPelicula->obtenerTitulosPeliculas();
   cPelicula->eligePelicula("Scream");
   cPelicula->eliminarPelicula();
+   */
 
   int opc;
   do {
     showMenu();
     opc = getOpc(0, 9);
+    string nickname, contrasenia;
+    int opcion;
+    auto uFactory = CUsuarioFactory::getInstance();
+    auto cFactory = CCineFactory::getInstancia();
+    auto uInterface = uFactory->getIUsuario();
+    auto cInterface = cFactory->getICine();
     switch (opc) {
     case 1: /// OPCION Iniciar Sesión
-      /// ///////////////////////////////////////////////////////
       cout << "Ingrese su nickname:\n";
-      cout << "Ingrese su contrasenia:\n";
-      cout << "Desea reintentar el ingreso de contrasenia?\n";
+      cin >> nickname;
+      uInterface->ingresaNick(nickname);
+      cout << "Ingrese su contraseña:\n";
+      cin >> contrasenia;
+      try {
+        if (!uInterface->ingresaPass(contrasenia)) {
+          bool correcta = false;
+          while (!correcta) {
+            cout << "Contraseña incorrecta, desea reintentar?\n1-Si\n2-No";
+            opcion = getOpc(0, 1);
+            if (opcion == 1) {
+              cout << "Ingrese su contraseña:\n";
+              cin >> contrasenia;
+              correcta = uInterface->ingresaPass(contrasenia);
+            } else {
+              correcta = true;
+            }
+          }
+        } else {
+          cout << "Se inicio la sesion correctamente.\n";
+          cout << "Bienvenido " << nickname << endl;
+        }
+      } catch (invalid_argument &e) {
+        cout << e.what() << endl;
+      }
       break;
 
     case 2: /// OPCION Alta Cine
-      /// ///////////////////////////////////////////////////////
-      cout << "Ingrese la direccion del cine a registrar:\n";
-      cout << "Ingrese la capacidad de la sala:\n";
-      cout << "Desea agregar otra sala?\n";
-      cout << "Desea dar de alta el cine?\n";
-      cout << "Desea agregar otro cine?\n";
+      if (uInterface->estaLogeado()) {
+        if (uInterface->esAdmin()) {
+          string calle;
+          int numero, capacidad, opcion;
+          bool deseeCine = true;
+          while (deseeCine) {
+            bool desee = true;
+            cout << "Ingrese la direccion del cine a registrar.\n";
+            cout << "Calle:" << endl;
+            cin >> calle;
+            cout << "Numero:" << endl;
+            cin >> numero;
+            auto dtDireccion = DtDireccion(calle, numero);
+            cInterface->ingresaDireccion(dtDireccion);
+            try {
+              while (desee) {
+                cout << "Ingrese la capacidad de la sala.\n";
+                cin >> capacidad;
+                cInterface->ingresaSala(capacidad);
+                cout << "Desea agregar otra sala?\n1-Si\n2-No\n";
+                opcion = getOpc(1, 2);
+                if (opcion == 2) {
+                  desee = false;
+                }
+              }
+              cout << "Desea dar de alta el cine?\n1-Si\n2-No\n";
+              opcion = getOpc(1, 2);
+              if (opcion == 1) {
+                cInterface->crearCine();
+                deseeCine = false;
+                cout << "El cine se dio de alta correctamente" << endl;
+              } else {
+                cout << "Desea agregar otro cine?\n1-Si\n2-No\n";
+                opcion = getOpc(1, 2);
+                if (opcion == 2) {
+                  deseeCine = false;
+                }
+              }
+            } catch (invalid_argument &e) {
+              cout << e.what() << endl;
+            }
+          }
+        } else {
+          cout << "Se necesita ser administrador para dar de alta un cine"
+               << endl;
+        }
+      } else {
+        cout << "Se necesita iniciar sesion para dar de alta un cine" << endl;
+      }
       break;
 
     case 3: /// OPCION Alta Función
