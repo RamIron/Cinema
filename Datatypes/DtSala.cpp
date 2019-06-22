@@ -22,7 +22,8 @@ vector<DtFuncion> DtSala::getFunciones() { return this->funciones; };
 // Operador
 std::ostream &operator<<(std::ostream &output, DtSala &dtSala) {
   auto funciones = dtSala.getFunciones();
-  output << "- Sala " << dtSala.getid() << ":" << std::endl;
+  output << "- Sala " << dtSala.getid() << ":" << std::endl
+         << "\t Cantidad de Asientos: " << dtSala.getCapacidad() << endl;
   if (funciones.size() > 0) {
     output << "\t- Ocupada:" << std::endl;
   } else {

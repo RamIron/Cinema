@@ -6,6 +6,7 @@
 #include "DtHorario.hh"
 
 #include <iostream>
+#include <vector>
 
 class DtFuncion {
 private:
@@ -35,6 +36,8 @@ public:
   DtHorario getHorario();
 
   DtFechaHora getFechaHora();
+
+  friend std::ostream &operator<<(std::ostream &, vector<DtFuncion> &);
 
   /*Destructor*/
   ~DtFuncion();

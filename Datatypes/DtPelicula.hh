@@ -2,6 +2,7 @@
 #define PALAB06_DTPELICULA_HH
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -30,6 +31,10 @@ public:
   string getPoster() const;
 
   float getPuntajePromedio() const;
+
+  friend std::ostream &operator<<(std::ostream &, vector<DtPelicula> &);
+
+  friend std::ostream &operator<<(std::ostream &, DtPelicula &);
 
   /*Destructor*/
   ~DtPelicula();

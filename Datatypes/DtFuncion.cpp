@@ -1,4 +1,5 @@
 #include "DtFuncion.hh"
+#include "DtFecha.hh"
 
 DtFuncion::DtFuncion() {}
 
@@ -26,6 +27,18 @@ DtFecha DtFuncion::getFecha() { return this->fecha; }
 DtHorario DtFuncion::getHorario() { return this->horario; }
 
 DtFechaHora DtFuncion::getFechaHora() { return this->fechaHora; }
+
+std::ostream &operator<<(std::ostream &output, vector<DtFuncion> &dtFunciones) {
+  for (auto dtFuncion : dtFunciones) {
+    auto dtfecha = dtFuncion.getFecha();
+    auto dtHorario = dtFuncion.getHorario();
+    output << "ID: " << dtFuncion.getId() << endl
+           << "Fecha: " << dtfecha << endl
+           << "Horario: " << dtHorario << endl
+           << "Precio: " << dtFuncion.getPrecio() << endl;
+  }
+  return output;
+}
 
 /*Destructor*/
 DtFuncion::~DtFuncion() {}

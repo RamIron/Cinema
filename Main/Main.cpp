@@ -189,8 +189,10 @@ int main() {
     int opcion;
     auto uFactory = CUsuarioFactory::getInstance();
     auto cFactory = CCineFactory::getInstancia();
+    auto pFactory = CPeliculaFactory::getInstance();
     auto uInterface = uFactory->getIUsuario();
     auto cInterface = cFactory->getICine();
+    auto pInterface = pFactory->getIPelicula();
     switch (opc) {
     case 1: /// OPCION Iniciar Sesión
       cout << "Ingrese su nickname:\n";
@@ -274,28 +276,161 @@ int main() {
       break;
 
     case 3: /// OPCION Alta Función
-      /// ///////////////////////////////////////////////////////
-      cout << "Elija el titulo de la pelicula a la que desea agregar "
-              "funciones:\n";
-      cout << "Elija el id del cine que desee:\n";
-      cout << "Elija la sala:\n";
-      cout << "Ingrese la fecha:\n";
-      cout << "Ingrese el horario de comienzo:\n";
-      cout << "Ingrese el horario de fin:\n";
-      cout << "Desea agregar otra funcion?\n";
+      if (uInterface->estaLogeado()) {
+        if (uInterface->esAdmin()) {
+          bool desee = true;
+          while (desee) {
+            auto dtPeliculas = pInterface->obtenerPeliculas();
+            cout << dtPeliculas;
+            try {
+              cout << "Elija el titulo de la pelicula a la que le desea "
+                      "agregar una funcion"
+                   << endl;
+              string titulo;
+              cin >> titulo;
+              pInterface->eligePelicula(titulo);
+              auto dtCines = pInterface->verInfoAdicional();
+              cout << dtCines;
+              cout << "Elija el cine que le desea agregar una funcion" << endl;
+              int cine;
+              cin >> cine;
+              cInterface->eligeCine(cine);
+              auto dtSalas = cInterface->obtenerDtSalas();
+              for (auto dtSala : dtSalas) {
+                cout << dtSala;
+              }
+              cout << "Elija la sala a la que le desea agregar una funcion"
+                   << endl;
+              int sala;
+              cin >> sala;
+              cInterface->eligeSala(sala);
+              cout << "Ingrese la fecha de la funcion." << endl;
+              int anio;
+              cout << "Año:" << endl;
+              cin >> anio;
+              int mes;
+              cout << "Mes:" << endl;
+              cin >> mes;
+              int dia;
+              cout << "Dia:" << endl;
+              cin >> dia;
+              auto fecha = DtFecha(dia, mes, anio);
+              cout << "Ingrese el horario de la funcion (ej: 20:00)" << endl;
+              string horaInicio;
+              cout << "HoraInicio:" << endl;
+              cin >> horaInicio;
+              string horaFin;
+              cout << "HoraFin:" << endl;
+              cin >> horaFin;
+              auto horario = DtHorario(horaInicio, horaFin);
+              float precio;
+              cout << "Ingrese el precio para la funcion" << endl;
+              cin >> precio;
+              pInterface->crearFuncion(fecha, horario, precio);
+              cout << "Se creo la funcion correctamente." << endl;
+              cout << "Desea agregar otra funcion?\n1-Si\n2-No\n";
+              opcion = getOpc(1, 2);
+              if (opcion == 2) {
+                desee = false;
+              }
+            } catch (invalid_argument &e) {
+              cout << e.what() << endl;
+            }
+          }
+        }
+      }
       break;
 
     case 4: /// OPCION Crear Reserva
-      /// ///////////////////////////////////////////////////////
-      cout << "Elija el titulo de la pelicula o escriba 'cancelarReserva' para "
-              "salir:\n";
-      cout << "Desea ver información adicional de la pelicula? Si/No:\n";
-      cout << "Elija el cine o escriba 'cancelarReserva' para salir:\n";
-      cout << "Desea elegir otra pelicula?\n";
-      cout << "Elija la funcion que desee:\n";
-      cout << "Ingrese la cantidad de asientos a reservar:\n";
-      cout << "Ingrese 'Debito' o 'Credito' como modo de pago:\n";
-      cout << "Desea confirmar su reserva? Si/No:\n";
+      if (uInterface->estaLogeado()) {
+        bool desee = true;
+        while(desee) {
+          auto titulos = pInterface->obtenerTitulosPeliculas();
+          string titulo;
+          cout << "Elija el titulo de la pelicula o ingrese 1 para salir" << endl;
+          cin >> titulo;
+          if (titulo.compare("1") != 0) {
+            try {
+              pInterface->eligePelicula(titulo);
+              auto dtPelicula = pInterface->mostrarPelicula();
+              cout << dtPelicula;
+              cout << "Desea ver información adicional de la "
+                      "pelicula?\n1-Si\n2-No\n";
+              int opcion;
+              opcion = getOpc(1, 2);
+              if (opcion == 1) {
+                auto dtCines = pInterface->verInfoAdicional();
+                cout << dtCines;
+                cout << "Elija el cine o ingrese -1 para salir:\n";
+                int cine;
+                cin >> cine;
+                if (cine != -1) {
+                  auto dtFunciones = pInterface->eligeCine(cine);
+                  cout << dtFunciones;
+                  cout << "Desea elegir otra pelicula?\n1-Si\n2-No\n";
+                  int opcion;
+                  opcion = getOpc(1, 2);
+                  if(opcion == 2){
+                    int funcion;
+                    cout << "Elija la funcion que desee:\n";
+                    cin >> funcion;
+                    pInterface->seleccionaFuncion(funcion);
+                    cout << "Ingrese la cantidad de asientos a reservar:\n";
+                    int cantAsientos;
+                    pInterface->ingresaCantEntradas(cantAsientos);
+                    cout << "Ingrese el modo de pago:\n1-Debito\n2-Debito\n";
+                    int opcion;
+                    float precioTotal;
+                    opcion = getOpc(1,2);
+                    if(opcion == 1){
+                      string banco;
+                      cout << "Ingrese el nombre del banco:\n";
+                      cin >> banco;
+                      pInterface->ingresarBanco(banco);
+                      precioTotal = pInterface->obtenerPrecioDebito();
+                      cout << "El precio total de la reserva es: " << precioTotal << endl;
+                    } else {
+                      string financiera;
+                      cout << "Ingrese el nombre de la financiera:\n";
+                      cin >> financiera;
+                      float descuento = pInterface->ingresarFinanciera(financiera);
+                      if(descuento > 0){
+                        cout << "Su descuento para esa financiera es: " << descuento << endl;
+                      } else {
+                        cout << "Esa financiera no tiene descuento:\n";
+                      }
+                        precioTotal = pInterface->obtenerPrecioCredito(descuento);
+                      cout << "El precio total de la reserva es: " << precioTotal << endl;
+                    }
+                    cout << "Desea confirmar su reserva?\n1-Si\n2-No\n";
+                    int confirmar;
+                    confirmar = getOpc(1,2);
+                    if(confirmar == 1){
+                      if(opcion == 1){
+                        pInterface->crearReservaDebito(precioTotal);
+                        desee = false;
+                      } else {
+                        pInterface->crearReservaCredito(precioTotal);
+                        desee = false;
+                      }
+                    } else {
+                      desee = false;
+                    }
+                  } else {
+                    desee = false;
+                  }
+                } else {
+                  desee = false;
+                }
+              }
+            } catch (invalid_argument &e) {
+              cout << e.what() << endl;
+            }
+          } else {
+            desee = false;
+          }
+        }
+      }
       break;
 
     case 5: /// OPCION Puntuar Película

@@ -1,7 +1,7 @@
 #ifndef PALAB06_RELOJ_HH
 #define PALAB06_RELOJ_HH
 
-#include "DtFechaHora.hh"
+#include "../Datatypes/DtFechaHora.hh"
 
 class Reloj {
 private:

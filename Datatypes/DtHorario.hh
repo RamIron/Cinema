@@ -22,6 +22,8 @@ public:
 
   string getHoraFin() const;
 
+  friend std::ostream &operator<<(std::ostream &, DtHorario &);
+
   /*Destructor*/
   ~DtHorario();
 };

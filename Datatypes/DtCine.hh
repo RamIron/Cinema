@@ -3,6 +3,7 @@
 
 #include "DtDireccion.hh"
 #include <iostream>
+#include <vector>
 
 class DtCine {
 private:
@@ -20,6 +21,8 @@ public:
   int getId() const;
 
   DtDireccion getDireccion() const;
+
+  friend std::ostream &operator<<(std::ostream &, vector<DtCine> &);
 
   /*Destructor*/
   ~DtCine();

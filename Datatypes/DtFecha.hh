@@ -23,6 +23,8 @@ public:
 
   int getAnio() const;
 
+  friend std::ostream &operator<<(std::ostream &, DtFecha &);
+
   /*Destructor*/
   ~DtFecha();
 };

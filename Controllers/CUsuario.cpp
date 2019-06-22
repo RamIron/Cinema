@@ -27,9 +27,7 @@ bool CUsuario::ingresaPass(string contrasenia) {
   }
 }
 
-bool CUsuario::estaLogeado() {
-  return this->sesion->getUsuario() != NULL;
-}
+bool CUsuario::estaLogeado() { return this->sesion->getUsuario() != NULL; }
 
 bool CUsuario::esAdmin() { return this->sesion->getUsuario()->isAdmin(); }
 
