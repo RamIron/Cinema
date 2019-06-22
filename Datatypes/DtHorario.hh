@@ -15,7 +15,7 @@ public:
   DtHorario();
 
   /*Constructor con parametros*/
-  DtHorario(string, string);
+  DtHorario(string horaInicio, string horaFin);
 
   /*Getters*/
   string getHoraInicio() const;

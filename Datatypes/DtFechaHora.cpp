@@ -44,4 +44,28 @@ int DtFechaHora::getHora() { return this->hora; }
 
 int DtFechaHora::getMinuto() { return this->minuto; }
 
+bool operator>(DtFechaHora funcion, DtFechaHora sistema) {
+  if (funcion.getAnio() == sistema.getAnio()) {
+    if (funcion.getMes() == sistema.getMes()) {
+      if (funcion.getDia() == sistema.getDia()) {
+        if (funcion.getHora() == sistema.getHora()) {
+          if (funcion.getMinuto() == sistema.getMinuto()) {
+            return false;
+          } else {
+            return funcion.getMinuto() > sistema.getMinuto();
+          }
+        } else {
+          return funcion.getHora() > sistema.getHora();
+        }
+      } else {
+        return funcion.getDia() > sistema.getDia();
+      }
+    } else {
+      return funcion.getMes() > sistema.getMes();
+    }
+  } else {
+    return funcion.getAnio() > sistema.getAnio();
+  }
+}
+
 DtFechaHora::~DtFechaHora() {}

@@ -10,6 +10,10 @@ public:
   virtual void ingresaNick(string nickname) = 0;
 
   virtual bool ingresaPass(string contrasenia) = 0;
+
+  virtual bool estaLogeado() = 0;
+
+  virtual bool esAdmin() = 0;
 };
 
 #endif

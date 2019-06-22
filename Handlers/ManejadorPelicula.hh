@@ -20,7 +20,7 @@ public:
 
   Pelicula *obtenerPelicula(string titulo);
 
-  void agregarPelicula(Pelicula *);
+  void agregarPelicula(Pelicula *pelicula);
 
   bool existePelicula(string titulo);
 

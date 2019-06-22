@@ -7,7 +7,7 @@ class Reloj {
 private:
   DtFechaHora fechaHoraManual;
   bool manual;
-  static Reloj *instance;
+  static Reloj *instanciaReloj;
 
   Reloj();
 
@@ -16,7 +16,7 @@ public:
 
   DtFechaHora getFechaHora();
 
-  void activarManual(DtFechaHora f);
+  void activarManual(DtFechaHora fechaHora);
 
   void desactivarManual();
 

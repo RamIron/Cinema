@@ -1,9 +1,6 @@
 #include "DtHorario.hh"
 
-DtHorario::DtHorario() {
-  this->horaInicio = "";
-  this->horaFin = "";
-}
+DtHorario::DtHorario() {}
 
 DtHorario::DtHorario(string horaInicio, string horaFin) {
   this->horaInicio = horaInicio;

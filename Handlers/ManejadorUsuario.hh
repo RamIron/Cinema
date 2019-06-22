@@ -20,7 +20,7 @@ public:
 
   Usuario *obtenerUsuario(string nickname);
 
-  void agregarUsuario(Usuario *);
+  void agregarUsuario(Usuario *usuario);
 
   bool existeUsuario(string nickname);
 

@@ -26,7 +26,7 @@ public:
   DtFuncion(int id, DtFecha fecha, DtHorario horario);
 
   /*Getters*/
-  int getid();
+  int getId();
 
   float getPrecio();
 

@@ -17,7 +17,7 @@ DtFuncion::DtFuncion(int id, DtFecha fecha, DtHorario horario) {
   this->horario = horario;
 }
 
-int DtFuncion::getid() { return this->id; }
+int DtFuncion::getId() { return this->id; }
 
 float DtFuncion::getPrecio() { return this->precio; }
 

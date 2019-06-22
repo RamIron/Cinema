@@ -15,24 +15,17 @@ void ManejadorCine::agregarCine(Cine *cine) {
   this->cines.insert(make_pair(cine->getId(), cine));
 }
 
-bool ManejadorCine::existeCine(int id) {
-  map<int, Cine *>::iterator it;
-  it = this->cines.find(id);
-  return it != this->cines.end();
+bool ManejadorCine::existeCine(int idCine) {
+  auto cine = this->cines.find(idCine);
+  return cine != this->cines.end();
 }
 
-Cine *ManejadorCine::obtenerCine(int id) {
-  map<int, Cine *>::iterator it;
-  it = this->cines.find(id);
-  return it->second;
+Cine *ManejadorCine::obtenerCine(int idCine) {
+  auto cine = this->cines.find(idCine);
+  return cine->second;
 }
 
-void ManejadorCine::eliminarCine(int id) {
-  map<int, Cine *>::iterator it;
-  it = this->cines.find(id);
-  delete it->second;
-  this->cines.erase(id);
-}
+void ManejadorCine::eliminarCine(int idCine) { this->cines.erase(idCine); }
 
 map<int, Cine *> ManejadorCine::obtenerCines() { return this->cines; }
 

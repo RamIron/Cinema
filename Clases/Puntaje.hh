@@ -15,16 +15,16 @@ public:
   // Constructores
   Puntaje();
 
-  Puntaje(Usuario *u, int puntos);
+  Puntaje(Usuario *usuario, int puntos);
 
   // Getters y Setters
   int getPuntos();
 
-  void setPuntos(int puntos);
-
   Usuario *getUsuario();
 
-  void setUsuario(Usuario *u);
+  void setPuntos(int puntos);
+
+  void setUsuario(Usuario *usuario);
 
   // Destructor
   ~Puntaje();

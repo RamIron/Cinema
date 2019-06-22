@@ -23,35 +23,34 @@ void Cine::setDireccion(DtDireccion direccion) { this->direccion = direccion; }
 vector<DtSala> Cine::obtenerDtSalas() {
   vector<DtSala> dtSalas;
 
-  for (auto posicionSala : mapOfSalas) {
+  for (auto posSala : this->salas) {
     vector<DtFuncion> dtFunciones;
-    for (auto posicionFuncion : posicionSala.second->obtenerFunciones()) {
-      auto dtFuncion =
-          DtFuncion(posicionFuncion->getId(), posicionFuncion->getFecha(),
-                    posicionFuncion->getHorario());
+    for (auto posFuncion : posSala.second->obtenerFunciones()) {
+      auto dtFuncion = DtFuncion(posFuncion->getId(), posFuncion->getFecha(),
+                                 posFuncion->getHorario());
       dtFunciones.push_back(dtFuncion);
     }
-    auto dtSala = DtSala(posicionSala.second->getId(),
-                         posicionSala.second->getCapacidad(), dtFunciones);
+    auto dtSala = DtSala(posSala.second->getId(),
+                         posSala.second->getCapacidad(), dtFunciones);
     dtSalas.push_back(dtSala);
   }
   return dtSalas;
 }
 
-map<int, Sala *> Cine::obtenerSalas() { return this->mapOfSalas; }
+map<int, Sala *> Cine::obtenerSalas() { return this->salas; }
 
 void Cine::agregarSala(Sala *sala) {
-  this->mapOfSalas.insert(make_pair(sala->getId(), sala));
+  this->salas.insert(make_pair(sala->getId(), sala));
 }
 
 bool Cine::existeSala(int idSala) {
-  return mapOfSalas.find(idSala) != mapOfSalas.end();
+  return this->salas.find(idSala) != this->salas.end();
 }
 
-Sala *Cine::obtenerSala(int idSala) { return mapOfSalas.find(idSala)->second; }
+Sala *Cine::obtenerSala(int idSala) { return this->salas.find(idSala)->second; }
 
 void Cine::eliminarFuncionCine(int idFuncion) {
-  for (auto posSalas : this->mapOfSalas) {
+  for (auto posSalas : this->salas) {
     posSalas.second->eliminarFuncionSala(idFuncion);
   }
 }

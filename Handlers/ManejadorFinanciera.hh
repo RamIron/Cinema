@@ -18,13 +18,13 @@ public:
 
   map<string, Financiera *> obtenerFinancieras();
 
-  Financiera *obtenerFinanciera(string financiera);
+  Financiera *obtenerFinanciera(string nombreFinanciera);
 
-  void agregarFinanciera(Financiera *);
+  void agregarFinanciera(Financiera *financiera);
 
-  bool existeFinanciera(string financiera);
+  bool existeFinanciera(string nombreFinanciera);
 
-  void eliminarFinanciera(string fiananciera);
+  void eliminarFinanciera(string nombreFinanciera);
 
   ~ManejadorFinanciera();
 };

@@ -3,9 +3,9 @@
 
 Credito::Credito() {}
 
-Credito::Credito(float costo, int cantEntradas, Usuario *u,
+Credito::Credito(float costo, int cantEntradas, Usuario *usuario,
                  Financiera *financiera)
-    : Reserva(costo, cantEntradas, u) {
+    : Reserva(costo, cantEntradas, usuario) {
   this->financiera = financiera;
 }
 

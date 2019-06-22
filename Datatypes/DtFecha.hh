@@ -14,7 +14,7 @@ public:
   DtFecha();
 
   /*Constructor con parametros*/
-  DtFecha(int, int, int);
+  DtFecha(int dia, int mes, int anio);
 
   /*Getters*/
   int getDia() const;

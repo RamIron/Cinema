@@ -22,6 +22,8 @@ public:
 
   string getNickname() const;
 
+  friend std::ostream &operator<<(std::ostream &, DtPuntaje &);
+
   /*Destructor*/
   ~DtPuntaje();
 };

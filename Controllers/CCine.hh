@@ -21,9 +21,17 @@ private:
   CCine();
 
 public:
-  void ingresaDireccion(DtDireccion direccion);
+  Sala *getSala();
+
+  void setSala(Sala *sala);
+
+  Cine *getCine();
+
+  void setCine(Cine *cine);
 
   static CCine *getInstance();
+
+  void ingresaDireccion(DtDireccion direccion);
 
   void crearCine();
 
@@ -35,17 +43,9 @@ public:
 
   vector<DtSala> obtenerDtSalas();
 
-  void eligeCine(int id);
+  void eligeCine(int idCine);
 
   void eligeSala(int idSala);
-
-  Sala *getSala() const;
-
-  void setSala(Sala *sala);
-
-  Cine *getCine() const;
-
-  void setCine(Cine *cine);
 
   ~CCine();
 };

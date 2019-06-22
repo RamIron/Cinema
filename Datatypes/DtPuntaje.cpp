@@ -11,4 +11,10 @@ string DtPuntaje::getNickname() const { return this->nickname; }
 
 int DtPuntaje::getPuntuacion() const { return this->puntuacion; }
 
+std::ostream &operator<<(std::ostream &output, DtPuntaje &dtPuntaje) {
+  output << dtPuntaje.getNickname() << ":" << dtPuntaje.getPuntuacion()
+         << std::endl;
+  return output;
+}
+
 DtPuntaje::~DtPuntaje() {}

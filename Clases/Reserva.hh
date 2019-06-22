@@ -17,16 +17,16 @@ public:
   Reserva();
 
   // Constructor con parametros
-  Reserva(float costo, int cantEntradas, Usuario *u);
+  Reserva(float costo, int cantEntradas, Usuario *usuario);
 
   // Getters and Setters
   float getCosto();
 
   int getCantEntradas();
 
-  void setUsuario(Usuario *);
-
   Usuario *getUsuario();
+
+  void setUsuario(Usuario *usuario);
 
   void setCosto(float costo);
 

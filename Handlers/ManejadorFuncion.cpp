@@ -15,19 +15,19 @@ void ManejadorFuncion::agregarFuncion(Funcion *funcion) {
   this->funciones.insert(make_pair(funcion->getId(), funcion));
 }
 
-bool ManejadorFuncion::existeFuncion(int id) {
-  map<int, Funcion *>::iterator it;
-  it = this->funciones.find(id);
-  return it == this->funciones.end();
+bool ManejadorFuncion::existeFuncion(int idFuncion) {
+  auto funcion = this->funciones.find(idFuncion);
+  return funcion != this->funciones.end();
 }
 
-Funcion *ManejadorFuncion::obtenerFuncion(int id) {
-  map<int, Funcion *>::iterator it;
-  it = this->funciones.find(id);
-  return it->second;
+Funcion *ManejadorFuncion::obtenerFuncion(int idFuncion) {
+  auto funcion = this->funciones.find(idFuncion);
+  return funcion->second;
 }
 
-void ManejadorFuncion::eliminarFuncion(int id) { this->funciones.erase(id); }
+void ManejadorFuncion::eliminarFuncion(int idFuncion) {
+  this->funciones.erase(idFuncion);
+}
 
 map<int, Funcion *> ManejadorFuncion::obtenerFunciones() {
   return this->funciones;

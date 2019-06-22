@@ -25,7 +25,7 @@ std::ostream &operator<<(std::ostream &output, DtComentario &dtComentario) {
   for (int i = 0; i < dtComentario.getProfundidad(); i++) {
     output << "\t";
   }
-  output << dtComentario.getId() << "- " << dtComentario.getNickname() << ":"
+  output << dtComentario.getId() << "- " << dtComentario.getNickname() << ": "
          << dtComentario.getComentario() << std::endl;
   return output;
 }

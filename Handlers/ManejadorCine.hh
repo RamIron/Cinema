@@ -18,13 +18,13 @@ public:
 
   map<int, Cine *> obtenerCines();
 
-  Cine *obtenerCine(int ind);
+  Cine *obtenerCine(int idCine);
 
-  void agregarCine(Cine *);
+  void agregarCine(Cine *cine);
 
-  bool existeCine(int id);
+  bool existeCine(int idCine);
 
-  void eliminarCine(int id);
+  void eliminarCine(int idCine);
 
   ~ManejadorCine();
 };

@@ -13,7 +13,7 @@ private:
 public:
   DtDireccion();
 
-  DtDireccion(string, int);
+  DtDireccion(string calle, int numero);
 
   string getCalle() const;
 
@@ -21,4 +21,5 @@ public:
 
   ~DtDireccion();
 };
+
 #endif

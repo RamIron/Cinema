@@ -2,7 +2,6 @@
 #define PALAB06_SALA_HH
 
 #include "Funcion.hh"
-#include <DtFuncion.hh>
 #include <iostream>
 #include <map>
 
@@ -14,20 +13,20 @@ private:
   int id;
   static int currentId;
   int capacidad;
-  map<int, Funcion *> mapOfFunciones;
+  map<int, Funcion *> funciones;
 
 public:
   Sala();
 
-  Sala(int);
+  Sala(int capacidad);
 
   int getCapacidad();
 
   int getId();
 
-  void setCapacidad(int);
+  void setCapacidad(int capacidad);
 
-  void agregarFuncion(Funcion *); // agregar operacion en la clase Sala
+  void agregarFuncion(Funcion *funcion);
 
   vector<Funcion *> obtenerFunciones();
 

@@ -14,6 +14,8 @@ public:
   static CUsuarioFactory *getInstance();
 
   IUsuario *getIUsuario();
+
+  ~CUsuarioFactory();
 };
 
 #endif

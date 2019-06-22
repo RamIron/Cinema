@@ -14,3 +14,5 @@ IUsuario *CUsuarioFactory::getIUsuario() {
   IUsuario *cont = CUsuario::getInstance();
   return cont;
 }
+
+CUsuarioFactory::~CUsuarioFactory() {}

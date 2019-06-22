@@ -15,23 +15,18 @@ void ManejadorFinanciera::agregarFinanciera(Financiera *financiera) {
   this->financieras.insert(make_pair(financiera->getNombre(), financiera));
 }
 
-bool ManejadorFinanciera::existeFinanciera(string financiera) {
-  map<string, Financiera *>::iterator it;
-  it = this->financieras.find(financiera);
-  return it != this->financieras.end();
+bool ManejadorFinanciera::existeFinanciera(string nombreFinanciera) {
+  auto financiera = this->financieras.find(nombreFinanciera);
+  return financiera != this->financieras.end();
 }
 
-Financiera *ManejadorFinanciera::obtenerFinanciera(string financiera) {
-  map<string, Financiera *>::iterator it;
-  it = this->financieras.find(financiera);
-  return it->second;
+Financiera *ManejadorFinanciera::obtenerFinanciera(string nombreFinanciera) {
+  auto financiera = this->financieras.find(nombreFinanciera);
+  return financiera->second;
 }
 
-void ManejadorFinanciera::eliminarFinanciera(string financiera) {
-  map<string, Financiera *>::iterator it;
-  it = this->financieras.find(financiera);
-  delete it->second;
-  this->financieras.erase(financiera);
+void ManejadorFinanciera::eliminarFinanciera(string nombreFinanciera) {
+  this->financieras.erase(nombreFinanciera);
 }
 
 map<string, Financiera *> ManejadorFinanciera::obtenerFinancieras() {

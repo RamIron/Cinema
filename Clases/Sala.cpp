@@ -16,19 +16,19 @@ int Sala::getId() { return this->id; }
 void Sala::setCapacidad(int capacidad) { this->capacidad = capacidad; }
 
 void Sala::agregarFuncion(Funcion *funcion) {
-  this->mapOfFunciones.insert(make_pair(funcion->getId(), funcion));
+  this->funciones.insert(make_pair(funcion->getId(), funcion));
 }
 
 vector<Funcion *> Sala::obtenerFunciones() {
   vector<Funcion *> funciones;
-  for (auto posFuncion : mapOfFunciones) {
+  for (auto posFuncion : this->funciones) {
     funciones.push_back(posFuncion.second);
   }
   return funciones;
 }
 
 void Sala::eliminarFuncionSala(int idFuncion) {
-  this->mapOfFunciones.erase(idFuncion);
+  this->funciones.erase(idFuncion);
 }
 
 Sala::~Sala() {}

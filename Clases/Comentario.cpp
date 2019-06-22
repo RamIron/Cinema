@@ -1,4 +1,5 @@
 #include "Comentario.hh"
+#include "../Handlers/ManejadorComentario.hh"
 
 int Comentario::currentId = 0;
 
@@ -30,8 +31,10 @@ void Comentario::agregarRespuesta(Comentario *respuesta) {
 
 // Destructor
 Comentario::~Comentario() {
-  for (auto posComentario : respuestas) {
+  for (auto posComentario : this->respuestas) {
+    auto manejadorComentario = ManejadorComentario::getInstance();
+    manejadorComentario->eliminarComentario(posComentario.second->getId());
     delete posComentario.second;
   }
-  respuestas.clear();
+  this->respuestas.clear();
 }

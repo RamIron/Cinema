@@ -16,21 +16,16 @@ void ManejadorUsuario::agregarUsuario(Usuario *usuario) {
 }
 
 bool ManejadorUsuario::existeUsuario(string nickname) {
-  map<string, Usuario *>::iterator it;
-  it = this->usuarios.find(nickname);
-  return it != this->usuarios.end();
+  auto usuario = this->usuarios.find(nickname);
+  return usuario != this->usuarios.end();
 }
 
 Usuario *ManejadorUsuario::obtenerUsuario(string nickname) {
-  map<string, Usuario *>::iterator it;
-  it = this->usuarios.find(nickname);
-  return it->second;
+  auto usuario = this->usuarios.find(nickname);
+  return usuario->second;
 }
 
 void ManejadorUsuario::eliminarUsuario(string nickname) {
-  map<string, Usuario *>::iterator it;
-  it = this->usuarios.find(nickname);
-  delete it->second;
   this->usuarios.erase(nickname);
 }
 

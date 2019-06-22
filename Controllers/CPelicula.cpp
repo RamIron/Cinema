@@ -61,7 +61,7 @@ DtPelicula CPelicula::mostrarPelicula() {
 }
 
 vector<DtCine> CPelicula::verInfoAdicional() {
-  return this->pelicula->obtenerCines();
+  return this->pelicula->obtenerDtCines();
 }
 
 void CPelicula::ingresarPuntaje(int puntuacion) {
@@ -69,13 +69,9 @@ void CPelicula::ingresarPuntaje(int puntuacion) {
   pelicula->agregarPuntaje(puntaje);
 }
 
-void CPelicula::creaComentario(string comentario) {}
-
-void CPelicula::eligeComentario(int id) { this->idComentario = id; }
-
-void CPelicula::respondeComentario(string comentario) {}
-
-void CPelicula::finalizar() {}
+void CPelicula::eligeComentario(int idComentario) {
+  this->idComentario = idComentario;
+}
 
 void CPelicula::eliminarPelicula() { delete this->pelicula; }
 
@@ -106,7 +102,7 @@ float CPelicula::ingresarFinanciera(string nombreFinanciera) {
     auto financiera = manejadorFinanciera->obtenerFinanciera(nombreFinanciera);
     return financiera->getDescuento();
   } else {
-    throw invalid_argument("Opcion incorrecta");
+    throw invalid_argument("No existe una financiera con ese nombre");
   }
 }
 
@@ -125,42 +121,18 @@ void CPelicula::crearFuncion(DtFecha fecha, DtHorario horario, float precio) {
   this->pelicula->agregarCine(cCine->getCine());
 }
 
-void CPelicula::seleccionaFuncion(int id) { this->funcion = id; }
+void CPelicula::seleccionaFuncion(int idFuncion) { this->funcion = idFuncion; }
 
-bool operator>(DtFechaHora funcion, DtFechaHora sistema) {
-  if (funcion.getAnio() == sistema.getAnio()) {
-    if (funcion.getMes() == sistema.getMes()) {
-      if (funcion.getDia() == sistema.getDia()) {
-        if (funcion.getHora() == sistema.getHora()) {
-          if (funcion.getMinuto() == sistema.getMinuto()) {
-            return false;
-          } else {
-            return funcion.getMinuto() > sistema.getMinuto();
-          }
-        } else {
-          return funcion.getHora() > sistema.getHora();
-        }
-      } else {
-        return funcion.getDia() > sistema.getDia();
-      }
-    } else {
-      return funcion.getMes() > sistema.getMes();
-    }
-  } else {
-    return funcion.getAnio() > sistema.getAnio();
-  }
-}
-
-vector<DtFuncion> CPelicula::eligeCine(int id) {
+vector<DtFuncion> CPelicula::eligeCine(int idCine) {
   vector<DtFuncion> dtFunciones;
   auto reloj = Reloj::getInstance();
-  if (this->pelicula->existeCine(id)) {
-    auto cine = this->pelicula->obtenerCine(id);
+  if (this->pelicula->existeCine(idCine)) {
+    auto cine = this->pelicula->obtenerCine(idCine);
     auto salas = cine->obtenerSalas();
-    for (auto sala : salas) {
-      auto funSalas = sala.second->obtenerFunciones();
-      if (!funSalas.empty()) {
-        for (auto posFuncion : funSalas) {
+    for (auto posSala : salas) {
+      auto funSala = posSala.second->obtenerFunciones();
+      if (!funSala.empty()) {
+        for (auto posFuncion : funSala) {
           if (this->pelicula->existeFuncion(posFuncion->getId())) {
             if (posFuncion->getFechaHora() > reloj->getFechaHora()) {
               auto dtFuncion =
@@ -191,48 +163,46 @@ float CPelicula::obtenerPrecioCredito(float descuento) {
   return funcion->getPrecio() * this->cantEntradas * (descuento / 100);
 }
 
-void CPelicula::removerFuncionSala(int id) {}
-
-vector<DtFuncion> CPelicula::obtenerFunciones() {}
-
-DtFuncion CPelicula::obtenerFuncionSala() {}
-
 bool CPelicula::existePuntaje() {
-  return pelicula->existePuntajeUsuario(sesion->getUsuario()->getNickname());
+  return this->pelicula->existePuntajeUsuario(
+      this->sesion->getUsuario()->getNickname());
 }
 
 int CPelicula::mostrarPuntaje() {
-  auto puntaje = pelicula->obtenerPuntaje(sesion->getUsuario()->getNickname());
+  auto puntaje =
+      this->pelicula->obtenerPuntaje(this->sesion->getUsuario()->getNickname());
   return puntaje->getPuntos();
 }
 
 void CPelicula::modificarPuntajePelicula(int puntajeNuevo) {
-  pelicula->modificarPuntaje(puntajeNuevo, sesion->getUsuario()->getNickname());
+  this->pelicula->modificarPuntaje(puntajeNuevo,
+                                   this->sesion->getUsuario()->getNickname());
 }
 
 void CPelicula::agregarComentarioPelicula(string comentario) {
-  pelicula->agregarComentario(comentario, sesion->getUsuario());
+  this->pelicula->agregarComentario(comentario, this->sesion->getUsuario());
 }
 
 map<int, Comentario *> CPelicula::obtenerComentariosPelicula() {
-  return pelicula->obtenerComentarios();
+  return this->pelicula->obtenerComentarios();
 }
 
 void CPelicula::obtenerDtComentariosPelicula(
     map<int, Comentario *> comentarios, vector<DtComentario> &dtComentarios,
     int profundidad) {
   dtComentarios.clear();
-  pelicula->obtenerDtComentarios(comentarios, dtComentarios, profundidad);
+  this->pelicula->obtenerDtComentarios(comentarios, dtComentarios, profundidad);
 }
 
 void CPelicula::respondeComentarioPelicula(string respuesta) {
-  pelicula->respondeComentario(idComentario, respuesta, sesion->getUsuario());
+  this->pelicula->respondeComentario(this->idComentario, respuesta,
+                                     this->sesion->getUsuario());
 }
 
 DtInfoPeli CPelicula::crearDtInfoPeli() {
   vector<DtComentario> dtComentarios;
-  pelicula->obtenerDtComentarios(this->pelicula->obtenerComentarios(),
-                                 dtComentarios, 0);
+  this->pelicula->obtenerDtComentarios(this->pelicula->obtenerComentarios(),
+                                       dtComentarios, 0);
   auto dtPuntajes = this->pelicula->obtenerDtPuntajes();
   auto dtInfoPelicula = DtInfoPeli(
       this->pelicula->getTitulo(), this->pelicula->getPuntajePromedio(),

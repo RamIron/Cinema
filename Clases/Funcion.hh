@@ -36,9 +36,9 @@ public:
 
   float getPrecio();
 
-  void setFecha(DtFecha fecha);
-
   DtFechaHora getFechaHora();
+
+  void setFecha(DtFecha fecha);
 
   void setFechaHora(DtFechaHora fechaHora);
 

@@ -37,8 +37,7 @@ std::ostream &operator<<(std::ostream &output, DtInfoPeli &dtInfoPeli) {
   }
   output << "Puntajes" << std::endl;
   for (auto dtPuntaje : dtInfoPeli.getPuntajes()) {
-    output << dtPuntaje.getNickname() << ":" << dtPuntaje.getPuntuacion()
-           << std::endl;
+    output << dtPuntaje;
   }
   return output;
 }

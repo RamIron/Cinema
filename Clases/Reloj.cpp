@@ -3,26 +3,26 @@
 
 using namespace std;
 
-Reloj *Reloj::instance = NULL;
+Reloj *Reloj::instanciaReloj = NULL;
 
-Reloj::Reloj() { manual = false; }
+Reloj::Reloj() { this->manual = false; }
 
 Reloj *Reloj::getInstance() {
-  if (instance == NULL) {
-    instance = new Reloj();
+  if (instanciaReloj == NULL) {
+    instanciaReloj = new Reloj();
   }
-  return instance;
+  return instanciaReloj;
 }
 
 void Reloj::activarManual(DtFechaHora f) {
-  fechaHoraManual = f;
-  manual = true;
+  this->fechaHoraManual = f;
+  this->manual = true;
 }
 
-void Reloj::desactivarManual() { manual = false; }
+void Reloj::desactivarManual() { this->manual = false; }
 
 DtFechaHora Reloj::getFechaHora() {
-  if (!manual) {
+  if (!this->manual) {
     time_t tim;
     time(&tim);
     tm *now = localtime(&tim);
@@ -31,7 +31,7 @@ DtFechaHora Reloj::getFechaHora() {
     int dia = now->tm_mday;
     int hora = now->tm_hour;
     int min = now->tm_min;
-    fechaHoraManual = DtFechaHora(anio, mes, dia, hora, min);
+    this->fechaHoraManual = DtFechaHora(anio, mes, dia, hora, min);
   }
   return fechaHoraManual;
 }

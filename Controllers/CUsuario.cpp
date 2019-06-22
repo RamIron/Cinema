@@ -1,5 +1,4 @@
 #include "CUsuario.hh"
-#include "../Clases/Sesion.hh"
 #include "ManejadorUsuario.hh"
 
 CUsuario *CUsuario::cuInstance = NULL;
@@ -20,11 +19,18 @@ bool CUsuario::ingresaPass(string contrasenia) {
   if (manejadorUsuario->existeUsuario(nickname)) {
     auto usuario = manejadorUsuario->obtenerUsuario(this->nickname);
     if (usuario->getConstrasenia().compare(contrasenia) == 0) {
-      auto sesion = Sesion::getInstance();
-      sesion->setUsuario(usuario);
+      this->sesion->setUsuario(usuario);
     }
     return usuario->getConstrasenia().compare(contrasenia) == 0;
+  } else {
+    throw invalid_argument("No existe un usuario con ese nickname");
   }
 }
+
+bool CUsuario::estaLogeado() {
+  return this->sesion->getUsuario() != NULL;
+}
+
+bool CUsuario::esAdmin() { return this->sesion->getUsuario()->isAdmin(); }
 
 CUsuario::~CUsuario() {}

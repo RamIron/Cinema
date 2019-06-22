@@ -23,13 +23,13 @@ DtHorario Funcion::getHorario() { return this->horario; }
 
 float Funcion::getPrecio() { return this->precio; }
 
+DtFechaHora Funcion::getFechaHora() { return this->fechaHora; }
+
 void Funcion::setFecha(DtFecha fecha) { this->fecha = fecha; }
 
 void Funcion::setHorario(DtHorario horario) { this->horario = horario; }
 
 void Funcion::setPrecio(float precio) { this->precio = precio; }
-
-DtFechaHora Funcion::getFechaHora() { return this->fechaHora; }
 
 void Funcion::setFechaHora(DtFechaHora fechaHora) {
   this->fechaHora = fechaHora;
@@ -41,8 +41,8 @@ void Funcion::agregarReserva(Reserva *reserva) {
 
 // Destructor
 Funcion::~Funcion() {
-  for (auto reserva : reservas) {
+  for (auto reserva : this->reservas) {
     delete reserva;
   }
-  reservas.clear();
+  this->reservas.clear();
 }

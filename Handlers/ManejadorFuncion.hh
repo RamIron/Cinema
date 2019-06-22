@@ -18,13 +18,13 @@ public:
 
   map<int, Funcion *> obtenerFunciones();
 
-  Funcion *obtenerFuncion(int id);
+  Funcion *obtenerFuncion(int idFuncion);
 
-  void agregarFuncion(Funcion *);
+  void agregarFuncion(Funcion *funcion);
 
-  bool existeFuncion(int id);
+  bool existeFuncion(int idFuncion);
 
-  void eliminarFuncion(int id);
+  void eliminarFuncion(int idFuncion);
 
   ~ManejadorFuncion();
 };

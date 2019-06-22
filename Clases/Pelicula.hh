@@ -5,14 +5,13 @@
 #include "../Datatypes/DtComentario.hh"
 #include "../Datatypes/DtFuncion.hh"
 #include "../Datatypes/DtInfoPeli.hh"
-#include "../Datatypes/DtPrintComentario.hh"
+#include "../Datatypes/DtPuntaje.hh"
 #include "Cine.hh"
 #include "Comentario.hh"
 #include "Funcion.hh"
 #include "Puntaje.hh"
 #include <iostream>
 #include <map>
-#include <string>
 #include <vector>
 
 using namespace std;
@@ -53,48 +52,36 @@ public:
   void setPoster(string poster);
 
   // Operaciones
-  float calcularPuntajePromedio();
 
-  vector<DtCine> obtenerCines();
+  void agregarFuncion(Funcion *funcion);
 
-  DtCine obtenerDtCine(int id);
+  bool existeFuncion(int idFuncion);
 
-  Cine *obtenerCine(int id);
+  void agregarCine(Cine *cine);
 
-  vector<DtComentario> obtenerComentario();
+  bool existeCine(int idCine);
 
-  vector<DtCine> verInfoAdicional();
+  vector<DtCine> obtenerDtCines();
 
-  int obtenerPuntuacion();
-
-  vector<DtInfoPeli> mostrarInfo();
-
-  vector<DtFuncion> obtenerDtFunciones();
-
-  void agregarFuncion(Funcion *);
-
-  void agregarCine(Cine *);
-
-  bool existeCine(int id);
-
-  bool existeFuncion(int id);
+  Cine *obtenerCine(int idCine);
 
   void agregarComentario(string comentario, Usuario *usuario);
 
   map<int, Comentario *> obtenerComentarios();
 
   void obtenerDtComentarios(map<int, Comentario *> comentarios,
-                            vector<DtComentario> &dtComentarios, int prof);
+                            vector<DtComentario> &dtComentarios,
+                            int profundidad);
+
+  void respondeComentario(int idComentario, string respuesta, Usuario *usuario);
+
+  void agregarPuntaje(Puntaje *puntaje);
 
   bool existePuntajeUsuario(string nickname);
 
   Puntaje *obtenerPuntaje(string nickname);
 
   void modificarPuntaje(int puntajeNuevo, string nickname);
-
-  void agregarPuntaje(Puntaje *puntaje);
-
-  void respondeComentario(int idComentario, string respuesta, Usuario *usuario);
 
   vector<DtPuntaje> obtenerDtPuntajes();
 

@@ -6,6 +6,14 @@ CCine *CCine::ccInstance = NULL;
 
 CCine::CCine() {}
 
+Sala *CCine::getSala() { return this->sala; }
+
+void CCine::setSala(Sala *sala) { this->sala = sala; }
+
+Cine *CCine::getCine() { return this->cine; }
+
+void CCine::setCine(Cine *cine) { this->cine = cine; }
+
 CCine *CCine::getInstance() {
   if (ccInstance == NULL) {
     ccInstance = new CCine();
@@ -38,20 +46,20 @@ vector<DtCine> CCine::obtenerCines() {
   auto manejadorCine = ManejadorCine::getInstance();
   vector<DtCine> dtCines;
   auto cines = manejadorCine->obtenerCines();
-  for (auto posicionMap : cines) {
+  for (auto posCine : cines) {
     auto dtCine =
-        DtCine(posicionMap.second->getId(), posicionMap.second->getDireccion());
+        DtCine(posCine.second->getId(), posCine.second->getDireccion());
     dtCines.push_back(dtCine);
   }
   return dtCines;
 }
 
-void CCine::eligeCine(int id) {
+void CCine::eligeCine(int idCine) {
   auto manejadorCine = ManejadorCine::getInstance();
-  if (manejadorCine->existeCine(id)) {
-    this->cine = manejadorCine->obtenerCine(id);
+  if (manejadorCine->existeCine(idCine)) {
+    this->cine = manejadorCine->obtenerCine(idCine);
   } else {
-    throw invalid_argument("Opción incorrecta");
+    throw invalid_argument("Ese cine no existe");
   }
 }
 
@@ -61,16 +69,8 @@ void CCine::eligeSala(int idSala) {
   if (cine->existeSala(idSala)) {
     sala = cine->obtenerSala(idSala);
   } else {
-    throw invalid_argument("Opción incorrecta");
+    throw invalid_argument("Esa sala no existe");
   }
 }
 
 CCine::~CCine() {}
-
-Sala *CCine::getSala() const { return sala; }
-
-void CCine::setSala(Sala *sala) { CCine::sala = sala; }
-
-Cine *CCine::getCine() const { return cine; }
-
-void CCine::setCine(Cine *cine) { CCine::cine = cine; }

@@ -15,7 +15,7 @@ private:
   int id;
   static int currentId;
   DtDireccion direccion;
-  map<int, Sala *> mapOfSalas;
+  map<int, Sala *> salas;
 
 public:
   // Constructor por defecto
@@ -38,7 +38,7 @@ public:
 
   map<int, Sala *> obtenerSalas();
 
-  void agregarSala(Sala *);
+  void agregarSala(Sala *sala);
 
   bool existeSala(int idSala);
 

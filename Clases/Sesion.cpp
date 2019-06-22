@@ -1,19 +1,19 @@
 #include "Sesion.hh"
 #include "ManejadorUsuario.hh"
 
-Sesion *Sesion::sesion = NULL;
+Sesion *Sesion::instanciaSesion = NULL;
 
 Sesion *Sesion::getInstance() {
-  if (sesion == NULL) {
-    sesion = new Sesion();
+  if (instanciaSesion == NULL) {
+    instanciaSesion = new Sesion();
   }
-  return sesion;
+  return instanciaSesion;
 }
 
 Sesion::Sesion() {}
 
 Usuario *Sesion::getUsuario() { return this->u; }
 
-void Sesion::setUsuario(Usuario *u) { this->u = u; }
+void Sesion::setUsuario(Usuario *usuario) { this->u = usuario; }
 
 Sesion::~Sesion() {}

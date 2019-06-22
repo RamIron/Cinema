@@ -8,18 +8,16 @@ using namespace std;
 
 class Sesion {
 private:
-  static Sesion *sesion;
+  static Sesion *instanciaSesion;
   Usuario *u;
   Sesion();
 
 public:
   static Sesion *getInstance();
 
-  void login(Usuario *);
-
   Usuario *getUsuario();
 
-  void setUsuario(Usuario *u);
+  void setUsuario(Usuario *usuario);
 
   ~Sesion();
 };

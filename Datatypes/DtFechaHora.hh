@@ -18,9 +18,9 @@ private:
 public:
   DtFechaHora();
 
-  DtFechaHora(int, int, int, int, int);
+  DtFechaHora(int anio, int mes, int dia, int hora, int minuto);
 
-  DtFechaHora(DtFecha fecha, DtHorario);
+  DtFechaHora(DtFecha fecha, DtHorario horario);
 
   int getAnio();
 
@@ -31,6 +31,8 @@ public:
   int getHora();
 
   int getMinuto();
+
+  friend bool operator>(DtFechaHora funcion, DtFechaHora sistema);
 
   ~DtFechaHora();
 };

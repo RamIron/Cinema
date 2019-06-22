@@ -39,21 +39,23 @@ public:
 
   vector<DtPelicula> obtenerPeliculas();
 
+  DtPelicula mostrarPelicula();
+
   void eligePelicula(string titulo);
 
-  DtPelicula mostrarPelicula(); // Retorna la pelicula de eligePelicula()
+  void eliminarPelicula();
+
+  void crearFuncion(DtFecha fecha, DtHorario horario, float precio);
+
+  void seleccionaFuncion(int id);
+
+  vector<DtFuncion> eligeCine(int numero);
+
+  vector<DtCine> verInfoAdicional();
 
   void ingresarPuntaje(int puntuacion);
 
-  void creaComentario(string comentario);
-
   void eligeComentario(int id);
-
-  void respondeComentario(string comentario);
-
-  void finalizar();
-
-  void eliminarPelicula();
 
   void crearReservaCredito(float costo);
 
@@ -65,25 +67,9 @@ public:
 
   void ingresaCantEntradas(int cantEntradas);
 
-  void crearFuncion(DtFecha fecha, DtHorario horario, float precio);
-
-  void seleccionaFuncion(int id);
-
-  vector<DtFuncion> eligeCine(int numero);
-
   float obtenerPrecioDebito();
 
   float obtenerPrecioCredito(float descuento);
-
-  void removerFuncionSala(int id);
-
-  vector<DtFuncion> obtenerFunciones();
-
-  DtFuncion obtenerFuncionSala();
-
-  vector<DtCine> verInfoAdicional();
-
-  friend bool operator>(DtFechaHora funcion, DtFechaHora sistema);
 
   bool existePuntaje();
 

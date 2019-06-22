@@ -39,44 +39,45 @@ void Pelicula::setPuntajePromedio(float puntajePromedio) {
 void Pelicula::setPoster(string poster) { this->poster = poster; }
 
 // Operaciones
-float Pelicula::calcularPuntajePromedio() {}
 
 void Pelicula::agregarFuncion(Funcion *funcion) {
   this->funciones.insert(make_pair(funcion->getId(), funcion));
+}
+
+bool Pelicula::existeFuncion(int idFuncion) {
+  return this->funciones.find(idFuncion) != this->funciones.end();
 }
 
 void Pelicula::agregarCine(Cine *cine) {
   this->cines.insert(make_pair(cine->getId(), cine));
 }
 
-vector<DtCine> Pelicula::obtenerCines() {
+bool Pelicula::existeCine(int idCine) {
+  return this->cines.find(idCine) != this->cines.end();
+}
+
+vector<DtCine> Pelicula::obtenerDtCines() {
   vector<DtCine> dtCines;
-  for (auto posCine : cines) {
+  for (auto posCine : this->cines) {
     DtCine dtCine =
         DtCine(posCine.second->getId(), posCine.second->getDireccion());
     dtCines.push_back(dtCine);
   }
   return dtCines;
 }
-
-bool Pelicula::existeCine(int id) { return cines.find(id) != cines.end(); }
-
-DtCine Pelicula::obtenerDtCine(int id) {
-  auto cine = cines.find(id);
+/*
+DtCine Pelicula::obtenerDtCine(int idCine) {
+  auto cine = this->cines.find(idCine);
   DtCine dtcine = DtCine(cine->second->getId(), cine->second->getDireccion());
   return dtcine;
 }
+*/
 
-Cine *Pelicula::obtenerCine(int id) { return cines.find(id)->second; }
+Cine *Pelicula::obtenerCine(int idCine) {
+  return this->cines.find(idCine)->second;
+}
 
-vector<DtComentario> Pelicula::obtenerComentario() {}
-
-vector<DtCine> Pelicula::verInfoAdicional() {}
-
-int Pelicula::obtenerPuntuacion() {}
-
-vector<DtInfoPeli> Pelicula::mostrarInfo() {}
-
+/*
 vector<DtFuncion> Pelicula::obtenerDtFunciones() {
   vector<DtFuncion> dtFunciones;
   for (auto posFuncion : funciones) {
@@ -88,10 +89,7 @@ vector<DtFuncion> Pelicula::obtenerDtFunciones() {
   }
   return dtFunciones;
 }
-
-bool Pelicula::existeFuncion(int id) {
-  return funciones.find(id) != funciones.end();
-}
+*/
 
 void Pelicula::agregarComentario(string comentario, Usuario *usuario) {
   auto c = new Comentario(comentario, usuario);
@@ -120,23 +118,6 @@ map<int, Comentario *> Pelicula::obtenerComentarios() {
   return this->comentarios;
 }
 
-bool Pelicula::existePuntajeUsuario(string nickname) {
-  return puntajes.find(nickname) != puntajes.end();
-}
-
-Puntaje *Pelicula::obtenerPuntaje(string nickname) {
-  return puntajes.find(nickname)->second;
-}
-
-void Pelicula::modificarPuntaje(int puntajeNuevo, string nickname) {
-  auto puntaje = obtenerPuntaje(nickname);
-  puntaje->setPuntos(puntajeNuevo);
-}
-
-void Pelicula::agregarPuntaje(Puntaje *puntaje) {
-  puntajes.insert(make_pair(puntaje->getUsuario()->getNickname(), puntaje));
-}
-
 void Pelicula::respondeComentario(int idComentario, string respuesta,
                                   Usuario *usuario) {
   auto manejadorComentario = ManejadorComentario::getInstance();
@@ -146,9 +127,27 @@ void Pelicula::respondeComentario(int idComentario, string respuesta,
   manejadorComentario->agregarComentario(cRespuesta);
 }
 
+void Pelicula::agregarPuntaje(Puntaje *puntaje) {
+  this->puntajes.insert(
+      make_pair(puntaje->getUsuario()->getNickname(), puntaje));
+}
+
+bool Pelicula::existePuntajeUsuario(string nickname) {
+  return this->puntajes.find(nickname) != this->puntajes.end();
+}
+
+Puntaje *Pelicula::obtenerPuntaje(string nickname) {
+  return this->puntajes.find(nickname)->second;
+}
+
+void Pelicula::modificarPuntaje(int puntajeNuevo, string nickname) {
+  auto puntaje = obtenerPuntaje(nickname);
+  puntaje->setPuntos(puntajeNuevo);
+}
+
 vector<DtPuntaje> Pelicula::obtenerDtPuntajes() {
   vector<DtPuntaje> dtPuntajes;
-  for (auto posPuntaje : puntajes) {
+  for (auto posPuntaje : this->puntajes) {
     DtPuntaje dtPuntaje =
         DtPuntaje(posPuntaje.second->getPuntos(),
                   posPuntaje.second->getUsuario()->getNickname());
@@ -159,22 +158,24 @@ vector<DtPuntaje> Pelicula::obtenerDtPuntajes() {
 
 // Destructor
 Pelicula::~Pelicula() {
-  for (auto posFuncion : funciones) {
-    for (auto posCine : cines) {
+  for (auto posFuncion : this->funciones) {
+    for (auto posCine : this->cines) {
       posCine.second->eliminarFuncionCine(posFuncion.second->getId());
       auto manejadorFuncion = ManejadorFuncion::getInstance();
       manejadorFuncion->eliminarFuncion(posFuncion.second->getId());
       delete posFuncion.second;
     }
   }
-  funciones.clear();
-  cines.clear();
-  for (auto posComentario : comentarios) {
+  this->funciones.clear();
+  this->cines.clear();
+  for (auto posComentario : this->comentarios) {
+    auto manejadorComentario = ManejadorComentario::getInstance();
+    manejadorComentario->eliminarComentario(posComentario.second->getId());
     delete posComentario.second;
   }
-  comentarios.clear();
-  for (auto posPuntaje : puntajes) {
+  this->comentarios.clear();
+  for (auto posPuntaje : this->puntajes) {
     delete posPuntaje.second;
   }
-  puntajes.clear();
+  this->puntajes.clear();
 }

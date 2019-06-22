@@ -17,7 +17,7 @@ public:
   Usuario();
 
   // Constructor con parametros
-  Usuario(string, string, string, bool);
+  Usuario(string nickname, string contrasenia, string foto, bool esAdmin);
 
   // Getters and Setters
   string getNickname();
@@ -28,13 +28,13 @@ public:
 
   bool isAdmin();
 
-  void setNickname(string);
+  void setNickname(string nickname);
 
-  void setContrasenia(string);
+  void setContrasenia(string contrasenia);
 
-  void setFoto(string);
+  void setFoto(string foto);
 
-  void setAdmin(bool);
+  void setAdmin(bool esAdmin);
 
   // Destructor
   ~Usuario();

@@ -20,9 +20,9 @@ public:
   DtSala(int id, int capacidad, vector<DtFuncion> dtFunciones);
 
   /*Getters*/
-  int getid();
+  int getid() const;
 
-  int getCapacidad();
+  int getCapacidad() const;
 
   vector<DtFuncion> getFunciones();
 

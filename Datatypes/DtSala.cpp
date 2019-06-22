@@ -13,9 +13,9 @@ DtSala::DtSala(int id, int capacidad, vector<DtFuncion> dtFunciones) {
   this->funciones = dtFunciones;
 }
 
-int DtSala::getid() { return this->id; }
+int DtSala::getid() const { return this->id; }
 
-int DtSala::getCapacidad() { return this->capacidad; }
+int DtSala::getCapacidad() const { return this->capacidad; }
 
 vector<DtFuncion> DtSala::getFunciones() { return this->funciones; };
 
@@ -23,15 +23,17 @@ vector<DtFuncion> DtSala::getFunciones() { return this->funciones; };
 std::ostream &operator<<(std::ostream &output, DtSala &dtSala) {
   auto funciones = dtSala.getFunciones();
   output << "- Sala " << dtSala.getid() << ":" << std::endl;
+  if (funciones.size() > 0) {
+    output << "\t- Ocupada:" << std::endl;
+  } else {
+    output << "\t- Libre" << std::endl;
+  }
   for (int i = 0; i < funciones.size(); i++) {
-    output << "\t- Funcion " << funciones[i].getid() << ":" << std::endl
-           << "\t- Fecha: " << funciones[i].getFecha().getDia() << "/"
+    output << "\t- El " << funciones[i].getFecha().getDia() << "/"
            << funciones[i].getFecha().getMes() << "/"
-           << funciones[i].getFecha().getAnio() << std::endl
-           << "\t- Hora Inicio: " << funciones[i].getHorario().getHoraInicio()
-           << std::endl
-           << "\t- Hora Fin: " << funciones[i].getHorario().getHoraFin()
-           << std::endl;
+           << funciones[i].getFecha().getAnio() << " de "
+           << funciones[i].getHorario().getHoraInicio() << " a "
+           << funciones[i].getHorario().getHoraFin() << std::endl;
   }
   return output;
 }

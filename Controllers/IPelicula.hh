@@ -1,12 +1,16 @@
 #ifndef PALAB06_IPELICULA_HH
 #define PALAB06_IPELICULA_HH
 
+#include "../Clases/Comentario.hh"
 #include "../Datatypes/DtCine.hh"
+#include "../Datatypes/DtComentario.hh"
 #include "../Datatypes/DtFechaHora.hh"
 #include "../Datatypes/DtFuncion.hh"
 #include "../Datatypes/DtHorario.hh"
+#include "../Datatypes/DtInfoPeli.hh"
 #include "../Datatypes/DtPelicula.hh"
 #include <iostream>
+#include <map>
 #include <vector>
 
 using namespace std;
@@ -19,20 +23,13 @@ public:
 
   virtual void eligePelicula(string titulo) = 0;
 
-  virtual DtPelicula
-  mostrarPelicula() = 0; // Retorna la pelicula de eligePelicula()
+  virtual DtPelicula mostrarPelicula() = 0;
 
   virtual void ingresarPuntaje(int puntuacion) = 0;
 
   virtual void modificarPuntajePelicula(int puntuacion) = 0;
 
-  virtual void creaComentario(string comentario) = 0;
-
   virtual void eligeComentario(int id) = 0;
-
-  virtual void respondeComentario(string comentario) = 0;
-
-  virtual void finalizar() = 0;
 
   virtual void eliminarPelicula() = 0;
 
@@ -56,13 +53,23 @@ public:
 
   virtual float obtenerPrecioDebito() = 0;
 
-  virtual void removerFuncionSala(int id) = 0;
-
-  virtual vector<DtFuncion> obtenerFunciones() = 0;
-
-  virtual DtFuncion obtenerFuncionSala() = 0;
-
   virtual vector<DtCine> verInfoAdicional() = 0;
+
+  virtual bool existePuntaje() = 0;
+
+  virtual int mostrarPuntaje() = 0;
+
+  virtual void agregarComentarioPelicula(string comentario) = 0;
+
+  virtual map<int, Comentario *> obtenerComentariosPelicula() = 0;
+
+  virtual void obtenerDtComentariosPelicula(map<int, Comentario *> comentarios,
+                                            vector<DtComentario> &dtComentarios,
+                                            int profundidad) = 0;
+
+  virtual void respondeComentarioPelicula(string comentario) = 0;
+
+  virtual DtInfoPeli crearDtInfoPeli() = 0;
 };
 
 #endif

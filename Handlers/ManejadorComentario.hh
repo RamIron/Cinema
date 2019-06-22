@@ -18,13 +18,13 @@ public:
 
   map<int, Comentario *> obtenerComentarios();
 
-  Comentario *obtenerComentario(int id);
+  Comentario *obtenerComentario(int idComentario);
 
-  void agregarComentario(Comentario *);
+  void agregarComentario(Comentario *comentario);
 
-  bool existeComentario(int id);
+  bool existeComentario(int idComentario);
 
-  void eliminarComentario(int id);
+  void eliminarComentario(int idComentario);
 
   ~ManejadorComentario();
 };

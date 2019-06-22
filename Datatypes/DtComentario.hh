@@ -2,7 +2,6 @@
 #define PALAB06_DTCOMENTARIO_HH
 
 #include <iostream>
-#include <map>
 
 using namespace std;
 
@@ -29,11 +28,11 @@ public:
 
   int getId() const;
 
-  /*Destructor*/
-  ~DtComentario();
-
   /*Operador*/
   friend std::ostream &operator<<(std::ostream &, DtComentario &);
+
+  /*Destructor*/
+  ~DtComentario();
 };
 
 #endif

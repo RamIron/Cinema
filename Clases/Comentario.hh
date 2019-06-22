@@ -21,19 +21,22 @@ public:
   // Constructores
   Comentario();
 
-  Comentario(string, Usuario *);
+  Comentario(string texto, Usuario *usuario);
 
   // Getters y Setters
   int getId();
+
   string getTexto();
+
   Usuario *getUsuario();
 
   map<int, Comentario *> getRespuestas();
 
-  void setTexto(string);
-  void setUsuario(Usuario *);
+  void setTexto(string texto);
 
-  void agregarRespuesta(Comentario *);
+  void setUsuario(Usuario *usuario);
+
+  void agregarRespuesta(Comentario *respuesta);
 
   // Destructor
   ~Comentario();
