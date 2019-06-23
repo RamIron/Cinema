@@ -250,7 +250,7 @@ int main() {
                           pInterface->ingresarFinanciera(financiera);
                       if (descuento > 0) {
                         cout << "Su descuento para esa financiera es: "
-                             << descuento << endl;
+                             << descuento  << "%" << endl;
                       } else {
                         cout << "Esa financiera no tiene descuento:\n";
                       }
