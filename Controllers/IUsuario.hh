@@ -17,7 +17,7 @@ public:
 
   virtual bool esAdmin() = 0;
 
-  virtual bool setHoraReloj(DtFechaHora fechaHora) = 0;
+  virtual void setHoraReloj(DtFechaHora fechaHora) = 0;
 
   virtual ManejadorUsuario *obtenerManejadorUsuario() = 0;
 };

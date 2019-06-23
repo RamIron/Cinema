@@ -17,7 +17,7 @@ int DtSala::getid() const { return this->id; }
 
 int DtSala::getCapacidad() const { return this->capacidad; }
 
-vector<DtFuncion> DtSala::getFunciones() { return this->funciones; };
+vector<DtFuncion> DtSala::getFunciones() { return this->funciones; }
 
 // Operador
 std::ostream &operator<<(std::ostream &output, DtSala &dtSala) {

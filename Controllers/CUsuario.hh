@@ -30,7 +30,7 @@ public:
 
   bool esAdmin();
 
-  bool setHoraReloj(DtFechaHora fechaHora);
+  void setHoraReloj(DtFechaHora fechaHora);
 
   ManejadorUsuario *obtenerManejadorUsuario();
 

@@ -31,7 +31,7 @@ bool CUsuario::estaLogeado() { return this->sesion->getUsuario() != NULL; }
 
 bool CUsuario::esAdmin() { return this->sesion->getUsuario()->isAdmin(); }
 
-bool CUsuario::setHoraReloj(DtFechaHora fechaHora) {
+void CUsuario::setHoraReloj(DtFechaHora fechaHora) {
   this->reloj->activarManual(fechaHora);
 }
 
