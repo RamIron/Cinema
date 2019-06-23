@@ -1,6 +1,6 @@
 #include "CCine.hh"
 #include "../Handlers/ManejadorCine.hh"
-#include <DtCine.hh>
+#include "../Datatypes/DtCine.hh"
 
 CCine *CCine::ccInstance = NULL;
 

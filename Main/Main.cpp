@@ -277,62 +277,62 @@ int main() {
       if (uInterface->estaLogeado()) {
         if (uInterface->esAdmin()) {
           bool desee = true;
+          auto dtPeliculas = pInterface->obtenerPeliculas();
+          cout << dtPeliculas;
+          try {
+            cout << "Elija el titulo de la pelicula a la que le desea "
+                    "agregar una funcion"
+                 << endl;
+            string titulo;
+            cin >> titulo;
+            pInterface->eligePelicula(titulo);
+          } catch (invalid_argument &e) {
+            cout << e.what() << endl;
+          }
+          auto dtCines = cInterface->obtenerCines();
           while (desee) {
-            auto dtPeliculas = pInterface->obtenerPeliculas();
-            cout << dtPeliculas;
-            try {
-              cout << "Elija el titulo de la pelicula a la que le desea "
-                      "agregar una funcion"
-                   << endl;
-              string titulo;
-              cin >> titulo;
-              pInterface->eligePelicula(titulo);
-              auto dtCines = pInterface->verInfoAdicional();
-              cout << dtCines;
-              cout << "Elija el cine que le desea agregar una funcion" << endl;
-              int cine;
-              cin >> cine;
-              cInterface->eligeCine(cine);
-              auto dtSalas = cInterface->obtenerDtSalas();
-              for (auto dtSala : dtSalas) {
-                cout << dtSala;
-              }
-              cout << "Elija la sala a la que le desea agregar una funcion"
-                   << endl;
-              int sala;
-              cin >> sala;
-              cInterface->eligeSala(sala);
-              cout << "Ingrese la fecha de la funcion." << endl;
-              int anio;
-              cout << "Año:" << endl;
-              cin >> anio;
-              int mes;
-              cout << "Mes:" << endl;
-              cin >> mes;
-              int dia;
-              cout << "Dia:" << endl;
-              cin >> dia;
-              auto fecha = DtFecha(dia, mes, anio);
-              cout << "Ingrese el horario de la funcion (ej: 20:00)" << endl;
-              string horaInicio;
-              cout << "HoraInicio:" << endl;
-              cin >> horaInicio;
-              string horaFin;
-              cout << "HoraFin:" << endl;
-              cin >> horaFin;
-              auto horario = DtHorario(horaInicio, horaFin);
-              float precio;
-              cout << "Ingrese el precio para la funcion" << endl;
-              cin >> precio;
-              pInterface->crearFuncion(fecha, horario, precio);
-              cout << "Se creo la funcion correctamente." << endl;
-              cout << "Desea agregar otra funcion?\n1-Si\n2-No\n";
-              opcion = getOpc(1, 2);
-              if (opcion == 2) {
-                desee = false;
-              }
-            } catch (invalid_argument &e) {
-              cout << e.what() << endl;
+            cout << dtCines;
+            cout << "Elija el ID del cine al que le desea agregar una funcion" << endl;
+            int cine;
+            cin >> cine;
+            cInterface->eligeCine(cine);
+            auto dtSalas = cInterface->obtenerDtSalas();
+            for (auto dtSala : dtSalas) {
+              cout << dtSala;
+            }
+            cout << "Elija el ID de la sala a la que le desea agregar una funcion"
+                 << endl;
+            int sala;
+            cin >> sala;
+            cInterface->eligeSala(sala);
+            cout << "Ingrese la fecha de la funcion." << endl;
+            int anio;
+            cout << "Año:" << endl;
+            cin >> anio;
+            int mes;
+            cout << "Mes:" << endl;
+            cin >> mes;
+            int dia;
+            cout << "Dia:" << endl;
+            cin >> dia;
+            auto fecha = DtFecha(dia, mes, anio);
+            cout << "Ingrese el horario de la funcion (ej: 20:00)" << endl;
+            string horaInicio;
+            cout << "HoraInicio:" << endl;
+            cin >> horaInicio;
+            string horaFin;
+            cout << "HoraFin:" << endl;
+            cin >> horaFin;
+            auto horario = DtHorario(horaInicio, horaFin);
+            float precio;
+            cout << "Ingrese el precio para la funcion" << endl;
+            cin >> precio;
+            pInterface->crearFuncion(fecha, horario, precio);
+            cout << "Se creo la funcion correctamente." << endl;
+            cout << "Desea agregar otra funcion?\n1-Si\n2-No\n";
+            opcion = getOpc(1, 2);
+            if (opcion == 2) {
+              desee = false;
             }
           }
         }
@@ -379,8 +379,9 @@ int main() {
                     pInterface->seleccionaFuncion(funcion);
                     cout << "Ingrese la cantidad de asientos a reservar:\n";
                     int cantAsientos;
+                    cin >> cantAsientos;
                     pInterface->ingresaCantEntradas(cantAsientos);
-                    cout << "Ingrese el modo de pago:\n1-Debito\n2-Debito\n";
+                    cout << "Ingrese el modo de pago:\n1-Debito\n2-Credito\n";
                     int opcion;
                     float precioTotal;
                     opcion = getOpc(1, 2);

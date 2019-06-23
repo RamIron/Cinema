@@ -32,10 +32,10 @@ std::ostream &operator<<(std::ostream &output, vector<DtFuncion> &dtFunciones) {
   for (auto dtFuncion : dtFunciones) {
     auto dtfecha = dtFuncion.getFecha();
     auto dtHorario = dtFuncion.getHorario();
-    output << "ID: " << dtFuncion.getId() << endl
+    output << "ID Funcion: " << dtFuncion.getId() << endl
            << "Fecha: " << dtfecha << endl
            << "Horario: " << dtHorario << endl
-           << "Precio: " << dtFuncion.getPrecio() << endl;
+           << "Precio: " << dtFuncion.getPrecio() << endl << endl;
   }
   return output;
 }

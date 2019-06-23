@@ -6,7 +6,7 @@
 #include "../Datatypes/DtFechaHora.hh"
 #include "../Handlers/ManejadorUsuario.hh"
 #include "IUsuario.hh"
-#include "Usuario.hh"
+#include "../Clases/Usuario.hh"
 #include <iostream>
 
 using namespace std;

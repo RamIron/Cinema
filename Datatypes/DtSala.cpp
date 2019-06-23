@@ -29,12 +29,12 @@ std::ostream &operator<<(std::ostream &output, DtSala &dtSala) {
   } else {
     output << "\t- Libre" << std::endl;
   }
-  for (int i = 0; i < funciones.size(); i++) {
+  for (unsigned int i = 0; i < funciones.size(); i++) {
     output << "\t- El " << funciones[i].getFecha().getDia() << "/"
            << funciones[i].getFecha().getMes() << "/"
            << funciones[i].getFecha().getAnio() << " de "
            << funciones[i].getHorario().getHoraInicio() << " a "
-           << funciones[i].getHorario().getHoraFin() << std::endl;
+           << funciones[i].getHorario().getHoraFin() << std::endl << std::endl;
   }
   return output;
 }
