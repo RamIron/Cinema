@@ -1,12 +1,6 @@
 #include "Main.hh"
-#include "../Clases/Reloj.hh"
-#include "../Clases/Sesion.hh"
-#include "../Clases/Usuario.hh"
-#include "../Controllers/CCine.hh"
 #include "../Controllers/CCineFactory.hh"
-#include "../Controllers/CPelicula.hh"
 #include "../Controllers/CPeliculaFactory.hh"
-#include "../Controllers/CUsuario.hh"
 #include "../Controllers/CUsuarioFactory.hh"
 #include "../Controllers/ICine.hh"
 #include "../Controllers/IPelicula.hh"
@@ -207,7 +201,6 @@ int main() {
           string titulo;
           cout << endl << "Elija el titulo de la pelicula o ingrese 1 para salir"
                << endl;
-          //cin >> titulo;
           cin.ignore();
           getline(cin, titulo, '\n');
           if (titulo.compare("1") != 0) {
@@ -312,7 +305,6 @@ int main() {
         cout << dtPeliculas;
         cout << "Elija el titulo de la pelicula:\n";
         string titulo;
-        //cin >> titulo;
         cin.ignore();
         getline(cin, titulo, '\n');
         try {
@@ -349,7 +341,6 @@ int main() {
         cout << dtPeliculas;
         cout << "Elija el titulo de la pelicula:\n";
         string titulo;
-        //cin >> titulo;
         cin.ignore();
         getline(cin, titulo, '\n');
         try {
@@ -364,18 +355,18 @@ int main() {
             for (auto dtComentario : dtComentarios) {
               cout << dtComentario;
             }
+            int opcion;
             if(dtComentarios.size() > 0){
               cout << "\n1- Realizar nuevo comentario" << endl;
               cout << "2- Responder comentario" << endl;
+              opcion = getOpc(1, 2);
             } else {
               cout << "\n1- Realizar nuevo comentario" << endl;
+              opcion = getOpc(1, 1);
             }
-            int opcion;
-            opcion = getOpc(1, 2);
             if (opcion == 1) {
               string comentario;
               cout << "Ingrese su comentario:\n";
-              //cin >> comentario;
               cin.ignore();
               getline(cin, comentario, '\n');
               pInterface->agregarComentarioPelicula(comentario);
@@ -386,7 +377,7 @@ int main() {
               pInterface->eligeComentario(idComentario);
               string comentario;
               cout << "Ingrese su comentario:\n";
-              //cin >> comentario;
+              cin.ignore();
               getline(cin, comentario, '\n');
               pInterface->respondeComentarioPelicula(comentario);
             }

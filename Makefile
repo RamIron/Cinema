@@ -165,4 +165,6 @@ $(OUTDIR)/DtPuntaje.o: Datatypes/DtPuntaje.hh Datatypes/DtPuntaje.cpp $(OUTDIR)/
 
 $(OUTDIR)/DtSala.o: Datatypes/DtSala.hh Datatypes/DtSala.cpp $(OUTDIR)/DtFuncion.o
 	$(CC) $(CFLAGS) Datatypes/DtSala.cpp -o $@
-
+clean:
+	rm -fr $(OUTDIR)/*
+	rm -f main
