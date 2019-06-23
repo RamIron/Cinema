@@ -1,6 +1,6 @@
 CC = g++
 # -g es para debugear <3
-CFLAGS = -Wall -c -g
+CFLAGS = -Wall -Wextra -Wpedantic -Werror -c -g
 OUTDIR = obj
 tmp = Cine.o Comentario.o Credito.o Debito.o Financiera.o Funcion.o Pelicula.o Puntaje.o Reloj.o Reserva.o Sala.o Sesion.o Usuario.o\
 	CCine.o CCineFactory.o CPelicula.o CPeliculaFactory.o CUsuario.o CUsuarioFactory.o\
@@ -17,7 +17,7 @@ programa: $(OBJS) $(OUTDIR)/Main.o
 	$(CC) $? -o main
 
 
-$(OUTDIR)/Main.o: Main/Main.hh Main/Main.cpp $(OUTDIR)/CCine.o $(OUTDIR)/CCineFactory.o $(OUTDIR)/CPelicula.o $(OUTDIR)/CPeliculaFactory.o $(OUTDIR)/CUsuario.o $(OUTDIR)/CUsuarioFactory.o $(OUTDIR)/CCine.o $(OUTDIR)/DtFecha.o $(OUTDIR)/ManejadorCine.o $(OUTDIR)/ManejadorFinanciera.o $(OUTDIR)/ManejadorPelicula.o $(OUTDIR)/ManejadorUsuario.o
+$(OUTDIR)/Main.o: Main/Main.hh Main/Main.cpp $(OUTDIR)/CCineFactory.o $(OUTDIR)/CPeliculaFactory.o $(OUTDIR)/CUsuarioFactory.o $(OUTDIR)/DtFecha.o $(OUTDIR)/ManejadorCine.o $(OUTDIR)/ManejadorFinanciera.o $(OUTDIR)/ManejadorPelicula.o $(OUTDIR)/ManejadorUsuario.o
 	$(CC) $(CFLAGS) Main/Main.cpp -o $@
 
 $(OUTDIR)/Menu.o: Main/Menu.hh Main/Menu.cpp

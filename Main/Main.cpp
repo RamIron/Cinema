@@ -76,7 +76,9 @@ int main() {
             bool desee = true;
             cout << "Ingrese la direccion del cine a registrar.\n";
             cout << "Calle:" << endl;
-            cin >> calle;
+            //cin >> calle;
+            cin.ignore();
+            getline(cin, calle, '\n');
             cout << "Numero:" << endl;
             cin >> numero;
             auto dtDireccion = DtDireccion(calle, numero);
@@ -130,7 +132,9 @@ int main() {
                     "agregar una funcion"
                  << endl;
             string titulo;
-            cin >> titulo;
+            //cin >> titulo;
+            cin.ignore();
+            getline(cin, titulo, '\n');
             pInterface->eligePelicula(titulo);
           } catch (invalid_argument &e) {
             cout << e.what() << endl;
@@ -177,7 +181,7 @@ int main() {
             cin >> precio;
             pInterface->crearFuncion(fecha, horario, precio);
             cout << "Se creo la funcion correctamente." << endl;
-            cout << "Desea agregar otra funcion?\n1-Si\n2-No\n";
+            cout << "\nDesea agregar otra funcion?\n1-Si\n2-No\n";
             opcion = getOpc(1, 2);
             if (opcion == 2) {
               desee = false;
@@ -201,9 +205,11 @@ int main() {
             cout << titulo << endl;
           }
           string titulo;
-          cout << "Elija el titulo de la pelicula o ingrese 1 para salir"
+          cout << endl << "Elija el titulo de la pelicula o ingrese 1 para salir"
                << endl;
-          cin >> titulo;
+          //cin >> titulo;
+          cin.ignore();
+          getline(cin, titulo, '\n');
           if (titulo.compare("1") != 0) {
             try {
               pInterface->eligePelicula(titulo);
@@ -241,7 +247,9 @@ int main() {
                     if (opcion == 1) {
                       string banco;
                       cout << "Ingrese el nombre del banco:\n";
-                      cin >> banco;
+                      //cin >> banco;
+                      cin.ignore();
+                      getline(cin, banco, '\n');
                       pInterface->ingresarBanco(banco);
                       precioTotal = pInterface->obtenerPrecioDebito();
                       cout << "El precio total de la reserva es: "
@@ -249,7 +257,9 @@ int main() {
                     } else {
                       string financiera;
                       cout << "Ingrese el nombre de la financiera:\n";
-                      cin >> financiera;
+                      //cin >> financiera;
+                      cin.ignore();
+                      getline(cin, financiera, '\n');
                       float descuento =
                           pInterface->ingresarFinanciera(financiera);
                       if (descuento > 0) {
@@ -273,6 +283,7 @@ int main() {
                         pInterface->crearReservaCredito(precioTotal);
                         desee = false;
                       }
+                      cout << "Reserva creada con exito\n";
                     } else {
                       desee = false;
                     }
@@ -301,7 +312,9 @@ int main() {
         cout << dtPeliculas;
         cout << "Elija el titulo de la pelicula:\n";
         string titulo;
-        cin >> titulo;
+        //cin >> titulo;
+        cin.ignore();
+        getline(cin, titulo, '\n');
         try {
           pInterface->eligePelicula(titulo);
           if (pInterface->existePuntaje()) {
@@ -336,7 +349,9 @@ int main() {
         cout << dtPeliculas;
         cout << "Elija el titulo de la pelicula:\n";
         string titulo;
-        cin >> titulo;
+        //cin >> titulo;
+        cin.ignore();
+        getline(cin, titulo, '\n');
         try {
           pInterface->eligePelicula(titulo);
           bool desee = true;
@@ -360,7 +375,9 @@ int main() {
             if (opcion == 1) {
               string comentario;
               cout << "Ingrese su comentario:\n";
-              cin >> comentario;
+              //cin >> comentario;
+              cin.ignore();
+              getline(cin, comentario, '\n');
               pInterface->agregarComentarioPelicula(comentario);
             } else {
               int idComentario;
@@ -369,7 +386,8 @@ int main() {
               pInterface->eligeComentario(idComentario);
               string comentario;
               cout << "Ingrese su comentario:\n";
-              cin >> comentario;
+              //cin >> comentario;
+              getline(cin, comentario, '\n');
               pInterface->respondeComentarioPelicula(comentario);
             }
             cout << "Desea agregar otro comentario?\n1-Si\n2-No\n";
@@ -396,7 +414,9 @@ int main() {
           }
           string titulo;
           cout << "Elija el titulo de la pelicula:\n";
-          cin >> titulo;
+          //cin >> titulo;
+          cin.ignore();
+          getline(cin, titulo, '\n');
           pInterface->eligePelicula(titulo);
           cout << "Desea eliminar la pelicula?\n1-Si\n2-No";
           int opcion;
@@ -423,7 +443,9 @@ int main() {
           string titulo;
           cout << "Elija el titulo de la pelicula o ingrese 1 para salir"
                << endl;
-          cin >> titulo;
+          //cin >> titulo;
+          cin.ignore();
+          getline(cin, titulo, '\n');
           if (titulo.compare("1") != 0) {
             try {
               pInterface->eligePelicula(titulo);
@@ -443,6 +465,11 @@ int main() {
                   auto dtFunciones = pInterface->eligeCine(cine);
                   cout << dtFunciones;
                   cout << "Desea elegir otra pelicula?\n1-Si\n2-No\n";
+                  int opcion2;
+                  opcion2 = getOpc(1, 2);
+                  if (opcion2 == 2) {
+                    desee = false;
+                  }
                 } else {
                   desee = false;
                 }
@@ -470,7 +497,9 @@ int main() {
         }
         string titulo;
         cout << "Elija el titulo de la pelicula:\n";
-        cin >> titulo;
+        //cin >> titulo;
+        cin.ignore();
+        getline(cin, titulo, '\n');
         try {
           pInterface->eligePelicula(titulo);
           auto dtInfoPeli = pInterface->crearDtInfoPeli();
