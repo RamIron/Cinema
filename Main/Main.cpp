@@ -138,7 +138,8 @@ int main() {
           auto dtCines = cInterface->obtenerCines();
           while (desee) {
             cout << dtCines;
-            cout << "Elija el ID del cine al que le desea agregar una funcion" << endl;
+            cout << "Elija el ID del cine al que le desea agregar una funcion"
+                 << endl;
             int cine;
             cin >> cine;
             cInterface->eligeCine(cine);
@@ -146,7 +147,8 @@ int main() {
             for (auto dtSala : dtSalas) {
               cout << dtSala;
             }
-            cout << "Elija el ID de la sala a la que le desea agregar una funcion"
+            cout << "Elija el ID de la sala a la que le desea agregar una "
+                    "funcion"
                  << endl;
             int sala;
             cin >> sala;
@@ -181,7 +183,12 @@ int main() {
               desee = false;
             }
           }
+        } else {
+          cout << "Se necesita ser administrador para dar de alta una funcion"
+               << endl;
         }
+      } else {
+        cout << "Se necesita iniciar sesion para dar de alta una funcion" << endl;
       }
       break;
     }
@@ -283,6 +290,8 @@ int main() {
             desee = false;
           }
         }
+      } else {
+        cout << "Se necesita iniciar sesion para crear una reserva" << endl;
       }
       break;
     }
@@ -316,6 +325,8 @@ int main() {
         } catch (invalid_argument &e) {
           cout << e.what() << endl;
         }
+      } else {
+        cout << "Se necesita iniciar sesion para puntuar una pelicula" << endl;
       }
       break;
     }
@@ -328,17 +339,22 @@ int main() {
         cin >> titulo;
         try {
           pInterface->eligePelicula(titulo);
-          auto comentarios = pInterface->obtenerComentariosPelicula();
-          vector<DtComentario> dtComentarios;
-          pInterface->obtenerDtComentariosPelicula(comentarios, dtComentarios,
-                                                   0);
-          for (auto dtComentario : dtComentarios) {
-            cout << dtComentario;
-          }
           bool desee = true;
           while (desee) {
-            cout << "1- Realizar nuevo comentario" << endl;
-            cout << "2- Responder comentario" << endl;
+            auto comentarios = pInterface->obtenerComentariosPelicula();
+            vector<DtComentario> dtComentarios;
+            pInterface->obtenerDtComentariosPelicula(comentarios, dtComentarios,
+                                                     0);
+            cout << "Comentarios de la pelicula " << titulo << ":" << endl;
+            for (auto dtComentario : dtComentarios) {
+              cout << dtComentario;
+            }
+            if(dtComentarios.size() > 0){
+              cout << "\n1- Realizar nuevo comentario" << endl;
+              cout << "2- Responder comentario" << endl;
+            } else {
+              cout << "\n1- Realizar nuevo comentario" << endl;
+            }
             int opcion;
             opcion = getOpc(1, 2);
             if (opcion == 1) {
@@ -366,6 +382,8 @@ int main() {
         } catch (invalid_argument &e) {
           cout << e.what() << endl;
         }
+      } else {
+        cout << "Se necesita iniciar sesion para comentar una pelicula" << endl;
       }
       break;
     }
@@ -386,7 +404,11 @@ int main() {
           if (opcion == 1) {
             pInterface->eliminarPelicula();
           }
+        } else {
+          cout << "Se necesita ser administrador para eliminar una pelicula" << endl;
         }
+      } else {
+        cout << "Se necesita iniciar sesion para eliminar una pelicula" << endl;
       }
       break;
     }
@@ -434,6 +456,8 @@ int main() {
             desee = false;
           }
         }
+      } else {
+        cout << "Se necesita iniciar sesion para ver informacion de una pelicula" << endl;
       }
       break;
     }
@@ -442,7 +466,7 @@ int main() {
         auto dtPeliculas = pInterface->obtenerPeliculas();
         for (auto dtPelicula : dtPeliculas) {
           cout << "Titulo: " << dtPelicula.getTitulo() << endl;
-          cout << "Poster: " << dtPelicula.getPoster() << endl;
+          cout << "Poster: " << dtPelicula.getPoster() << endl << endl;
         }
         string titulo;
         cout << "Elija el titulo de la pelicula:\n";
@@ -454,6 +478,8 @@ int main() {
         } catch (invalid_argument &e) {
           cout << e.what() << endl;
         }
+      } else {
+        cout << "Se necesita iniciar sesion para ver comentarios y puntajes de una pelicula" << endl;
       }
       break;
     }
@@ -490,11 +516,12 @@ int main() {
       Financiera *financiera3 = new Financiera("PRONTO", 50);
       mf->agregarFinanciera(financiera3);
       auto mp = pInterface->obtenerManejadorPelicula();
-      Pelicula *pelicula1 = new Pelicula("Rey Leon", "Es de un leon re cool", 20 , "foto.jpg");
+      Pelicula *pelicula1 =
+          new Pelicula("Rey Leon", "Es de un leon re cool", 0, "foto.jpg");
       mp->agregarPelicula(pelicula1);
-      Pelicula *pelicula2 = new Pelicula("Scream ", "wasaaaaaa", 40 , "foto.jpg");
+      Pelicula *pelicula2 = new Pelicula("Scream", "wasaaaaaa", 0, "foto.jpg");
       mp->agregarPelicula(pelicula2);
-      Pelicula *pelicula3 = new Pelicula("Cars", "ma o meno", 10 , "foto.jpg");
+      Pelicula *pelicula3 = new Pelicula("Cars", "ma o meno", 0, "foto.jpg");
       mp->agregarPelicula(pelicula3);
       cout << "Se cargaron los datos correctamente" << endl;
       break;

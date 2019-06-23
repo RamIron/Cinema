@@ -35,7 +35,8 @@ std::ostream &operator<<(std::ostream &output, vector<DtFuncion> &dtFunciones) {
     output << "ID Funcion: " << dtFuncion.getId() << endl
            << "Fecha: " << dtfecha << endl
            << "Horario: " << dtHorario << endl
-           << "Precio: " << dtFuncion.getPrecio() << endl << endl;
+           << "Precio: " << dtFuncion.getPrecio() << endl
+           << endl;
   }
   return output;
 }

@@ -16,7 +16,8 @@ std::ostream &operator<<(std::ostream &output, vector<DtCine> &dtCines) {
     auto direccion = dtCine.getDireccion();
     output << "ID: " << dtCine.getId() << endl
            << "Calle: " << direccion.getCalle() << endl
-           << "Numero: " << direccion.getNumero() << endl << endl;
+           << "Numero: " << direccion.getNumero() << endl
+           << endl;
   }
   return output;
 }

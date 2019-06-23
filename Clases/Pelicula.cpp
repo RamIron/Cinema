@@ -20,10 +20,14 @@ string Pelicula::getSinopsis() { return this->sinopsis; }
 
 float Pelicula::getPuntajePromedio() {
   float puntajePromedio = 0;
-  for (auto posPuntaje : puntajes) {
-    puntajePromedio += posPuntaje.second->getPuntos();
+  if (this->puntajes.size() != 0) {
+    for (auto posPuntaje : this->puntajes) {
+      puntajePromedio += posPuntaje.second->getPuntos();
+    }
+    return puntajePromedio / this->puntajes.size();
+  } else {
+    return puntajePromedio;
   }
-  return puntajePromedio / puntajes.size();
 }
 
 string Pelicula::getPoster() { return this->poster; }
