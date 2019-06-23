@@ -1,9 +1,9 @@
 CC = g++
 # -g es para debugear <3
-CFLAGS = -Wall -Wextra -Wpedantic -Werror -c -g
+CFLAGS = -Os -Wall -Wextra -Wpedantic -Werror -c
 OUTDIR = obj
 tmp = Cine.o Comentario.o Credito.o Debito.o Financiera.o Funcion.o Pelicula.o Puntaje.o Reloj.o Reserva.o Sala.o Sesion.o Usuario.o\
-	CCine.o CCineFactory.o CPelicula.o CPeliculaFactory.o CUsuario.o CUsuarioFactory.o\
+	CCine.o CPelicula.o CUsuario.o Factory.o\
 	DtFecha.o DtCine.o DtComentario.o DtDireccion.o DtFechaHora.o DtFuncion.o DtHorario.o DtInfoPeli.o DtPelicula.o DtPuntaje.o DtSala.o\
 	ManejadorCine.o ManejadorComentario.o ManejadorFinanciera.o ManejadorFuncion.o ManejadorPelicula.o ManejadorUsuario.o\
 	Menu.o
@@ -17,34 +17,28 @@ programa: $(OBJS) $(OUTDIR)/Main.o
 	$(CC) $? -o main
 
 
-$(OUTDIR)/Main.o: Main/Main.hh Main/Main.cpp $(OUTDIR)/CCineFactory.o $(OUTDIR)/CPeliculaFactory.o $(OUTDIR)/CUsuarioFactory.o $(OUTDIR)/DtFecha.o $(OUTDIR)/ManejadorCine.o $(OUTDIR)/ManejadorFinanciera.o $(OUTDIR)/ManejadorPelicula.o $(OUTDIR)/ManejadorUsuario.o
+$(OUTDIR)/Main.o: Main/Main.hh Main/Main.cpp $(OUTDIR)/Factory.o $(OUTDIR)/DtFecha.o $(OUTDIR)/ManejadorFinanciera.o $(OUTDIR)/ManejadorPelicula.o $(OUTDIR)/ManejadorUsuario.o
 	$(CC) $(CFLAGS) Main/Main.cpp -o $@
+
 
 $(OUTDIR)/Menu.o: Main/Menu.hh Main/Menu.cpp
 	$(CC) $(CFLAGS) Main/Menu.cpp -o $@
 
+
+$(OUTDIR)/Factory.o: Controllers/Factory.hh Controllers/Factory.cpp $(OUTDIR)/CPelicula.o $(OUTDIR)/CUsuario.o $(OUTDIR)/CCine.o
+	$(CC) $(CFLAGS) Controllers/Factory.cpp -o $@
+
+
 $(OUTDIR)/CCine.o: Controllers/CCine.hh Controllers/CCine.cpp $(OUTDIR)/Sesion.o $(OUTDIR)/Cine.o $(OUTDIR)/DtCine.o $(OUTDIR)/DtDireccion.o $(OUTDIR)/Sala.o $(OUTDIR)/ManejadorCine.o
 	$(CC) $(CFLAGS) Controllers/CCine.cpp -o $@
-
-
-$(OUTDIR)/CCineFactory.o: Controllers/CCineFactory.hh Controllers/CCineFactory.cpp $(OUTDIR)/CCine.o
-	$(CC) $(CFLAGS) Controllers/CCineFactory.cpp -o $@
 
 
 $(OUTDIR)/CPelicula.o: Controllers/CPelicula.hh Controllers/CPelicula.cpp $(OUTDIR)/Credito.o $(OUTDIR)/Debito.o $(OUTDIR)/Funcion.o $(OUTDIR)/Pelicula.o $(OUTDIR)/Reloj.o $(OUTDIR)/Reserva.o $(OUTDIR)/Sesion.o $(OUTDIR)/DtCine.o $(OUTDIR)/DtDireccion.o $(OUTDIR)/DtFecha.o $(OUTDIR)/DtFechaHora.o $(OUTDIR)/DtFuncion.o $(OUTDIR)/DtHorario.o $(OUTDIR)/DtPelicula.o $(OUTDIR)/ManejadorComentario.o $(OUTDIR)/ManejadorFinanciera.o $(OUTDIR)/ManejadorFuncion.o $(OUTDIR)/ManejadorPelicula.o $(OUTDIR)/CCine.o
 	$(CC) $(CFLAGS) Controllers/CPelicula.cpp -o $@
 
 
-$(OUTDIR)/CPeliculaFactory.o: Controllers/CPeliculaFactory.hh Controllers/CPeliculaFactory.cpp $(OUTDIR)/CPelicula.o
-	$(CC) $(CFLAGS) Controllers/CPeliculaFactory.cpp -o $@
-
-
 $(OUTDIR)/CUsuario.o: Controllers/CUsuario.hh Controllers/CUsuario.cpp $(OUTDIR)/ManejadorUsuario.o $(OUTDIR)/Sesion.o $(OUTDIR)/Usuario.o
 	$(CC) $(CFLAGS) Controllers/CUsuario.cpp -o $@
-
-
-$(OUTDIR)/CUsuarioFactory.o: Controllers/CUsuarioFactory.hh Controllers/CUsuarioFactory.cpp $(OUTDIR)/CUsuario.o
-	$(CC) $(CFLAGS) Controllers/CUsuarioFactory.cpp -o $@
 
 
 $(OUTDIR)/ManejadorCine.o: Handlers/ManejadorCine.hh Handlers/ManejadorCine.cpp $(OUTDIR)/Cine.o

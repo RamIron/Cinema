@@ -37,7 +37,8 @@ std::ostream &operator<<(std::ostream &output,
 
 std::ostream &operator<<(std::ostream &output, DtPelicula &dtPelicula) {
   output << "Poster: " << dtPelicula.getPoster() << endl
-         << "Sinopsis: " << dtPelicula.getSinopsis() << endl << endl;
+         << "Sinopsis: " << dtPelicula.getSinopsis() << endl
+         << endl;
   return output;
 }
 

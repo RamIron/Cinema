@@ -1,19 +1,16 @@
 #include "Main.hh"
-#include "../Controllers/CCineFactory.hh"
-#include "../Controllers/CPeliculaFactory.hh"
-#include "../Controllers/CUsuarioFactory.hh"
+#include "../Controllers/Factory.hh"
 #include "../Controllers/ICine.hh"
 #include "../Controllers/IPelicula.hh"
 #include "../Controllers/IUsuario.hh"
 #include "../Datatypes/DtFecha.hh"
-#include "../Handlers/ManejadorCine.hh"
 #include "../Handlers/ManejadorFinanciera.hh"
 #include "../Handlers/ManejadorPelicula.hh"
 #include "../Handlers/ManejadorUsuario.hh"
 
 #include <stdexcept>
-
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -23,12 +20,10 @@ int main() {
     showMenu();
     opc = getOpc(0, 11);
     int opcion;
-    auto uFactory = CUsuarioFactory::getInstance();
-    auto cFactory = CCineFactory::getInstancia();
-    auto pFactory = CPeliculaFactory::getInstance();
-    auto uInterface = uFactory->getIUsuario();
-    auto cInterface = cFactory->getICine();
-    auto pInterface = pFactory->getIPelicula();
+    auto factory = Factory::getInstancia();
+    auto uInterface = factory->getIUsuario();
+    auto cInterface = factory->getICine();
+    auto pInterface = factory->getIPelicula();
     switch (opc) {
     case 1: { /// OPCION Iniciar Sesión
       string nickname, contrasenia;
@@ -70,7 +65,6 @@ int main() {
             bool desee = true;
             cout << "Ingrese la direccion del cine a registrar.\n";
             cout << "Calle:" << endl;
-            //cin >> calle;
             cin.ignore();
             getline(cin, calle, '\n');
             cout << "Numero:" << endl;
@@ -126,67 +120,67 @@ int main() {
                     "agregar una funcion"
                  << endl;
             string titulo;
-            //cin >> titulo;
             cin.ignore();
             getline(cin, titulo, '\n');
             pInterface->eligePelicula(titulo);
+            auto dtCines = cInterface->obtenerCines();
+            while (desee) {
+              cout << dtCines;
+              cout << "Elija el ID del cine al que le desea agregar una funcion"
+                   << endl;
+              int cine;
+              cin >> cine;
+              cInterface->eligeCine(cine);
+              auto dtSalas = cInterface->obtenerDtSalas();
+              for (auto dtSala : dtSalas) {
+                cout << dtSala;
+              }
+              cout << "Elija el ID de la sala a la que le desea agregar una "
+                      "funcion"
+                   << endl;
+              int sala;
+              cin >> sala;
+              cInterface->eligeSala(sala);
+              cout << "Ingrese la fecha de la funcion." << endl;
+              int anio;
+              cout << "Año:" << endl;
+              cin >> anio;
+              int mes;
+              cout << "Mes:" << endl;
+              cin >> mes;
+              int dia;
+              cout << "Dia:" << endl;
+              cin >> dia;
+              auto fecha = DtFecha(dia, mes, anio);
+              cout << "Ingrese el horario de la funcion (ej: 20:00)" << endl;
+              string horaInicio;
+              cout << "HoraInicio:" << endl;
+              cin >> horaInicio;
+              string horaFin;
+              cout << "HoraFin:" << endl;
+              cin >> horaFin;
+              auto horario = DtHorario(horaInicio, horaFin);
+              float precio;
+              cout << "Ingrese el precio para la funcion" << endl;
+              cin >> precio;
+              pInterface->crearFuncion(fecha, horario, precio);
+              cout << "Se creo la funcion correctamente." << endl;
+              cout << "\nDesea agregar otra funcion?\n1-Si\n2-No\n";
+              opcion = getOpc(1, 2);
+              if (opcion == 2) {
+                desee = false;
+              }
+            }
           } catch (invalid_argument &e) {
             cout << e.what() << endl;
-          }
-          auto dtCines = cInterface->obtenerCines();
-          while (desee) {
-            cout << dtCines;
-            cout << "Elija el ID del cine al que le desea agregar una funcion"
-                 << endl;
-            int cine;
-            cin >> cine;
-            cInterface->eligeCine(cine);
-            auto dtSalas = cInterface->obtenerDtSalas();
-            for (auto dtSala : dtSalas) {
-              cout << dtSala;
-            }
-            cout << "Elija el ID de la sala a la que le desea agregar una "
-                    "funcion"
-                 << endl;
-            int sala;
-            cin >> sala;
-            cInterface->eligeSala(sala);
-            cout << "Ingrese la fecha de la funcion." << endl;
-            int anio;
-            cout << "Año:" << endl;
-            cin >> anio;
-            int mes;
-            cout << "Mes:" << endl;
-            cin >> mes;
-            int dia;
-            cout << "Dia:" << endl;
-            cin >> dia;
-            auto fecha = DtFecha(dia, mes, anio);
-            cout << "Ingrese el horario de la funcion (ej: 20:00)" << endl;
-            string horaInicio;
-            cout << "HoraInicio:" << endl;
-            cin >> horaInicio;
-            string horaFin;
-            cout << "HoraFin:" << endl;
-            cin >> horaFin;
-            auto horario = DtHorario(horaInicio, horaFin);
-            float precio;
-            cout << "Ingrese el precio para la funcion" << endl;
-            cin >> precio;
-            pInterface->crearFuncion(fecha, horario, precio);
-            cout << "Se creo la funcion correctamente." << endl;
-            cout << "\nDesea agregar otra funcion?\n1-Si\n2-No\n";
-            opcion = getOpc(1, 2);
-            if (opcion == 2) {
-              desee = false;
-            }
           }
         } else {
           cout << "Se necesita ser administrador para dar de alta una funcion"
                << endl;
         }
       } else {
-        cout << "Se necesita iniciar sesion para dar de alta una funcion" << endl;
+        cout << "Se necesita iniciar sesion para dar de alta una funcion"
+             << endl;
       }
       break;
     }
@@ -199,7 +193,8 @@ int main() {
             cout << titulo << endl;
           }
           string titulo;
-          cout << endl << "Elija el titulo de la pelicula o ingrese 1 para salir"
+          cout << endl
+               << "Elija el titulo de la pelicula o ingrese 1 para salir"
                << endl;
           cin.ignore();
           getline(cin, titulo, '\n');
@@ -240,7 +235,6 @@ int main() {
                     if (opcion == 1) {
                       string banco;
                       cout << "Ingrese el nombre del banco:\n";
-                      //cin >> banco;
                       cin.ignore();
                       getline(cin, banco, '\n');
                       pInterface->ingresarBanco(banco);
@@ -250,7 +244,6 @@ int main() {
                     } else {
                       string financiera;
                       cout << "Ingrese el nombre de la financiera:\n";
-                      //cin >> financiera;
                       cin.ignore();
                       getline(cin, financiera, '\n');
                       float descuento =
@@ -320,12 +313,14 @@ int main() {
               cout << "Ingrese el puntaje:\n";
               cin >> puntaje;
               pInterface->modificarPuntajePelicula(puntaje);
+              cout << "El puntaje se modifico correctamente." << endl;
             }
           } else {
             int puntaje;
             cout << "Ingrese el puntaje:\n";
             cin >> puntaje;
             pInterface->ingresarPuntaje(puntaje);
+            cout << "La pelicula se puntuo correctamente." << endl;
           }
         } catch (invalid_argument &e) {
           cout << e.what() << endl;
@@ -356,7 +351,7 @@ int main() {
               cout << dtComentario;
             }
             int opcion;
-            if(dtComentarios.size() > 0){
+            if (dtComentarios.size() > 0) {
               cout << "\n1- Realizar nuevo comentario" << endl;
               cout << "2- Responder comentario" << endl;
               opcion = getOpc(1, 2);
@@ -405,18 +400,23 @@ int main() {
           }
           string titulo;
           cout << "Elija el titulo de la pelicula:\n";
-          //cin >> titulo;
           cin.ignore();
           getline(cin, titulo, '\n');
-          pInterface->eligePelicula(titulo);
-          cout << "Desea eliminar la pelicula?\n1-Si\n2-No";
-          int opcion;
-          opcion = getOpc(1, 2);
-          if (opcion == 1) {
-            pInterface->eliminarPelicula();
+          try {
+            pInterface->eligePelicula(titulo);
+            cout << "Desea eliminar la pelicula?\n1-Si\n2-No";
+            int opcion;
+            opcion = getOpc(1, 2);
+            if (opcion == 1) {
+              pInterface->eliminarPelicula();
+              cout << "La pelicula se elimino correctamente" << endl;
+            }
+          } catch (invalid_argument &e){
+            cout << e.what() << endl;
           }
         } else {
-          cout << "Se necesita ser administrador para eliminar una pelicula" << endl;
+          cout << "Se necesita ser administrador para eliminar una pelicula"
+               << endl;
         }
       } else {
         cout << "Se necesita iniciar sesion para eliminar una pelicula" << endl;
@@ -434,7 +434,6 @@ int main() {
           string titulo;
           cout << "Elija el titulo de la pelicula o ingrese 1 para salir"
                << endl;
-          //cin >> titulo;
           cin.ignore();
           getline(cin, titulo, '\n');
           if (titulo.compare("1") != 0) {
@@ -475,7 +474,9 @@ int main() {
           }
         }
       } else {
-        cout << "Se necesita iniciar sesion para ver informacion de una pelicula" << endl;
+        cout
+            << "Se necesita iniciar sesion para ver informacion de una pelicula"
+            << endl;
       }
       break;
     }
@@ -488,7 +489,6 @@ int main() {
         }
         string titulo;
         cout << "Elija el titulo de la pelicula:\n";
-        //cin >> titulo;
         cin.ignore();
         getline(cin, titulo, '\n');
         try {
@@ -499,25 +499,24 @@ int main() {
           cout << e.what() << endl;
         }
       } else {
-        cout << "Se necesita iniciar sesion para ver comentarios y puntajes de una pelicula" << endl;
+        cout << "Se necesita iniciar sesion para ver comentarios y puntajes de "
+                "una pelicula"
+             << endl;
       }
       break;
     }
 
     case 10: { /// OPCION SET HORA RELOJ
-      int anio, mes, dia, hora, minuto;
-      cout << "Ingrese la Fecha y Hora para el sistema" << endl;
-      cout << "Año: " << endl;
-      cin >> anio;
-      cout << "Mes: " << endl;
-      cin >> mes;
-      cout << "Dia: " << endl;
-      cin >> dia;
-      cout << "Hora: " << endl;
-      cin >> hora;
-      cout << "Minuto: " << endl;
-      cin >> minuto;
-      auto dtFechaHora = DtFechaHora(anio, mes, dia, hora, minuto);
+      string fecha, anio, mes, dia, hora, minuto;
+      cout << "Ingrese la Fecha y Hora para el sistema (dd/mm/aaaa hh:mm)" << endl;
+      cin.ignore();
+      getline(cin, fecha, '\n');
+      dia = fecha.substr(0,2);
+      mes = fecha.substr(3,2);
+      anio = fecha.substr(6,4);
+      hora = fecha.substr(11,2);
+      minuto = fecha.substr(14,2);
+      auto dtFechaHora = DtFechaHora(stoi(anio), stoi(mes), stoi(dia), stoi(hora), stoi(minuto));
       uInterface->setHoraReloj(dtFechaHora);
       cout << "La hora se cambio correctamente" << endl;
       break;

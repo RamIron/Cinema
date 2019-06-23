@@ -34,8 +34,7 @@ std::ostream &operator<<(std::ostream &output, DtSala &dtSala) {
            << funciones[i].getFecha().getMes() << "/"
            << funciones[i].getFecha().getAnio() << " de "
            << funciones[i].getHorario().getHoraInicio() << " a "
-           << funciones[i].getHorario().getHoraFin() << std::endl
-           << std::endl;
+           << funciones[i].getHorario().getHoraFin() << std::endl;
   }
   return output;
 }

@@ -139,9 +139,9 @@ vector<DtFuncion> CPelicula::eligeCine(int idCine) {
           if (this->pelicula->existeFuncion(posFuncion->getId())) {
             if (posFuncion->getFechaHora() > reloj->getFechaHora()) {
               auto dtFuncion =
-                      DtFuncion(posFuncion->getId(), posFuncion->getPrecio(),
-                                posFuncion->getFecha(), posFuncion->getHorario(),
-                                posFuncion->getFechaHora());
+                  DtFuncion(posFuncion->getId(), posFuncion->getPrecio(),
+                            posFuncion->getFecha(), posFuncion->getHorario(),
+                            posFuncion->getFechaHora());
               dtFunciones.push_back(dtFuncion);
             }
           }
@@ -163,17 +163,17 @@ float CPelicula::obtenerPrecioDebito() {
 float CPelicula::obtenerPrecioCredito(float descuento) {
   auto manejadorFuncion = ManejadorFuncion::getInstance();
   auto funcion = manejadorFuncion->obtenerFuncion(this->funcion);
-  return funcion->getPrecio() * this->cantEntradas * (descuento / 100);
+  return ((funcion->getPrecio() * this->cantEntradas) - (funcion->getPrecio() * this->cantEntradas) * (descuento / 100));
 }
 
 bool CPelicula::existePuntaje() {
   return this->pelicula->existePuntajeUsuario(
-          this->sesion->getUsuario()->getNickname());
+      this->sesion->getUsuario()->getNickname());
 }
 
 int CPelicula::mostrarPuntaje() {
   auto puntaje =
-          this->pelicula->obtenerPuntaje(this->sesion->getUsuario()->getNickname());
+      this->pelicula->obtenerPuntaje(this->sesion->getUsuario()->getNickname());
   return puntaje->getPuntos();
 }
 
@@ -191,8 +191,8 @@ map<int, Comentario *> CPelicula::obtenerComentariosPelicula() {
 }
 
 void CPelicula::obtenerDtComentariosPelicula(
-        map<int, Comentario *> comentarios, vector<DtComentario> &dtComentarios,
-        int profundidad) {
+    map<int, Comentario *> comentarios, vector<DtComentario> &dtComentarios,
+    int profundidad) {
   dtComentarios.clear();
   this->pelicula->obtenerDtComentarios(comentarios, dtComentarios, profundidad);
 }
@@ -208,8 +208,8 @@ DtInfoPeli CPelicula::crearDtInfoPeli() {
                                        dtComentarios, 0);
   auto dtPuntajes = this->pelicula->obtenerDtPuntajes();
   auto dtInfoPelicula = DtInfoPeli(
-          this->pelicula->getTitulo(), this->pelicula->getPuntajePromedio(),
-          (int) dtPuntajes.size(), dtComentarios, dtPuntajes);
+      this->pelicula->getTitulo(), this->pelicula->getPuntajePromedio(),
+      (int)dtPuntajes.size(), dtComentarios, dtPuntajes);
   return dtInfoPelicula;
 }
 
