@@ -65,31 +65,10 @@ vector<DtCine> Pelicula::obtenerDtCines() {
   }
   return dtCines;
 }
-/*
-DtCine Pelicula::obtenerDtCine(int idCine) {
-  auto cine = this->cines.find(idCine);
-  DtCine dtcine = DtCine(cine->second->getId(), cine->second->getDireccion());
-  return dtcine;
-}
-*/
 
 Cine *Pelicula::obtenerCine(int idCine) {
   return this->cines.find(idCine)->second;
 }
-
-/*
-vector<DtFuncion> Pelicula::obtenerDtFunciones() {
-  vector<DtFuncion> dtFunciones;
-  for (auto posFuncion : funciones) {
-    DtFuncion dtFuncion = DtFuncion(
-        posFuncion.second->getId(), posFuncion.second->getPrecio(),
-        posFuncion.second->getFecha(), posFuncion.second->getHorario(),
-        posFuncion.second->getFechaHora());
-    dtFunciones.push_back(dtFuncion);
-  }
-  return dtFunciones;
-}
-*/
 
 void Pelicula::agregarComentario(string comentario, Usuario *usuario) {
   auto c = new Comentario(comentario, usuario);
