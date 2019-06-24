@@ -163,7 +163,8 @@ float CPelicula::obtenerPrecioDebito() {
 float CPelicula::obtenerPrecioCredito(float descuento) {
   auto manejadorFuncion = ManejadorFuncion::getInstance();
   auto funcion = manejadorFuncion->obtenerFuncion(this->funcion);
-  return ((funcion->getPrecio() * this->cantEntradas) - (funcion->getPrecio() * this->cantEntradas) * (descuento / 100));
+  return ((funcion->getPrecio() * this->cantEntradas) -
+          (funcion->getPrecio() * this->cantEntradas) * (descuento / 100));
 }
 
 bool CPelicula::existePuntaje() {

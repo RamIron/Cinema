@@ -8,8 +8,8 @@
 #include "../Handlers/ManejadorPelicula.hh"
 #include "../Handlers/ManejadorUsuario.hh"
 
-#include <stdexcept>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 
 using namespace std;
@@ -37,11 +37,15 @@ int main() {
           bool correcta = false;
           while (!correcta) {
             cout << "Contraseña incorrecta, desea reintentar?\n1-Si\n2-No";
-            opcion = getOpc(0, 1);
+            opcion = getOpc(1, 2);
             if (opcion == 1) {
               cout << "Ingrese su contraseña:\n";
               cin >> contrasenia;
               correcta = uInterface->ingresaPass(contrasenia);
+              if(correcta){
+                cout << "Se inicio la sesion correctamente.\n";
+                cout << "Bienvenido " << nickname << endl;
+              }
             } else {
               correcta = true;
             }
@@ -250,7 +254,7 @@ int main() {
                           pInterface->ingresarFinanciera(financiera);
                       if (descuento > 0) {
                         cout << "Su descuento para esa financiera es: "
-                             << descuento  << "%" << endl;
+                             << descuento << "%" << endl;
                       } else {
                         cout << "Esa financiera no tiene descuento:\n";
                       }
@@ -411,7 +415,7 @@ int main() {
               pInterface->eliminarPelicula();
               cout << "La pelicula se elimino correctamente" << endl;
             }
-          } catch (invalid_argument &e){
+          } catch (invalid_argument &e) {
             cout << e.what() << endl;
           }
         } else {
@@ -508,15 +512,17 @@ int main() {
 
     case 10: { /// OPCION SET HORA RELOJ
       string fecha, anio, mes, dia, hora, minuto;
-      cout << "Ingrese la Fecha y Hora para el sistema (dd/mm/aaaa hh:mm)" << endl;
+      cout << "Ingrese la Fecha y Hora para el sistema (dd/mm/aaaa hh:mm)"
+           << endl;
       cin.ignore();
       getline(cin, fecha, '\n');
-      dia = fecha.substr(0,2);
-      mes = fecha.substr(3,2);
-      anio = fecha.substr(6,4);
-      hora = fecha.substr(11,2);
-      minuto = fecha.substr(14,2);
-      auto dtFechaHora = DtFechaHora(stoi(anio), stoi(mes), stoi(dia), stoi(hora), stoi(minuto));
+      dia = fecha.substr(0, 2);
+      mes = fecha.substr(3, 2);
+      anio = fecha.substr(6, 4);
+      hora = fecha.substr(11, 2);
+      minuto = fecha.substr(14, 2);
+      auto dtFechaHora = DtFechaHora(stoi(anio), stoi(mes), stoi(dia),
+                                     stoi(hora), stoi(minuto));
       uInterface->setHoraReloj(dtFechaHora);
       cout << "La hora se cambio correctamente" << endl;
       break;
