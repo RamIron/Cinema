@@ -36,7 +36,7 @@ int main() {
         if (!uInterface->ingresaPass(contrasenia)) {
           bool correcta = false;
           while (!correcta) {
-            cout << "Contraseña incorrecta, desea reintentar?\n1-Si\n2-No";
+            cout << "Contraseña incorrecta, desea reintentar?\n1-Si\n2-No\n";
             opcion = getOpc(1, 2);
             if (opcion == 1) {
               cout << "Ingrese su contraseña:\n";
@@ -93,6 +93,7 @@ int main() {
                 deseeCine = false;
                 cout << "El cine se dio de alta correctamente" << endl;
               } else {
+                cInterface->cancelar();
                 cout << "Desea agregar otro cine?\n1-Si\n2-No\n";
                 opcion = getOpc(1, 2);
                 if (opcion == 2) {
@@ -129,6 +130,7 @@ int main() {
             pInterface->eligePelicula(titulo);
             auto dtCines = cInterface->obtenerCines();
             while (desee) {
+              cout << "\nCines:\n";
               cout << dtCines;
               cout << "Elija el ID del cine al que le desea agregar una funcion"
                    << endl;
@@ -139,7 +141,7 @@ int main() {
               for (auto dtSala : dtSalas) {
                 cout << dtSala;
               }
-              cout << "Elija el ID de la sala a la que le desea agregar una "
+              cout << "\nElija el ID de la sala a la que le desea agregar una "
                       "funcion"
                    << endl;
               int sala;
@@ -168,7 +170,7 @@ int main() {
               cout << "Ingrese el precio para la funcion" << endl;
               cin >> precio;
               pInterface->crearFuncion(fecha, horario, precio);
-              cout << "Se creo la funcion correctamente." << endl;
+              cout << "\nSe creo la funcion correctamente." << endl;
               cout << "\nDesea agregar otra funcion?\n1-Si\n2-No\n";
               opcion = getOpc(1, 2);
               if (opcion == 2) {
@@ -408,7 +410,7 @@ int main() {
           getline(cin, titulo, '\n');
           try {
             pInterface->eligePelicula(titulo);
-            cout << "Desea eliminar la pelicula?\n1-Si\n2-No";
+            cout << "Desea eliminar la pelicula?\n1-Si\n2-No\n";
             int opcion;
             opcion = getOpc(1, 2);
             if (opcion == 1) {
@@ -533,6 +535,10 @@ int main() {
       mu->agregarUsuario(usuario1);
       Usuario *usuario2 = new Usuario("Mathias", "123", "Usuario", false);
       mu->agregarUsuario(usuario2);
+      Usuario *usuario3 = new Usuario("Ramiro", "123", "Usuario", false);
+      mu->agregarUsuario(usuario3);
+      Usuario *usuario4 = new Usuario("Mateo", "123", "Usuario", false);
+      mu->agregarUsuario(usuario4);
       auto mf = pInterface->obtenerManejadorFinanciera();
       Financiera *financiera1 = new Financiera("VISA", 20);
       mf->agregarFinanciera(financiera1);
